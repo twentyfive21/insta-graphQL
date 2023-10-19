@@ -7,7 +7,7 @@ function Login() {
         password: ''
     });
     
-    const handleLogin = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     }
     const handleInput = (e) => {
@@ -19,7 +19,7 @@ function Login() {
     }
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleSubmit}>
         {/* For testing purposes to see the data coming back
         <p>email: {userLogin.email}</p>
         <p>password:{userLogin.password}</p> */}
