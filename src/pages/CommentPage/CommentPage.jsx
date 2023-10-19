@@ -1,6 +1,6 @@
 import React from 'react'
-import { userData } from '../utils/data'
-import Post from '../components/Post/Post'
+import { userData } from '../../utils/data'
+import Post from '../../components/Post/Post'
 
 function CommentPage() {
   return (
