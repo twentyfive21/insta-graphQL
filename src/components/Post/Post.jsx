@@ -1,7 +1,6 @@
 import React from 'react'
 import './Post.css'
 import Comment from '../Comment/Comment'
-import Collab from '../Collab/Collab'
 import Actions from '../Actions/Actions'
 import AddComment from '../AddComment/AddComment'
 import leftNav from '../../assets/leftnav.png'
@@ -14,7 +13,6 @@ function Post({userData}) {
         <img src={leftNav} className='next-btn' alt='next-btn'/>
         </section>
         <section>
-        <Collab userData={userData}/>
         <Comment userData={userData[0]} />
         <Comment userData={userData[1]} />
         <Comment userData={userData[2]} size={{width:'40px', height:'40px'}} />
