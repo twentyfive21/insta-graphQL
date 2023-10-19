@@ -1,0 +1,13 @@
+.main-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 9%;
+}
+.next-btn {
+    position: absolute;
+    top: 270px;
+    left: 375px;
+}
+.next-img {
+    position: relative;
+}

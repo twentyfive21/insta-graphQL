@@ -1,0 +1,35 @@
+.actions-container {
+    border-top: 1px solid #EFEFEF;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    background-color: white;
+    position: absolute;
+    margin-top: -27px;
+    z-index: 2;
+}
+.actions-container img {
+    height: 24px;
+}
+.act-spacing img{
+    margin: 0px 8px;
+}
+.action-data {
+    position: relative;
+    padding: 20px 18px;
+    border-bottom: 1px solid #EFEFEF;
+    background-color: white;
+}
+.action-info {
+    display: flex;
+    padding-right: 5px;
+}
+.action-info p {
+    margin: 5px 0px 0px 5px;
+}
+.lighter-info {
+    font-size: 10px;
+    color: #8E8E8E;
+    margin: 7px 0px 0px 0px;
+}

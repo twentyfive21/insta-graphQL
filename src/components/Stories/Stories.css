@@ -1,0 +1,12 @@
+.stories-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 16px;
+}
+.stories-col p {
+    font-weight: 300;
+    margin-top: 8px;
+    font-size: 12px;
+}
+

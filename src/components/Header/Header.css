@@ -1,0 +1,39 @@
+.header-main {
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 15px 100px;
+background-color: #FFFFFF;
+border-bottom: 1px solid #D0D0D0;
+}
+.header-right img{
+margin: 0px 8px;
+}
+.instagram-logo {
+    margin-top: 6px;
+}
+.header-main section {
+    position: relative;
+    color:  #777777;
+}
+.search-icon {
+    position: absolute;
+    top: 11px;
+    left: 15px;
+    z-index: 1;
+    color: #999999;
+}
+.header-main input {
+    background-color: #EFEFEF;
+    position: relative;
+    border-radius: 8px;
+    padding-left: 45px;
+    border: none;
+    height: 37px;
+    width: 20vw;
+    font-weight: 300;
+    font-size: 16.8px;
+}
+
+
+

@@ -1,0 +1,124 @@
+.single-insta-post {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid #D0D0D0;
+    margin-bottom: 20px;
+}
+.username-insta-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px;
+}
+.user-insta-left{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    position: relative;
+}
+.blue-check {
+    position: absolute;
+    top: 16px;
+    left: 127px;
+}
+.user-insta-left img:first-child {
+    margin-right: 8px;
+}
+.username-insta-section img:nth-child(2) {
+    width: 16px;
+    height: 3.5px;
+    margin-right: 8px;
+}
+.user-insta-img {
+    position: relative;
+}
+.user-dot {
+    top: 565px;
+    left: 220px;
+    position:absolute;
+}
+.user-next {
+    top: 280px;
+    left: 435px;
+    position:absolute;
+}
+.interact-insta-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+.like-btn {
+    font-size: 30px;
+    margin-right: 7px;
+    margin-top: 2px;
+}
+.like-filled {
+    color: pink;
+}
+.interact-insta-left {
+    display: flex;
+    align-items: center;
+}
+.interact-insta-left img {
+    margin: 0px 7px;
+}
+.interact-insta-left button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.comment-insta-container{
+    width: 470px;
+    padding: 10px 15px;
+}
+.comment-section-insta {
+    display: flex;
+    justify-content: space-between;
+}
+.comment-section-insta img {
+    width: 13px;
+    height: 14px;
+}
+.comment-insta-likes{
+    font-size: 13px;
+    margin: 4px 0px;
+}
+.caption-insta, .comment-user {
+    font-size: 13.58px;
+    margin-bottom: 6px;
+}
+.comment-text {
+    font-weight: 300;
+    font-size: 13.58px;
+    margin-left: 5px;
+}
+.caption-insta span {
+    font-weight: 300;
+}
+.translation-insta {
+    font-size: 11.64px;
+    margin-bottom: 6px;
+}
+.comment-count-insta{
+    color: #8E8E8E;
+    font-size: 12.61px;
+    margin-bottom: 3px;
+    font-weight: 100;
+}
+.add-comment{
+    font-size: 14px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    border: none;
+    width: 430px;
+}
+.comment-section-insta::placeholder {
+    color: #262626;
+}
+.added-comment-insta {
+    margin: 2px 0px;
+}
+
+

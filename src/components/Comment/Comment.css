@@ -1,0 +1,47 @@
+.comment-container {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    padding: 14px 0px;
+    position: relative;
+    background-color: white;
+}
+.comment-left {
+    display: flex;
+}
+.comment-left section {
+    margin-top: 11px;
+    padding-right: 50px;
+}
+.comment-container img {
+    height: 32px;
+    width: 32px;
+    margin: 10px 15px;
+    border-radius: 20px;
+}
+.heart-comment {
+    font-size: 13px;
+    position: absolute;
+    left: 475px;
+    top: 30px;
+}
+.user-pr {
+    margin-right: 6px;
+}
+.hashtag {
+    font-weight: 300;
+    color: #00376B;
+}
+.actions {
+   margin: 5px 0px;
+   display: flex;
+   margin-left: -5px;
+}
+.actions p {
+    margin: 0px 5px;
+    font-size: 12px;
+    color: #8E8E8E;
+}
+.bold {
+    font-weight: 400;
+}
