@@ -1,0 +1,13 @@
+.profile-image {
+    width: 200px;
+    border-radius: 100px;
+}
+.profile-container {
+   margin-top: 100px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+.profile-container p {
+    margin: 1px 0px;
+}
