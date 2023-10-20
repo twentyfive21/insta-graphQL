@@ -20,6 +20,7 @@ export default function UserLogin() {
   if(userChoice){
     return <UserSignUp />
   }
+
   return (
     <div className="login-div-container">
       <div className="phone-container">

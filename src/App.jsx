@@ -4,6 +4,7 @@ import Homepage from '../src/pages/Homepage/Homepage'
 import { userPostData } from './utils/data'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import UserLogin from './pages/UserLogin/UserLogin'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
         <Route path='/' element={<UserLogin />} />
         <Route path="/feed" element={<Homepage userData={userPostData} />} />
+        <Route path="/profile-page" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
   )

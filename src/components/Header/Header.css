@@ -1,13 +1,18 @@
 .header-main {
 display: flex;
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
-padding: 15px 100px;
+padding: 15px 50px;
 background-color: #FFFFFF;
 border-bottom: 1px solid #D0D0D0;
 }
 .header-right img{
-margin: 0px 8px;
+    margin: 0px 5px;
+    width: 30px;
+}
+.header-right {
+    display: flex;
+    align-items: center;
 }
 .instagram-logo {
     margin-top: 6px;
@@ -30,9 +35,16 @@ margin: 0px 8px;
     padding-left: 45px;
     border: none;
     height: 37px;
-    width: 20vw;
+    width: 25vw;
     font-weight: 300;
     font-size: 16.8px;
+}
+.username{
+    margin-left: 5px;
+    cursor: pointer;
+}
+.avatar {
+    cursor: pointer;
 }
 
 
