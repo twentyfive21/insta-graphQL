@@ -15,9 +15,9 @@ function UserSignUp() {
 
   const [addUser] = useMutation(ADD_USER);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addUserToDB(signUp);
+    await addUserToDB(signUp);
   };
 
   const handleSignUp = (e) => {
@@ -45,6 +45,7 @@ function UserSignUp() {
       navigate("/feed");
     } catch (error) {
       console.log(error);
+      alert("error dummy")
     }
   };
 
@@ -59,7 +60,7 @@ function UserSignUp() {
 
         <form className="signUp-form-container" onSubmit={handleSubmit}>
           <input
-            type="text"
+            type="email"
             className="form-input"
             placeholder="Email"
             name="email"
