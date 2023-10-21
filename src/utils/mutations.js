@@ -17,15 +17,13 @@ export const ADD_USER = gql`
   }
 `;
 
-export const LOGIN_USER = gql`
-  mutation UserLogin($email: String!, $password: String!) {
-    UserLogin(email: $email, password: $password) {
-      token
-      user {
-        email
-        password
-      }
-      error
+
+
+export const CHECK_USER = gql`
+  query checkUser($email: String!, $password: String!) {
+    userData(where: { email: { _eq: $email }, password: { _eq: $password } }) {
+      email
+      password
     }
   }
 `;
