@@ -6,9 +6,11 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import UserLogin from './pages/UserLogin/UserLogin'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import UserSignUp from './pages/UserSignUp/UserSignUp'
+import UserContextProvider from './contexts/CurrentUser'
 
 function App() {
   return (
+    <UserContextProvider>
       <BrowserRouter>
         <Routes>
         <Route path='/' element={<UserLogin />} />
@@ -17,6 +19,7 @@ function App() {
         <Route path="/profile-page" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
+      </UserContextProvider>
   )
 }
 

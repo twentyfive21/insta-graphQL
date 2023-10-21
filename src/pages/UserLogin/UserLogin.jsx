@@ -3,16 +3,18 @@ import phone from "../../assets/login/instaPhone.png";
 import logo from "../../assets/login/Instagram_logo.svg.png";
 import apple from "../../assets/login/apple.PNG";
 import google from "../../assets/login/google.PNG";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { CHECK_USER } from "../../utils/mutations";
-import { useState } from "react";
-
+import { CHECK_USER } from "../../utils/queries";
+import { useState, useContext } from "react";
+import { UserContext } from "../../contexts/CurrentUser";
 
 export default function UserLogin() {
+  const { setUser, setCurrentUser, currentUser} = useContext(UserContext);
+
   const navigate = useNavigate();
 
-   const [login, setLogin] = useState({
+  const [login, setLogin] = useState({
     email: "",
     password: "",
   });
@@ -22,22 +24,29 @@ export default function UserLogin() {
     variables: { email, password },
   });
 
-
-    const handleInputLogin = (e) => {
+  const handleInputLogin = (e) => {
     setLogin({
       ...login,
       [e.target.name]: e.target.value,
     });
   };
 
+  console.log(currentUser);
   const handleLogin = () => {
     if (!loading && !error && data && data.userData.length > 0) {
-      navigate('/feed/');
+      const { avatar, email, id, userName } = data.userData[0]; // Assuming there's only one matching user
+      setUser(true);
+      setCurrentUser({
+        id,
+        email,
+        avatar,
+        userName,
+      });
+      navigate("/feed/");
     } else {
       console.log("Invalid credentials!");
     }
   };
-
 
   return (
     <div className="login-div-container">
@@ -48,11 +57,23 @@ export default function UserLogin() {
         <img src={logo} alt="logo" />
 
         <div className="login-form-container">
-          <input type="text" className="form-input" placeholder="Email" onChange={handleInputLogin} name="email"/>
-          <input type="text" className="form-input" placeholder="Password" onChange={handleInputLogin} name="password"/>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="Email"
+            onChange={handleInputLogin}
+            name="email"
+          />
+          <input
+            type="text"
+            className="form-input"
+            placeholder="Password"
+            onChange={handleInputLogin}
+            name="password"
+          />
           <button className="login-btn" onClick={handleLogin}>
-        Log In
-      </button>
+            Log In
+          </button>
         </div>
 
         <div className="login-or-option">
@@ -62,17 +83,20 @@ export default function UserLogin() {
         </div>
         <div className="optional-box">
           <p>
-            Dont Have an account? <span onClick={()=>navigate('/sign-up')}>Sign Up</span>
+            Dont Have an account?{" "}
+            <span onClick={() => navigate("/sign-up")}>Sign Up</span>
           </p>
         </div>
-         <p className="app-header">Get the app.</p>
-        <div className='app'>
-          <a href="https://apps.apple.com/us/app/instagram/id389801252?vt=lo"><img src={apple} /></a>
-           <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D170675B1-378F-4EBE-BEFB-602B3D432842%26utm_campaign%3DloginPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge%26original_referrer%3Dhttps%3A%2F%2Fwww.instagram.com%2Fluckideveloper%2F"><img src={google} /></a>
+        <p className="app-header">Get the app.</p>
+        <div className="app">
+          <a href="https://apps.apple.com/us/app/instagram/id389801252?vt=lo">
+            <img src={apple} />
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D170675B1-378F-4EBE-BEFB-602B3D432842%26utm_campaign%3DloginPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge%26original_referrer%3Dhttps%3A%2F%2Fwww.instagram.com%2Fluckideveloper%2F">
+            <img src={google} />
+          </a>
         </div>
       </div>
     </div>
   );
-
 }
-
