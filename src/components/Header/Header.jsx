@@ -1,4 +1,4 @@
-import React from 'react'
+import {useContext } from "react";
 import './Header.css'
 import logo from '../../assets/nav/logo.png'
 // import { HiOutlineSearch } from "react-icons/hi"; 
@@ -9,10 +9,14 @@ import logo from '../../assets/nav/logo.png'
 // import heart from '../../assets/nav/heart.png'
 import avatar from '../../assets/nav/avatar.png'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from "../../contexts/CurrentUser";
+
 
 function Header() {
-
+  const {currentUser} = useContext(UserContext);
   const navigate = useNavigate();
+
+  console.log(currentUser, 'from header')
 
   const viewProfile = () => {
     navigate("/profile-page")
@@ -25,8 +29,8 @@ function Header() {
     <input placeholder='Search' type='text'/> */}
     </section>
     <section className='header-right' onClick={viewProfile}>
-        <img src={avatar} className='avatar'/>
-        <p className='username'>tina.nguyen</p>
+        <img src={currentUser.avatar} className='avatar'/>
+        <p className='username'>{currentUser.userName}</p>
     </section>
     </div>
   )

@@ -14,7 +14,7 @@ const httpLink = new HttpLink({
     uri: "https://relaxing-silkworm-83.hasura.app/v1/graphql",
     headers: {
         "x-hasura-admin-secret": 
-        import.meta.VITE_DB_KEY
+        'dZHb5mNRFhIxTMx6OKjw7LLTd6UwHWyGC62Ztl66ULzFkbLSkg6UV2vqQ57t1weZ'
     },
 });
 
@@ -26,7 +26,7 @@ const wsLink = new GraphQLWsLink(
         connectionParams: {
             headers: {
                 "x-hasura-admin-secret": 
-                import.meta.VITE_DB_KEY
+                'dZHb5mNRFhIxTMx6OKjw7LLTd6UwHWyGC62Ztl66ULzFkbLSkg6UV2vqQ57t1weZ'
             },
         },
         options: {
