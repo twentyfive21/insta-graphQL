@@ -10,7 +10,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/CurrentUser";
 
 export default function UserLogin() {
-  const { setUser, setCurrentUser, currentUser} = useContext(UserContext);
+  const { setUser, setCurrentUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -37,7 +37,6 @@ export default function UserLogin() {
     }
   };
 
-  console.log(currentUser);
   const handleLogin = () => {
     if (!loading && !error && data && data.userData.length > 0) {
       const { avatar, email, id, username } = data.userData[0]; // Assuming there's only one matching user
