@@ -1,13 +1,27 @@
 .profile-image {
     width: 200px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 100px;
+    margin: 10px 0px;
 }
 .profile-container {
-   margin-top: 100px;
+   margin-top: 80px;
    display: flex;
    align-items: center;
    flex-direction: column;
 }
 .profile-container p {
-    margin: 1px 0px;
+    margin: 0.5px 0px;
+}
+.logout-btn {
+    border: none;
+    width: 120px;
+    background-color: rgb(0, 149, 246);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
 }
