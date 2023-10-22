@@ -5,13 +5,10 @@ import { useNavigate } from "react-router-dom";
 import phone2 from "../../assets/login/instaSignUp.png";
 import logo from "../../assets/login/Instagram_logo.svg.png";
 import { UserContext } from "../../contexts/CurrentUser";
-import basicpfp from '../../assets/nav/basic.png'
-import { useQuery } from "@apollo/client";
-import { GET_ID } from "../../utils/queries";
+import defaultAvatar from "../../assets/login/Default.png";
 
 function UserSignUp() {
-  const { setUser, setCurrentUser, currentUser } = useContext(UserContext);
-
+  const { setCurrentUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [signUp, setSignUp] = useState({
     email: "",
@@ -19,30 +16,7 @@ function UserSignUp() {
     username: "",
   });
 
-  const { email, password } = signUp;
-
   const [addUser] = useMutation(ADD_USER);
-
-  const grabUserID = () => {
-    if (data && data.userData.length > 0) {
-      console.log('yay!!');
-      console.log(data, "data state");
-      const { id } = data.userData[0]; // Assuming there's only one matching user
-      setCurrentUser({
-        ...currentUser,
-        id,
-      });
-      console.log(currentUser, 'current user state');
-    } else if (error) {
-      console.log("Error setting ID"); 
-      console.log(error);
-    }
-  };
-
-  const { error, data } = useQuery(GET_ID, {
-    variables: { email, password },
-    onCompleted: grabUserID, // Call grabUserID when data is available
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,23 +33,32 @@ function UserSignUp() {
   const addUserToDB = async (user) => {
     try {
       const { email, password, username } = user;
-      await addUser({
+      const { data } = await addUser({
         variables: {
           email: email.length > 0 ? email : null,
           password: password.length > 0 ? password : null,
           username: username.length > 0 ? username : null,
         },
       });
+
+      const id = data.insert_userData.returning[0].id;
       setUser(true);
       setCurrentUser({
+        id,
         email,
-        avatar: basicpfp,
+        avatar: defaultAvatar,
         username,
       });
+      setSignUp({
+        email: "",
+        password: "",
+        username: "",
+      });
+
       navigate("/feed");
     } catch (error) {
-      console.log(error);
-      alert("error dummy");
+      console.error(error);
+      alert("Error occurred while signing up");
     }
   };
 
