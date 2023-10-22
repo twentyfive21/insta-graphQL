@@ -40,13 +40,13 @@ export default function UserLogin() {
   console.log(currentUser);
   const handleLogin = () => {
     if (!loading && !error && data && data.userData.length > 0) {
-      const { avatar, email, id, userName } = data.userData[0]; // Assuming there's only one matching user
+      const { avatar, email, id, username } = data.userData[0]; // Assuming there's only one matching user
       setUser(true);
       setCurrentUser({
         id,
         email,
         avatar,
-        userName,
+        username,
       });
       navigate("/feed/");
     } else {

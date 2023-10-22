@@ -24,7 +24,7 @@ function Header() {
     </section>
     <section className='header-right' onClick={viewProfile}>
         <img src={currentUser.avatar? currentUser.avatar : avatar} className='avatar'/>
-        <p className='username'>{currentUser.userName}</p>
+        <p className='username'>{currentUser.username}</p>
     </section>
     </div>
   )
