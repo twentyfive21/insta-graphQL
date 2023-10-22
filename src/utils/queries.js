@@ -8,7 +8,7 @@ export const CHECK_USER = gql`
       email
       id
       password
-      userName
+      username
     }
   }
 `;
