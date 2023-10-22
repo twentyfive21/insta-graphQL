@@ -12,3 +12,10 @@ export const CHECK_USER = gql`
     }
   }
 `;
+export const GET_ID = gql`
+  query getID($email: String!, $password: String!) {
+    userData(where: { email: { _eq: $email }, password: { _eq: $password } }) {
+      id
+    }
+  }
+`;
