@@ -31,16 +31,22 @@ export default function UserLogin() {
     });
   };
 
+   const handleEnterKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   console.log(currentUser);
   const handleLogin = () => {
     if (!loading && !error && data && data.userData.length > 0) {
-      const { avatar, email, id, userName } = data.userData[0]; // Assuming there's only one matching user
+      const { avatar, email, id, username } = data.userData[0]; // Assuming there's only one matching user
       setUser(true);
       setCurrentUser({
         id,
         email,
         avatar,
-        userName,
+        username,
       });
       navigate("/feed/");
     } else {
@@ -58,18 +64,20 @@ export default function UserLogin() {
 
         <div className="login-form-container">
           <input
-            type="text"
+            type="email"
             className="form-input"
             placeholder="Email"
             onChange={handleInputLogin}
             name="email"
           />
           <input
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Password"
             onChange={handleInputLogin}
             name="password"
+            onKeyPress={handleEnterKeyPress}
+            required
           />
           <button className="login-btn" onClick={handleLogin}>
             Log In
