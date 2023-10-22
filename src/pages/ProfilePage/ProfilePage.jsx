@@ -20,7 +20,7 @@ function ProfilePage() {
     <Header />
         <div className='profile-container'>
         <img src={currentUser.avatar ? currentUser.avatar : basic} alt='profile image' className='profile-image'/>
-        <p>{currentUser.userName}</p>
+        <p>{currentUser.username}</p>
         <p>Posts : 0 </p>
         <button onClick={logoutCurrentUser}
         className='logout-btn'>Log out</button>
