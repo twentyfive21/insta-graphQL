@@ -1,13 +1,7 @@
 import {useContext } from "react";
 import './Header.css'
 import logo from '../../assets/nav/logo.png'
-// import { HiOutlineSearch } from "react-icons/hi"; 
-// import home from '../../assets/nav/home.png'
-// import comment from '../../assets/nav/comment.png'
-// import add from '../../assets/nav/add.png'
-// import compass from '../../assets/nav/compass.png'
-// import heart from '../../assets/nav/heart.png'
-import avatar from '../../assets/nav/avatar.png'
+import avatar from '../../assets/login/Default.png'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from "../../contexts/CurrentUser";
 
@@ -23,13 +17,13 @@ function Header() {
   }
   return (
     <div className='header-main'>
-    <img src={logo} alt='instagram logo' className='instagram-logo'/>
+    <img src={logo} alt='instagram logo' className='instagram-logo' onClick={()=> navigate('/feed')}/>
     <section>
     {/* <HiOutlineSearch className='search-icon'/>
     <input placeholder='Search' type='text'/> */}
     </section>
     <section className='header-right' onClick={viewProfile}>
-        <img src={currentUser.avatar} className='avatar'/>
+        <img src={currentUser.avatar? currentUser.avatar : avatar} className='avatar'/>
         <p className='username'>{currentUser.userName}</p>
     </section>
     </div>

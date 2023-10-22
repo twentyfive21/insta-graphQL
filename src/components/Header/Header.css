@@ -6,16 +6,24 @@ padding: 15px 50px;
 background-color: #FFFFFF;
 border-bottom: 1px solid #D0D0D0;
 }
-.header-right img{
-    margin: 0px 5px;
-    width: 30px;
-}
+
 .header-right {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 9.1%;
 }
+
+.avatar {
+    width: 40px;
+    height: 40px; /* Add this line to set the height */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .instagram-logo {
     margin-top: 6px;
+    cursor: pointer;
 }
 .header-main section {
     position: relative;
@@ -42,6 +50,11 @@ border-bottom: 1px solid #D0D0D0;
 .username{
     margin-left: 5px;
     cursor: pointer;
+    color: #000;
+}
+
+.username:hover{
+    color: rgb(0, 149, 246);
 }
 .avatar {
     cursor: pointer;

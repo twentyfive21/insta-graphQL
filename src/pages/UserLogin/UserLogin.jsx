@@ -31,6 +31,12 @@ export default function UserLogin() {
     });
   };
 
+   const handleEnterKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   console.log(currentUser);
   const handleLogin = () => {
     if (!loading && !error && data && data.userData.length > 0) {
@@ -58,18 +64,20 @@ export default function UserLogin() {
 
         <div className="login-form-container">
           <input
-            type="text"
+            type="email"
             className="form-input"
             placeholder="Email"
             onChange={handleInputLogin}
             name="email"
           />
           <input
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Password"
             onChange={handleInputLogin}
             name="password"
+            onKeyPress={handleEnterKeyPress}
+            required
           />
           <button className="login-btn" onClick={handleLogin}>
             Log In
