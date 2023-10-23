@@ -10,8 +10,6 @@ function Header() {
   const {currentUser} = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(currentUser, 'from header')
-
   const viewProfile = () => {
     navigate("/profile-page")
   }

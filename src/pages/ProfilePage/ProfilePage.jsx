@@ -5,14 +5,19 @@ import Header from '../../components/Header/Header'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/CurrentUser'
 
-
-
 function ProfilePage() {
-  const {currentUser} = useContext(UserContext);
+  const {currentUser, setUser, setCurrentUser} = useContext(UserContext);
   const  navigate = useNavigate();
 
   const logoutCurrentUser = () => {
     navigate('/')
+    setUser(false)
+    setCurrentUser({
+      id: '',
+      email: '',
+      avatar: '',
+      username: '',
+    })
   }
 
   return (
