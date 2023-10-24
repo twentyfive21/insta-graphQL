@@ -19,6 +19,7 @@ function SettingsModal() {
         avatar: '',
         username: '',
       })
+      setSettings(false)
     }
   // dark mode state for now until context is created and set for local storage 
   const [darkMode, setDarkMode] = useState(false)
