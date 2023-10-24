@@ -29,9 +29,57 @@ body {
 }
 .main-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin: 10px 20px;
+    /* border: 2px solid red; */
 }
+
+
+.sidebar{
+    /* border: 2px solid red; */
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    height: 48vh;
+    justify-content: space-evenly;
+    margin-top: 2.5rem;
+    padding-left: 1.5rem;
+}
+
+.icon-divs{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width:auto;
+}
+
+.icon-divs h3{
+    padding-left: 1rem;
+    font-weight: 500;
+}
+
+.icon-divs:hover{
+     color: rgb(0, 149, 246);
+}
+
+.sidebar img{
+    width: 36px;
+    height: 36px; /* Add this line to set the height */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.sidebar svg {
+    font-size: 2rem;
+}
+
+.follow-sidebar{
+    border: 2px solid orange;
+    width: 15%;
+}
+
+
+
 .stories-container {
     background-color: #FFFFFF;
     border-radius: 8px;
