@@ -5,18 +5,38 @@ import defaultImage from "../../assets/userpostdefualt.png";
 function AddPost() {
   const [userImage, setUserImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
+  
+  console.log(selectedImage);
 
   function getUserImage(e) {
     const file = e.target.files[0];
-    setSelectedImage(URL.createObjectURL(file)); // Set the image URL for preview
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setSelectedImage(reader.result); // Set the image URL for preview
+      };
+
+      reader.readAsDataURL(file);
+    }
+
     setUserImage(true);
   }
+
+  // Here you can send the selectedImage state variable to your database.
 
   return (
     <div className="add-post-container">
       <h2>Create New Post</h2>
       {userImage ? (
-        <div className="user-post-container" style={{backgroundImage: `url(${selectedImage})`}}>
+        <div className="user-post-container" style={{
+          backgroundImage: `url(${selectedImage})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          height: '78.9vh',
+          objectFit: 'cover'
+        }}>
         </div>
       ) : (
         <div className="post-default-container">
