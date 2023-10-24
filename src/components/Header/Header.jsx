@@ -10,20 +10,9 @@ function Header() {
   const {currentUser} = useContext(UserContext);
   const navigate = useNavigate();
 
-  const viewProfile = () => {
-    navigate("/profile-page")
-  }
   return (
     <div className='header-main'>
     <img src={logo} alt='instagram logo' className='instagram-logo' onClick={()=> navigate('/feed')}/>
-    <section>
-    {/* <HiOutlineSearch className='search-icon'/>
-    <input placeholder='Search' type='text'/> */}
-    </section>
-    <section className='header-right' onClick={viewProfile}>
-        <img src={currentUser.avatar? currentUser.avatar : avatar} className='avatar'/>
-        <p className='username'>{currentUser.username}</p>
-    </section>
     </div>
   )
 }
