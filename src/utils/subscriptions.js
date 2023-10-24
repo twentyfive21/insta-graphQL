@@ -1,10 +1,14 @@
-import {
-    HttpLink,
-    InMemoryCache,
-    split,
-  } from "@apollo/client";
-  import { getMainDefinition } from "@apollo/client/utilities";
-  import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-  import { createClient } from "graphql-ws";
+import { gql } from "@apollo/client";
 
-//   https://relaxing-silkworm-83.hasura.app/v1/graphql
+export const GET_POSTS = gql`
+subscription MySubscription {
+  userPosts(order_by: {timestamp: desc}) {
+    caption
+    id
+    image
+    likes
+    timestamp
+    userID
+  }
+}
+`
