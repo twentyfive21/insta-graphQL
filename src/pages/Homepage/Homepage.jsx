@@ -12,6 +12,7 @@ import { UserContext } from '../../contexts/CurrentUser';
 import avatar from '../../assets/login/Default.png'
 import Modal from 'react-modal';
 import AddPost from '../../components/AddPost/AddPost';
+import SettingsModal from '../../components/SettingsModal/SettingsModal';
 
  const customStyles = {
     content: {
@@ -28,21 +29,22 @@ import AddPost from '../../components/AddPost/AddPost';
     }
   };
 
-
     Modal.setAppElement(document.getElementById('root'));
 
-
-
-
-
 function Homepage({userData}) {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const {currentUser} = useContext(UserContext);
+
   const navigate = useNavigate();
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const {currentUser, setSettings} = useContext(UserContext);
   const [userTheme, setUserTheme] = useState(false);
+
+  const viewProfile = () => {
+    navigate("/profile-page")
+  }
+
   function changeThemeForUserComfort (){
     setUserTheme(!userTheme);
-  };
+  }
 
   function openModal() {
     setIsOpen(true);
@@ -57,12 +59,12 @@ function Homepage({userData}) {
     <Header />
     <section className='main-container'>
       <div className='sidebar'>
-        <div className='icon-divs'><PiHouseFill /> <h3 onClick={()=>navigate('/feed')}>Home</h3></div>
-         <div className='icon-divs'><LuPlusSquare/> <h3 onClick={openModal}>Create</h3>
+        <div className='icon-divs' onClick={()=>navigate('/feed')}><PiHouseFill /> <h3>Home</h3></div>
+         <div className='icon-divs' onClick={openModal}><LuPlusSquare/> <h3>Create</h3>
         </div>
-         <div className='icon-divs'><img src={currentUser.avatar? currentUser.avatar : avatar}/> <h3  onClick={()=>navigate('/profile-page')}>Profile</h3> </div>
-        <div className='icon-divs'>{userTheme? <BiSun /> :<GoMoon />} <h3 onClick={changeThemeForUserComfort}>Dark mode</h3></div>
-        <div className='icon-divs'><CiSettings /> <h3>Settings</h3></div>
+         <div className='icon-divs' onClick={viewProfile}><img src={currentUser.avatar? currentUser.avatar : avatar}/> <h3>Profile</h3> </div>
+        <div className='icon-divs' onClick={changeThemeForUserComfort}>{userTheme? <BiSun /> :<GoMoon />} <h3>Dark mode</h3></div>
+        <div className='icon-divs' onClick={()=>setSettings(true)}><CiSettings /> <h3>Settings</h3></div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -71,6 +73,7 @@ function Homepage({userData}) {
       >
        <AddPost />
       </Modal>
+      <SettingsModal />
       </div>
           <div className='all-posts'>
           <Posts item={userData[3].users[0]} index={0}/>

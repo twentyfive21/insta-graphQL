@@ -22,7 +22,7 @@
     color: rgb(0, 149, 246);
 }
 .settings-container {
-    width: 15vw;
+    width: 200px;
     height: 25vh;
     display: flex;
     flex-direction: column;
