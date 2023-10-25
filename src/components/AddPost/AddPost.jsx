@@ -35,8 +35,6 @@ function AddPost() {
     caption: "",
     image: "",
     userID: currentUser.id,
-    postUsername: currentUser.username,
-    postAvatar: currentUser.avatar,
   });
 
   const [addPost] = useMutation(ADD_POST);
@@ -51,14 +49,12 @@ function AddPost() {
 
   const addPostToDB = async (postData) => {
     try {
-      const { caption, image, userID, postUsername, postAvatar } = postData;
+      const { caption, image, userID } = postData;
        await addPost({
         variables: {
           caption: caption.length > 0 ? caption : null,
           image: image.length > 0 ? image : null,
           userID: userID.length > 0 ? userID : null,
-          postUsername: postUsername.length > 0 ? postUsername : null,
-          postAvatar: postAvatar.length > 0 ? postAvatar : null,
         },
       });
       console.log('success')

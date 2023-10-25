@@ -9,8 +9,15 @@ subscription MySubscription {
     likes
     timestamp
     userID
-    postUsername
-    postAvatar
   }
 }
 `
+
+export const GET_ALL_USERS = gql`
+subscription getAllUsers($id: uuid!) {
+  userData(where: {id: {_eq: $id}}) {
+    id
+    avatar
+    username
+  }
+}`

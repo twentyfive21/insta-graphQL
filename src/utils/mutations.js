@@ -18,9 +18,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-mutation addPost($caption: String!, $image: String!, $userID: uuid!, $postUsername: String!, $postAvatar: String!) {
+mutation addPost($caption: String!, $image: String!, $userID: uuid!) {
   insert_userPosts(
-    objects: { caption: $caption, image: $image, userID: $userID, postUsername: $postUsername, postAvatar: $postAvatar }
+    objects: { caption: $caption, image: $image, userID: $userID}
     ) {
     returning {
       caption
@@ -29,8 +29,6 @@ mutation addPost($caption: String!, $image: String!, $userID: uuid!, $postUserna
       likes
       userID
       timestamp
-      postUsername
-      postAvatar
     }
   }
 }
