@@ -4,18 +4,14 @@ import defaultImage from "../../assets/userpostdefualt.png";
 import { v4 as uuid } from "uuid";
 import { ImArrowLeft2 } from "react-icons/im";
 import { UserContext } from '../../contexts/CurrentUser';
-
-
+import { ADD_POST } from '../../utils/mutations.js'
+import { useMutation } from "@apollo/client";
 
 function AddPost() {
-   const {currentUser} = useContext(UserContext);
+   const {currentUser,setIsOpen} = useContext(UserContext);
   const [userImage, setUserImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [userReady, setUserReady] = useState(false)
-  // const unique_id = uuid();
-  //   console.log(unique_id)
-  console.log(selectedImage);
-
 
   function getUserImage(e) {
     const file = e.target.value;
@@ -34,13 +30,53 @@ function AddPost() {
     setUserReady(true)
   }
 
+  const [postData, setPostData] = useState({
+    caption: "",
+    image: "",
+    userID: currentUser.id,
+  });
+
+  const [addPost] = useMutation(ADD_POST);
+
+  const handlePostData = (e) => {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+      image: selectedImage,
+  })
+  }
+
+  const addPostToDB = async (postData) => {
+    try {
+      const { caption, image, userID } = postData;
+       await addPost({
+        variables: {
+          caption: caption.length > 0 ? caption : null,
+          image: image.length > 0 ? image : null,
+          userID: userID.length > 0 ? userID : null,
+        },
+      });
+      console.log('success')
+    } catch (error) {
+      console.error(error);
+      alert("Error posting data");
+    }
+  };
+
+  function submitPost(){
+    addPostToDB(postData)
+    setUserImage(false);
+    setSelectedImage("");
+    setUserReady(false);
+    setIsOpen(false);
+  }
 
   return (
     <div className="add-post-container">
       <div className="add-post-header">
         {(selectedImage || userReady) && <ImArrowLeft2 onClick={restImage}/>}
         <h2>Create New Post</h2>
-        {userImage? <p onClick={userReadyToPost}>Continue</p> : userReady? <p>share</p> : ''}
+        {userImage? <p onClick={userReadyToPost}>Continue</p> : userReady? <p onClick={submitPost}>share</p> : ''}
         
       </div>
       {userImage ? (
@@ -64,7 +100,7 @@ function AddPost() {
     </div>
     <div className="user-final-stage-caption">
       <div className='user-post-div'><img src={currentUser.avatar? currentUser.avatar : avatar}/> <p>{currentUser.username}</p> </div>
-      <textarea name="caption" id="captionId" cols="30" rows="10" maxLength={400}>
+      <textarea name="caption" id="captionId" cols="30" rows="10" maxLength={400} onChange={handlePostData}>
 
       </textarea>
     </div>

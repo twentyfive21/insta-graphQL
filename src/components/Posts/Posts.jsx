@@ -6,8 +6,8 @@ import comment from '../../assets/posts/comment.png'
 import smile from '../../assets/posts/smile.png'
 import blueCheck from '../../assets/posts/blue.png'
 
-function Posts({item, index}) {
-
+function Posts({item}) {
+    
     const [like, setLike] = useState(false)
     const [comments, setComments] = useState([])
 
@@ -20,16 +20,16 @@ function Posts({item, index}) {
     <div className='single-insta-post'>
         <div className='username-insta-section'>
         <div className='user-insta-left'>
-            <img src={item.avatar} alt={item.username} />
-            <p>{item.username}</p>
-            {
+            <img src='https://www.creativefabrica.com/wp-content/uploads/2021/12/21/Cute-Hippo-Animal-Cartoon-Embroidery-22073824-1.jpg' alt='bs' />
+            <p>Hippo mama</p>
+            {/* {
             index === 2 && <img src={blueCheck} className='blue-check' alt='blue check'/>
-            }
+            } */}
         </div>
         <img src={dotDark} alt='dots'/>
         </div>
         <div className='user-insta-img'>
-            <img src={item.post} alt={item.username}/>
+            <img src={item.image} alt={item.caption}/>
         </div>
         <div className='interact-insta-section'>
             <div className='interact-insta-left'>
@@ -43,7 +43,7 @@ function Posts({item, index}) {
         </div>
         <div className='comment-insta-container'>
             <p className='comment-insta-likes'>741,368 likes</p>
-            <p className='caption-insta'>lewishamilton <span>Parabéns Ayrton, minha inspiração sempre 🇧🇷💫</span></p>
+            <p className='caption-insta'>lewishamilton <span>{item.caption}</span></p>
             <p className='comment-count-insta'>View all 13,384 comments</p>
             {
                 comments.map(comment => 

@@ -3,6 +3,8 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
+  //state for post modal
+  const [modalIsOpen, setIsOpen] = useState(false);
   // state for settings modal 
   const [isOpen, setSettings] = useState(false)
   // Initialize user and currentUser from local storage, if available
@@ -31,7 +33,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen}}>
       {props.children}
     </UserContext.Provider>
   );

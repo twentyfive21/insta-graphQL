@@ -13,6 +13,8 @@ import avatar from '../../assets/login/Default.png'
 import Modal from 'react-modal';
 import AddPost from '../../components/AddPost/AddPost';
 import SettingsModal from '../../components/SettingsModal/SettingsModal';
+import {GET_POSTS} from "../../utils/subscriptions";
+import { useSubscription } from "@apollo/client";
 
  const customStyles = {
     content: {
@@ -32,12 +34,11 @@ import SettingsModal from '../../components/SettingsModal/SettingsModal';
     Modal.setAppElement(document.getElementById('root'));
 
 function Homepage({userData}) {
-
+  const { data } = useSubscription(GET_POSTS);
   const navigate = useNavigate();
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const {currentUser, setSettings} = useContext(UserContext);
+  const {currentUser, setSettings, modalIsOpen, setIsOpen} = useContext(UserContext);
   const [userTheme, setUserTheme] = useState(false);
-
+  console.log(data?.userPosts);
   const viewProfile = () => {
     navigate("/profile-page")
   }
@@ -52,6 +53,10 @@ function Homepage({userData}) {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  if(!data){
+    return <p>Loading</p>
   }
 
   return (
@@ -76,9 +81,7 @@ function Homepage({userData}) {
       <SettingsModal />
       </div>
           <div className='all-posts'>
-          <Posts item={userData[3].users[0]} index={0}/>
-          <Posts item={userData[3].users[1]} index={1}/>
-          <Posts item={userData[3].users[2]} index={2}/>
+            {data?.userPosts?.map(post=><Posts item={post} key={post.id}/>)}
           </div>
        <div className='follow-sidebar'>
 

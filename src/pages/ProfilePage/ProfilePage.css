@@ -36,3 +36,18 @@
 .settings-container p:hover {
     color: rgb(0, 149, 246);
  }
+
+ .user-posts-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+ }
+ 
+ .user-posts-container img {
+   width: 300px;
+   height: 300px;
+   object-fit: cover;
+   margin: 10px;
+ }
