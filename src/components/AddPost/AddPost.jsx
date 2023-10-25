@@ -1,5 +1,6 @@
 import { useState,useContext } from "react";
 import "./AddPost.css";
+import avatar from '../../assets/nav/avatar.png'
 import defaultImage from "../../assets/userpostdefualt.png";
 import { v4 as uuid } from "uuid";
 import { ImArrowLeft2 } from "react-icons/im";
@@ -8,7 +9,7 @@ import { ADD_POST } from '../../utils/mutations.js'
 import { useMutation } from "@apollo/client";
 
 function AddPost() {
-   const {currentUser,setIsOpen} = useContext(UserContext);
+  const {currentUser,setIsOpen} = useContext(UserContext);
   const [userImage, setUserImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [userReady, setUserReady] = useState(false)
@@ -22,7 +23,7 @@ function AddPost() {
   function restImage(){
   setSelectedImage('');
   setUserImage(false)
-   setUserReady(false)
+  setUserReady(false)
   }
 
   function userReadyToPost(){
@@ -34,6 +35,8 @@ function AddPost() {
     caption: "",
     image: "",
     userID: currentUser.id,
+    postUsername: currentUser.username,
+    postAvatar: currentUser.avatar,
   });
 
   const [addPost] = useMutation(ADD_POST);
@@ -48,12 +51,14 @@ function AddPost() {
 
   const addPostToDB = async (postData) => {
     try {
-      const { caption, image, userID } = postData;
+      const { caption, image, userID, postUsername, postAvatar } = postData;
        await addPost({
         variables: {
           caption: caption.length > 0 ? caption : null,
           image: image.length > 0 ? image : null,
           userID: userID.length > 0 ? userID : null,
+          postUsername: postUsername.length > 0 ? postUsername : null,
+          postAvatar: postAvatar.length > 0 ? postAvatar : null,
         },
       });
       console.log('success')
