@@ -40,7 +40,7 @@ function Posts({item}) {
         </div>
         <div className='comment-insta-container'>
             <p className='comment-insta-likes'>{item.likes} likes</p>
-            <p className='caption-insta'>{item.postUsername}<span>{item.caption}</span></p>
+            <p className='caption-insta'>{item.postUsername} <span>{item.caption}</span></p>
             <p className='comment-count-insta'>View all 13,384 comments</p>
             {
                 comments.map(comment => 
