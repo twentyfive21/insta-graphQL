@@ -21,6 +21,7 @@
     object-fit: cover;
     width: 50px;
     height: 50px;
+    border-radius: 25PX;
 }
 
 .blue-check {
@@ -28,9 +29,9 @@
     top: 16px;
     left: 127px;
 }
-
+/* USERNAME margin  */
 .user-insta-left img:first-child {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 .username-insta-section img:nth-child(2) {
     width: 16px;

@@ -9,6 +9,8 @@ subscription MySubscription {
     likes
     timestamp
     userID
+    postUsername
+    postAvatar
   }
 }
 `

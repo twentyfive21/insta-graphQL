@@ -20,11 +20,8 @@ function Posts({item}) {
     <div className='single-insta-post'>
         <div className='username-insta-section'>
         <div className='user-insta-left'>
-            <img src='https://www.creativefabrica.com/wp-content/uploads/2021/12/21/Cute-Hippo-Animal-Cartoon-Embroidery-22073824-1.jpg' alt='bs' />
-            <p>Hippo mama</p>
-            {/* {
-            index === 2 && <img src={blueCheck} className='blue-check' alt='blue check'/>
-            } */}
+            <img src={item.postAvatar} alt={item.postUsername} />
+            <p>{item.postUsername}</p>
         </div>
         <img src={dotDark} alt='dots'/>
         </div>
@@ -42,8 +39,8 @@ function Posts({item}) {
             </div>
         </div>
         <div className='comment-insta-container'>
-            <p className='comment-insta-likes'>741,368 likes</p>
-            <p className='caption-insta'>lewishamilton <span>{item.caption}</span></p>
+            <p className='comment-insta-likes'>{item.likes} likes</p>
+            <p className='caption-insta'>{item.postUsername}<span>{item.caption}</span></p>
             <p className='comment-count-insta'>View all 13,384 comments</p>
             {
                 comments.map(comment => 
