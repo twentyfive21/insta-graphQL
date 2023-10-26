@@ -7,13 +7,14 @@ import smile from "../../assets/posts/smile.png";
 import blueCheck from "../../assets/posts/blue.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
+import Avatar from "../../assets/login/Default.png"
 
 function Posts({ item }) {
   const { data, loading, error } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
 
-//   console.log(data?.userData[0])
+  console.log(data?.userData[0])
   const [like, setLike] = useState(false);
   const [comments, setComments] = useState([]);
 
@@ -26,7 +27,7 @@ function Posts({ item }) {
     <div className="single-insta-post">
       <div className="username-insta-section">
         <div className="user-insta-left">
-          <img src={data?.userData[0]?.avatar} alt={data?.userData[0]?.avatar} />
+          <img src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar :Avatar} alt={data?.userData[0]?.avatar} />
           <p>{data?.userData[0]?.username}</p>
         </div>
         <img src={dotDark} alt="dots" />
