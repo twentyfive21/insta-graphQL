@@ -1,6 +1,6 @@
 import { useState,useContext } from "react";
 import "./AddPost.css";
-import avatar from '../../assets/nav/avatar.png'
+import avatar from '../../assets/login/Default.png'
 import defaultImage from "../../assets/userpostdefualt.png";
 import { v4 as uuid } from "uuid";
 import { ImArrowLeft2 } from "react-icons/im";
@@ -13,6 +13,7 @@ function AddPost() {
   const [userImage, setUserImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [userReady, setUserReady] = useState(false)
+  const [textCount, setTextCount] = useState(0);
 
   function getUserImage(e) {
     const file = e.target.value;
@@ -77,7 +78,7 @@ function AddPost() {
       <div className="add-post-header">
         {(selectedImage || userReady) && <ImArrowLeft2 onClick={restImage}/>}
         <h2>Create New Post</h2>
-        {userImage? <p onClick={userReadyToPost}>Continue</p> : userReady? <p onClick={submitPost}>share</p> : ''}
+        {userImage? <p onClick={userReadyToPost}>Continue</p> : userReady? <button type="button" disabled={textCount ? false : true} onClick={submitPost}>Share</button> : ''}
         
       </div>
       {userImage ? (
@@ -101,9 +102,10 @@ function AddPost() {
     </div>
     <div className="user-final-stage-caption">
       <div className='user-post-div'><img src={currentUser.avatar? currentUser.avatar : avatar}/> <p>{currentUser.username}</p> </div>
-      <textarea name="caption" id="captionId" cols="30" rows="10" maxLength={400} onChange={handlePostData}>
+      <textarea name="caption" id="captionId" cols="30" rows="10" maxLength={400} onChange={handlePostData} placeholder="Write a caption..." onInput={(e)=> setTextCount(e.target.value)} required>
 
       </textarea>
+      <p>{textCount.length}/400</p>
     </div>
   </div>
 ) : (
