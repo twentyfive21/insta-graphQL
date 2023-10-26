@@ -6,15 +6,23 @@ export const ADD_USER = gql`
       objects: { email: $email, password: $password, username: $username }
     ) {
       returning {
-        avatar
-        createdAt
-        email
         id
-        password
-        username
       }
     }
   }
+`;
+
+export const ADD_AVATAR = gql`
+mutation changeAvatar($id: uuid!, $avatar: String!) {
+  update_userData(
+    where: { id: { _eq: $id } }
+    _set: { avatar: $avatar }
+  ) {
+    returning {
+      id
+    }
+  }
+}
 `;
 
 export const ADD_POST = gql`
@@ -23,12 +31,7 @@ mutation addPost($caption: String!, $image: String!, $userID: uuid!) {
     objects: { caption: $caption, image: $image, userID: $userID}
     ) {
     returning {
-      caption
-      id
-      image
-      likes
       userID
-      timestamp
     }
   }
 }
@@ -40,7 +43,6 @@ mutation deletePost($id: uuid!, $userID: uuid!) {
     where: {id: {_eq: $id}, userID: {_eq: $userID}}
     ) {
     returning {
-      id
       userID
     }
   }
