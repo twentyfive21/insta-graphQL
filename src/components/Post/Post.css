@@ -1,13 +1,21 @@
 .main-box {
     display: flex;
     justify-content: center;
-    margin-top: 9%;
 }
-.next-btn {
+/* .next-btn {
     position: absolute;
     top: 270px;
     left: 375px;
-}
+} */
 .next-img {
     position: relative;
+    /* border: 2px solid red; */
+    width: 40vw;
+}
+
+.post-main-image{
+    object-fit: cover;
+    width: 100%;
+    object-position: center;
+    height: 65vh;
 }

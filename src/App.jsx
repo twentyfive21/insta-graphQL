@@ -7,6 +7,7 @@ import UserLogin from './pages/UserLogin/UserLogin'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import UserSignUp from './pages/UserSignUp/UserSignUp'
 import UserContextProvider from './contexts/CurrentUser'
+import CommentPage from './pages/CommentPage/CommentPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/sign-up' element={<UserSignUp />} />
         <Route path="/feed" element={<Homepage userData={userPostData} />} />
         <Route path="/profile-page" element={<ProfilePage />} />
+         <Route path="/comment-page" element={<CommentPage />} />
         </Routes>
       </BrowserRouter>
       </UserContextProvider>
