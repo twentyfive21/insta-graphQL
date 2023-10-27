@@ -1,0 +1,15 @@
+.settings-container {
+    width: 200px;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.settings-container p {
+   cursor: pointer;
+   letter-spacing: 1px;
+}
+.settings-container p:hover {
+    color: rgb(0, 149, 246);
+ }

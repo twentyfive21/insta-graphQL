@@ -38,7 +38,7 @@ function Homepage({userData}) {
   const navigate = useNavigate();
   const {currentUser, setSettings, modalIsOpen, setIsOpen} = useContext(UserContext);
   const [userTheme, setUserTheme] = useState(false);
-  console.log(data?.userPosts);
+
   const viewProfile = () => {
     navigate("/profile-page")
   }
@@ -81,7 +81,7 @@ function Homepage({userData}) {
       <SettingsModal />
       </div>
           <div className='all-posts'>
-            {data?.userPosts?.map(post=><Posts item={post} key={post.id}/>)}
+            {data?.userPosts?.map(post=><Posts item={post} key={post.id} postId={post.id}/>)}
           </div>
        <div className='follow-sidebar'>
 

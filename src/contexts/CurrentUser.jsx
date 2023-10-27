@@ -3,10 +3,12 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
-  //state for post modal
+  // state for post modal
   const [modalIsOpen, setIsOpen] = useState(false);
   // state for settings modal 
   const [isOpen, setSettings] = useState(false)
+  // state for delete post modal
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false) 
   // Initialize user and currentUser from local storage, if available
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
@@ -33,7 +35,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen}}>
       {props.children}
     </UserContext.Provider>
   );

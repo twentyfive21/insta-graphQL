@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import "./Posts.css";
 import dotDark from "../../assets/posts/dotDark.png";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -6,15 +6,39 @@ import comment from "../../assets/posts/comment.png";
 import smile from "../../assets/posts/smile.png";
 import blueCheck from "../../assets/posts/blue.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
-import { useSubscription } from "@apollo/client";
+import { useSubscription, useMutation } from "@apollo/client";
 import Avatar from "../../assets/login/Default.png"
+import { UserContext } from "../../contexts/CurrentUser";
+import { DELETE_POST } from "../../utils/mutations";
+import Modal from 'react-modal'
+
+
 
 function Posts({ item }) {
+
+  Modal.setAppElement(document.getElementById('root'));
+  const customStyles = {
+   content: {
+     top: '50%',
+     left: '50%',
+     right: 'auto',
+     bottom: 'auto',
+     marginRight: '-50%',
+     borderRadius: '15px',
+     transform: 'translate(-50%, -50%)',
+   },
+   overlay:{
+     backgroundColor:'rgba(0,0,0,0.1)'
+   }
+ };
+
+  const {currentUser, isDeleteOpen, setIsDeleteOpen} = useContext(UserContext);
+  const [deletePost] = useMutation(DELETE_POST);
+
   const { data, loading, error } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
 
-  console.log(data?.userData[0])
   const [like, setLike] = useState(false);
   const [comments, setComments] = useState([]);
 
@@ -23,14 +47,50 @@ function Posts({ item }) {
     const newComment = e.target.elements.comment.value;
     setComments((prev) => [...prev, newComment]);
   };
+
+  const deletePostFromDB = async (item) => {
+    try {
+      const { id, userID } = item; 
+      //add the value of id to check the equal too
+      await deletePost({
+        variables: {
+          id: id,
+          userID: userID.length > 0 ? userID : null,
+        },
+      });
+    } catch (error) {
+      console.log("Error deleting post");
+    }
+  }
+
+  const deletePostSelected = (item) => {
+    console.log(item)
+   if(currentUser.id === item.userID){
+    deletePostFromDB(item)
+  }
+}
+
   return (
-    <div className="single-insta-post">
+    <div className="single-insta-post" id={item.userID} >
       <div className="username-insta-section">
         <div className="user-insta-left">
           <img src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar :Avatar} alt={data?.userData[0]?.avatar} />
           <p>{data?.userData[0]?.username}</p>
         </div>
-        <img src={dotDark} alt="dots" />
+        {
+        currentUser.id === item.userID && <img src={dotDark} alt="dots" onClick={()=>deletePostSelected(item)} />
+        }
+        <Modal 
+          isOpen={isDeleteOpen}
+          style={customStyles}
+          // closes the modal if you click outside the image 
+          onRequestClose={()=>setIsDeleteOpen(false)}
+          contentLabel="Delete Post Modal">
+          <div className='delete-post-modal'>
+          <p  className='delete-post-btn'>Delete</p>
+          <p onClick={()=> setIsDeleteOpen(false)}>Cancel</p>
+          </div>
+      </Modal>
       </div>
       <div className="user-insta-img">
         <img src={item.image} alt={item.caption} />
