@@ -49,7 +49,7 @@ export default function UserLogin() {
       });
       navigate("/feed/");
     } else {
-      console.log("Invalid credentials!");
+     alert("Invalid credentials!");
     }
   };
 

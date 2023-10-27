@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./ProfilePage.css";
 import basic from "../../assets/nav/basic.png";
 import Header from "../../components/Header/Header";
-import { CiSettings } from "react-icons/ci";
 import { UserContext } from "../../contexts/CurrentUser";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
 import { GET_POSTS } from "../../utils/subscriptions";
@@ -10,7 +9,13 @@ import { useSubscription, useMutation } from "@apollo/client";
 import { ADD_AVATAR } from "../../utils/mutations";
 import Modal from "react-modal";
 import Post from "../../components/Post/Post";
-import { userData } from "../../utils/data";
+import { PiHouseFill } from "react-icons/pi";
+import { LuPlusSquare } from "react-icons/lu";
+import { CiSettings } from "react-icons/ci";
+import { GoMoon } from "react-icons/go";
+import { BiSun } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import AddPost from "../../components/AddPost/AddPost";
 
 const customStyles = {
   content: {
@@ -30,19 +35,22 @@ const customStyles = {
 Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [settingsModal, setSettingsModal] = useState(false);
   const [addAvatar] = useMutation(ADD_AVATAR);
-  const { currentUser, setSettings, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setSettings, setCurrentUser, setIsOpen } =
+    useContext(UserContext);
   const { data } = useSubscription(GET_POSTS);
+  const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState({
     userName: currentUser.username,
     userAvatar: currentUser.avatar,
   });
 
   function closeModal() {
-    setIsOpen(false);
+    setSettingsModal(false);
   }
 
   function mapData() {
@@ -84,62 +92,95 @@ function ProfilePage() {
     addAvatarToDB(currentUser);
   };
 
-
-  function modalWithData(post){
-     setSelectedImage((prevState) => ({ ...prevState, ...post }));
-     setIsOpen(true)
+  function modalWithData(post) {
+    setSelectedImage((prevState) => ({ ...prevState, ...post }));
+    setSettingsModal(true);
   }
+
+  const handlePostModalProfile = () => {
+    setPostModal(!postModal);
+    setIsOpen(false);
+  };
 
   if (!userPostsArray) {
     return <p>loading</p>;
+  }else{
+      mapData();
   }
-  mapData();
 
 
   return (
-    <div className="main-profile-container">
+    <>
       <Header />
-      <div className="profile-container">
-        <img
-          src={currentUser.avatar ? currentUser.avatar : basic}
-          alt="profile image"
-          className="profile-image"
-        />
-        <form onSubmit={handleFormForUpdate}>
-          <input
-            placeholder="profile image"
-            name="avatar"
-            onChange={handleAvatar}
-          />
-          {/* <button type="submit">Submit</button> */}
-        </form>
-        <p>{currentUser.username}</p>
-        <p>Posts : 0 </p>
-        <CiSettings
-          onClick={() => setSettings(true)}
-          className="user-settings"
-        />
-      </div>
-      <SettingsModal />
-      <section className="user-posts-container">
-        {filteredPosts.map((post) => (
+      <div className="main-profile-container">
+        <div className="profile-sidebar">
+          <div className="icon-divs" onClick={() => navigate("/feed")}>
+            <PiHouseFill /> <h3>Home</h3>
+          </div>
+          <div className="icon-divs" onClick={handlePostModalProfile}>
+            <LuPlusSquare /> <h3>Create</h3>
+          </div>
+          <div className="icon-divs" onClick={() => navigate("/profile-page")}>
+            <img src={currentUser.avatar ? currentUser.avatar : avatar} />{" "}
+            <h3>Profile</h3>{" "}
+          </div>
+          <div className="icon-divs">
+            <BiSun /> <h3>Dark mode</h3>
+          </div>
+          <div className="icon-divs" onClick={() => setSettings(true)}>
+            {" "}
+            <CiSettings className="user-settings" /> <h3>Settings</h3>
+          </div>
+          <Modal
+            isOpen={postModal}
+            onRequestClose={handlePostModalProfile}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <AddPost profileFunc={setPostModal} />
+          </Modal>
+        </div>
+        <div className="profile-container">
           <img
-            src={post?.image}
-            alt={post?.caption}
-            key={post?.id}
-            onClick={()=>{modalWithData(post)}}
+            src={currentUser.avatar ? currentUser.avatar : basic}
+            alt="profile image"
+            className="profile-image"
           />
-        ))}
-      </section>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <Post userData={selectedImage} />
-      </Modal>
-    </div>
+          <form onSubmit={handleFormForUpdate}>
+            <input
+              placeholder="profile image"
+              name="avatar"
+              onChange={handleAvatar}
+            />
+            {/* <button type="submit">Submit</button> */}
+          </form>
+          <p>{currentUser.username}</p>
+          <p>Posts : {filteredPosts.length} </p>
+        </div>
+        <SettingsModal />
+        <section className="grid-photo-container">
+          {filteredPosts.map((post) => (
+            <img
+              src={post?.image}
+              alt={post?.caption}
+              key={post?.id}
+              onClick={() => {
+                modalWithData(post);
+              }}
+              className="grid-photo-item"
+            />
+          ))}
+        </section>
+        <Modal
+          isOpen={settingsModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Post userData={selectedImage} />
+        </Modal>
+      </div>
+    </>
   );
 }
 
