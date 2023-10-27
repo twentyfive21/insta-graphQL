@@ -136,4 +136,6 @@
     margin: 2px 0px;
 }
 
-
+.dark-dots {
+    cursor: pointer;
+}
