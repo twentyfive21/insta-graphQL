@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./ProfilePage.css";
-import basic from "../../assets/nav/basic.png";
 import Header from "../../components/Header/Header";
 import { UserContext } from "../../contexts/CurrentUser";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
 import { GET_POSTS } from "../../utils/subscriptions";
-import { useSubscription, useMutation } from "@apollo/client";
-import { ADD_AVATAR } from "../../utils/mutations";
+import { useSubscription } from "@apollo/client";
 import Modal from "react-modal";
 import Post from "../../components/Post/Post";
 import { PiHouseFill } from "react-icons/pi";
@@ -38,7 +36,7 @@ Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
   const [settingsModal, setSettingsModal] = useState(false);
-  const { currentUser, setSettings, setCurrentUser, setIsOpen } =
+  const { currentUser, setSettings, setIsOpen } =
     useContext(UserContext);
   const { data } = useSubscription(GET_POSTS);
   const [postModal, setPostModal] = useState(false);
