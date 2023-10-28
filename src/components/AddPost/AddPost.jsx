@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState,useContext, useRef, useCallback } from "react";
 import "./AddPost.css";
 import avatar from '../../assets/login/Default.png'
 import defaultImage from "../../assets/userpostdefualt.png";
@@ -7,6 +7,7 @@ import { ImArrowLeft2 } from "react-icons/im";
 import { UserContext } from '../../contexts/CurrentUser';
 import { ADD_POST } from '../../utils/mutations.js'
 import { useMutation } from "@apollo/client";
+import Webcam from "react-webcam";
 
 function AddPost({profileFunc}) {
   const {currentUser,setIsOpen} = useContext(UserContext);
@@ -14,12 +15,29 @@ function AddPost({profileFunc}) {
   const [selectedImage, setSelectedImage] = useState('');
   const [userReady, setUserReady] = useState(false)
   const [textCount, setTextCount] = useState(0);
+  const [capture, setCapture] = useState(false);
+  const webcamRef = useRef(null); 
+console.log(selectedImage)
 
-  function getUserImage(e) {
-    const file = e.target.value;
-    setSelectedImage(file);
-    setUserImage(true);
-  }
+ function getUserImage(e) {
+    const file = e.target.files[0]; // Get the selected file
+
+    // Check if a file is selected
+    if (file) {
+        const reader = new FileReader();
+        
+        // Read the file as data URL
+        reader.readAsDataURL(file);
+
+        // Set up the callback function for when the file is loaded
+        reader.onloadend = () => {
+            // The result contains the data URL
+            const dataURL = reader.result;
+            setSelectedImage(dataURL);
+            setUserImage(true);
+        };
+    }
+}
 
   function restImage(){
   setSelectedImage('');
@@ -74,6 +92,14 @@ function AddPost({profileFunc}) {
     profileFunc(false)
   }
 
+
+  const captureFunc = useCallback(() => {
+    const image = webcamRef.current.getScreenshot();
+    setSelectedImage(image);
+    setCapture(false)
+    setUserImage(true)
+  }, [webcamRef]);
+
   return (
     <div className="add-post-container">
       <div className="add-post-header">
@@ -111,13 +137,22 @@ function AddPost({profileFunc}) {
   </div>
 ) : (
   <div className="post-default-container">
-    <img src={defaultImage} alt="Default" />
+    {
+      capture?
+      <Webcam height={600} width={600} ref={webcamRef} />
+      :
+    <>
+     <img src={defaultImage} alt="Default" />
     <h2>Drag photos and videos here</h2>
-    {/* <label htmlFor="img" className="custom-file-upload">
+    <input type="text" onChange={getUserImage}/>
+    </>
+    }
+    <label htmlFor="img" className="custom-file-upload">
       Select from computer
     </label>
-    <input type="file" id="img" name="img" accept="image/*" onChange={getUserImage} /> */}
-    <input type="text" onChange={getUserImage}/>
+    <input type="file" id="img" name="img" accept="image/*" onChange={getUserImage} />
+    {capture && <button onClick={captureFunc}>Take picture</button>}
+    <button onClick={()=> setCapture(!capture)}>{capture? 'Go Back' : 'Take Photo from device'}</button>
   </div>
 )}
 
