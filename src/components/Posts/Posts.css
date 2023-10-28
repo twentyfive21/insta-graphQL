@@ -33,10 +33,13 @@
 .user-insta-left img:first-child {
     margin-right: 10px;
 }
+
+/* post delete dots btn  */
 .username-insta-section img:nth-child(2) {
-    width: 16px;
-    height: 3.5px;
-    margin-right: 8px;
+    width: 22px;
+    height: 4.5px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 .user-insta-img {
     position: relative;
@@ -86,7 +89,7 @@
 }
 .comment-insta-container{
     width: 470px;
-    padding: 10px 15px;
+    padding: 0px 15px;
 }
 .comment-section-insta {
     display: flex;
@@ -135,7 +138,15 @@
 .added-comment-insta {
     margin: 2px 0px;
 }
-
-.dark-dots {
+.delete-post-modal {
     cursor: pointer;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.delete-post-modal p:nth-child(1) {
+    color: tomato;
 }

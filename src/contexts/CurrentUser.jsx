@@ -3,6 +3,8 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
+  // state for post to be deleted 
+  const [deletedPost, setDeletedPost] = useState({});
   // state for post modal
   const [modalIsOpen, setIsOpen] = useState(false);
   // state for settings modal 
@@ -35,7 +37,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost}}>
       {props.children}
     </UserContext.Provider>
   );

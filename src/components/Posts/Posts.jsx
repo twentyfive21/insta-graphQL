@@ -32,7 +32,7 @@ function Posts({ item }) {
    }
  };
 
-  const {currentUser, isDeleteOpen, setIsDeleteOpen} = useContext(UserContext);
+  const {currentUser, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost} = useContext(UserContext);
   const [deletePost] = useMutation(DELETE_POST);
 
   const { data, loading, error } = useSubscription(GET_ALL_USERS, {
@@ -48,9 +48,9 @@ function Posts({ item }) {
     setComments((prev) => [...prev, newComment]);
   };
 
-  const deletePostFromDB = async (item) => {
+  const deletePostFromDB = async () => {
     try {
-      const { id, userID } = item; 
+      const { id, userID } = deletedPost; 
       //add the value of id to check the equal too
       await deletePost({
         variables: {
@@ -61,13 +61,12 @@ function Posts({ item }) {
     } catch (error) {
       console.log("Error deleting post");
     }
+    setIsDeleteOpen(false)
   }
 
-  const deletePostSelected = (item) => {
-    console.log(item)
-   if(currentUser.id === item.userID){
-    deletePostFromDB(item)
-  }
+  const deletePostSelected = (post) => {
+    setDeletedPost(post)
+    setIsDeleteOpen(true)
 }
 
   return (
@@ -78,7 +77,9 @@ function Posts({ item }) {
           <p>{data?.userData[0]?.username}</p>
         </div>
         {
-        currentUser.id === item.userID && <img src={dotDark} alt="dots" onClick={()=>deletePostSelected(item)} />
+        currentUser.id === item.userID && 
+        <img src={dotDark} alt="dots" onClick={()=>deletePostSelected(item)} 
+        className="post-delete-btn"/>
         }
         <Modal 
           isOpen={isDeleteOpen}
@@ -87,8 +88,8 @@ function Posts({ item }) {
           onRequestClose={()=>setIsDeleteOpen(false)}
           contentLabel="Delete Post Modal">
           <div className='delete-post-modal'>
-          <p  className='delete-post-btn'>Delete</p>
-          <p onClick={()=> setIsDeleteOpen(false)}>Cancel</p>
+            <p className='delete-post-btn' onClick={deletePostFromDB}>Delete</p>
+            <p onClick={()=> setIsDeleteOpen(false)}>Cancel</p>
           </div>
       </Modal>
       </div>
