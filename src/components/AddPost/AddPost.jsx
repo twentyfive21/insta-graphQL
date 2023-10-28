@@ -8,7 +8,7 @@ import { UserContext } from '../../contexts/CurrentUser';
 import { ADD_POST } from '../../utils/mutations.js'
 import { useMutation } from "@apollo/client";
 
-function AddPost() {
+function AddPost({profileFunc}) {
   const {currentUser,setIsOpen} = useContext(UserContext);
   const [userImage, setUserImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
@@ -71,6 +71,7 @@ function AddPost() {
     setSelectedImage("");
     setUserReady(false);
     setIsOpen(false);
+    profileFunc(false)
   }
 
   return (
