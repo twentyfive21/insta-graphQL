@@ -144,13 +144,17 @@ console.log(selectedImage)
     <>
      <img src={defaultImage} alt="Default" />
     <h2>Drag photos and videos here</h2>
-    <input type="text" onChange={getUserImage}/>
+    {/* <input type="text" onChange={getUserImage}/> */}
     </>
     }
+    {!capture && (
+  <>
     <label htmlFor="img" className="custom-file-upload">
       Select from computer
     </label>
     <input type="file" id="img" name="img" accept="image/*" onChange={getUserImage} />
+  </>
+)}
     {capture && <button onClick={captureFunc}>Take picture</button>}
     <button onClick={()=> setCapture(!capture)}>{capture? 'Go Back' : 'Take Photo from device'}</button>
   </div>
