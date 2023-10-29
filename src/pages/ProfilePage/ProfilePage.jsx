@@ -3,7 +3,7 @@ import "./ProfilePage.css";
 import Header from "../../components/Header/Header";
 import { UserContext } from "../../contexts/CurrentUser";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
-import { GET_POSTS } from "../../utils/subscriptions";
+import { GET_ALL_USER_POSTS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
 import Modal from "react-modal";
 import Post from "../../components/Post/Post";
@@ -15,6 +15,7 @@ import { BiSun } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
+import Spinner from "../../components/Spinner";
 
 
 const customStyles = {
@@ -38,7 +39,7 @@ function ProfilePage() {
   const [settingsModal, setSettingsModal] = useState(false);
   const { currentUser, setSettings, setIsOpen } =
     useContext(UserContext);
-  const { data } = useSubscription(GET_POSTS);
+  const { data } = useSubscription(GET_ALL_USER_POSTS);
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
@@ -71,10 +72,12 @@ function ProfilePage() {
   };
 
   if (!userPostsArray) {
-    return <p>loading</p>;
+    return <Spinner />
   }else{
       mapData();
   }
+  
+
 
 
   return (
