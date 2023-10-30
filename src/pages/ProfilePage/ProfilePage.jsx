@@ -37,7 +37,7 @@ Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
   const [settingsModal, setSettingsModal] = useState(false);
-  const { currentUser, setSettings, setIsOpen, data } =
+  const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
     useContext(UserContext);
   // const { data } = useSubscription(GET_ALL_USER_POSTS);
   const [postModal, setPostModal] = useState(false);
@@ -67,8 +67,8 @@ function ProfilePage() {
   }
 
   const handlePostModalProfile = () => {
-    setPostModal(!postModal);
-    setIsOpen(false);
+    // setPostModal(!postModal);
+    setIsOpen(!modalIsOpen);
   };
 
   if (!userPostsArray) {
@@ -103,7 +103,7 @@ function ProfilePage() {
             <CiSettings className="user-settings" /> <h3>Settings</h3>
           </div>
           <Modal
-            isOpen={postModal}
+            isOpen={modalIsOpen}
             onRequestClose={handlePostModalProfile}
             style={customStyles}
             contentLabel="Example Modal"
