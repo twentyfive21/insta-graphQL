@@ -113,7 +113,7 @@ function Homepage({ userData }) {
               Load More
             </button>
           )} */}
-          {loading && <Spinner />}
+          {/* {loading && <Spinner />} */}
         </div>
         <div className='follow-sidebar'></div>
       </section>

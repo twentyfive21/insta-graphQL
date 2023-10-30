@@ -1,8 +1,11 @@
 import { createContext, useState, useEffect } from "react";
+import { GET_ALL_USER_POSTS } from "../utils/subscriptions";
+import { useSubscription } from "@apollo/client";
 
 export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
+  
   // state for post to be deleted 
   const [deletedPost, setDeletedPost] = useState({});
   // state for post modal
@@ -16,6 +19,9 @@ export default function UserContextProvider(props) {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : false;
   });
+
+
+  const { data } = useSubscription(GET_ALL_USER_POSTS);
 
   const [currentUser, setCurrentUser] = useState(() => {
     const storedCurrentUser = localStorage.getItem('currentUser');
@@ -37,7 +43,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost, data}}>
       {props.children}
     </UserContext.Provider>
   );

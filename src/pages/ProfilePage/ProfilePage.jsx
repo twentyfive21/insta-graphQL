@@ -37,9 +37,9 @@ Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
   const [settingsModal, setSettingsModal] = useState(false);
-  const { currentUser, setSettings, setIsOpen } =
+  const { currentUser, setSettings, setIsOpen, data } =
     useContext(UserContext);
-  const { data } = useSubscription(GET_ALL_USER_POSTS);
+  // const { data } = useSubscription(GET_ALL_USER_POSTS);
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
