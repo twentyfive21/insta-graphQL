@@ -19,7 +19,7 @@
 ## Mentorship
 * Our mentor served as the project manager, providing crucial oversight, guidance, and project milestone sign-offs.
 ### Pair Programming
-#### Pair programming was an integral aspect of our project development process. Both team members alternated as the driver and navigator, ensuring equal participation and promoting knowledge sharing. This approach allowed for leadership in areas of expertise and a collective decision-making process.
+* Pair programming was an integral aspect of our project development process. Both team members alternated as the driver and navigator, ensuring equal participation and promoting knowledge sharing. This approach allowed for leadership in areas of expertise and a collective decision-making process.
 ### Project Management
 * We effectively implemented Agile methodology, incorporating planning, design, development, testing, deployment, and reviews into a structured three-week sprint cycle. 
 * Weekly sprint planning meetings allowed for real-time adjustments if any project components were lagging behind schedule.
