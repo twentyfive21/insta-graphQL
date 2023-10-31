@@ -8,7 +8,7 @@ import { ADD_POST } from "../../utils/mutations.js";
 import { useMutation } from "@apollo/client";
 import Webcam from "react-webcam";
 
-function AddPost({ profileFunc }) {
+function AddPost() {
   const { currentUser, setIsOpen } = useContext(UserContext);
   const [userImage, setUserImage] = useState(false);
   const [userReady, setUserReady] = useState(false);
@@ -18,7 +18,6 @@ function AddPost({ profileFunc }) {
   const [imagePreview, setImagePreview] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
 
-
   function getUserImage(e) {
     setSelectedImage(e.target.files[0]);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
@@ -26,48 +25,47 @@ function AddPost({ profileFunc }) {
   }
 
   const uploadImage = async () => {
-  try {
-    if (selectedImage) {
-      const image = new FormData();
-      image.append("file", selectedImage);
-      image.append("cloud_name", "dpgbxk6w7");
-      image.append("upload_preset", "odnin5hs");
+    try {
+      if (selectedImage) {
+        const image = new FormData();
+        image.append("file", selectedImage);
+        image.append("cloud_name", "dpgbxk6w7");
+        image.append("upload_preset", "odnin5hs");
 
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dpgbxk6w7/image/upload",
-        {
-          method: "POST",
-          body: image,
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dpgbxk6w7/image/upload",
+          {
+            method: "POST",
+            body: image,
+          }
+        );
+
+        const imgData = await response.json();
+        if (imgData && imgData.secure_url) {
+          const imageUrl = imgData.secure_url;
+          setImagePreview("");
+          setSelectedImage(imageUrl);
+          return imageUrl; // Return the image URL
+        } else {
+          throw new Error("Invalid response from Cloudinary");
         }
-      );
-
-      const imgData = await response.json();
-      if (imgData && imgData.secure_url) {
-        const imageUrl = imgData.secure_url;
-        console.log(imageUrl, 'img urlll')
-        setImagePreview('');
-        setSelectedImage(imageUrl);
-        return imageUrl; // Return the image URL
       } else {
-        throw new Error("Invalid response from Cloudinary");
+        throw new Error("Invalid image format");
       }
-    } else {
-      throw new Error("Invalid image format");
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error; // Rethrow the error to handle it in the calling function
     }
-  } catch (error) {
-    console.error("Error uploading image:", error);
-    throw error; // Rethrow the error to handle it in the calling function
-  }
-};
+  };
 
   function restImage() {
     setPostData({
-    caption: "",
-    image: "",
-    userID: currentUser.id,
-  })
+      caption: "",
+      image: "",
+      userID: currentUser.id,
+    });
     setSelectedImage("");
-    setImagePreview("")
+    setImagePreview("");
     setUserImage(false);
     setUserReady(false);
   }
@@ -102,33 +100,33 @@ function AddPost({ profileFunc }) {
           image: image.length > 0 ? image : "",
           userID: userID.length > 0 ? userID : "",
           avatar: currentUser.avatar.length > 0 ? currentUser.avatar : null,
-          username: currentUser.username.length > 0 ? currentUser.username : null,
+          username:
+            currentUser.username.length > 0 ? currentUser.username : null,
         },
       });
-      console.log("success");
     } catch (error) {
       console.error(error);
     }
   };
 
-async function submitPost() {
-  try {
-    setIsOpen(false);
-    const imageUrl = await uploadImage(); // Wait for uploadImage to complete
-    const updatedPostData = {
-      ...postData,
-      image: imageUrl,
-    };
-    await addPostToDB(updatedPostData); // Pass the updated state to addPostToDB
-    setUserImage(false);
-    setSelectedImage(""); // Reset selectedImage after upload
-    setUserReady(false);
-    setIsOpen(false);
-  } catch (error) {
-    console.error(error);
-    // Handle errors if uploadImage or addPostToDB fails
+  async function submitPost() {
+    try {
+      setIsOpen(false);
+      const imageUrl = await uploadImage(); // Wait for uploadImage to complete
+      const updatedPostData = {
+        ...postData,
+        image: imageUrl,
+      };
+      await addPostToDB(updatedPostData); // Pass the updated state to addPostToDB
+      setUserImage(false);
+      setSelectedImage(""); // Reset selectedImage after upload
+      setUserReady(false);
+      setIsOpen(false);
+    } catch (error) {
+      console.error(error);
+      // Handle errors if uploadImage or addPostToDB fails
+    }
   }
-}
 
   const captureFunc = useCallback(() => {
     const image = webcamRef.current.getScreenshot();
@@ -180,8 +178,8 @@ async function submitPost() {
           ></div>
           <div className="user-final-stage-caption">
             <div className="user-post-div">
-              <img src={currentUser.avatar ? currentUser.avatar : avatar} />{" "}
-              <p>{currentUser.username}</p>{" "}
+              <img src={currentUser?.avatar ? currentUser?.avatar : avatar} />{" "}
+              <p>{currentUser?.username}</p>{" "}
             </div>
             <textarea
               name="caption"
