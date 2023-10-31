@@ -1,9 +1,4 @@
-import rafael from '../assets/rafaelfigini.png'
-import rafaelPost from '../assets/left-photo.png'
-import edu from '../assets/edubarros101.png'
-import open from '../assets/open.png'
-import sal from '../assets/salvadxrx.png'
-import the from '../assets/theactor.png'
+
 // follow imgs 
 import abh from '../assets/follow/abh.png'
 import im from '../assets/follow/im.png'
@@ -32,9 +27,9 @@ import tyler from '../assets/suggest/tyler.png'
 export const userData = [
     {
         key: 1,
-        avatar: rafael,
+        avatar: nAvatar,
         username: 'rafaelfigini',
-        post: rafaelPost,
+        post: nAvatar,
         time: '3d',
         likes: '1 like',
         reply: 'Reply',
@@ -43,7 +38,7 @@ export const userData = [
         hashtag: '#IA #nftbrazil #AI #DallE'
     },
     {   key: 2,
-        avatar: sal,
+        avatar: nAvatar,
         username: 'salvadxrx',
         post: '',
         time: '1d',
@@ -54,7 +49,7 @@ export const userData = [
         hashtag: ''
     },
     {   key: 3,
-        avatar: edu,
+        avatar: nAvatar,
         username: 'edubarros101',
         post: '',
         time: '1d',
@@ -66,7 +61,7 @@ export const userData = [
         
     },
     {   key: 4,
-        avatar: the,
+        avatar: nAvatar,
         username: 'theactornekhiataylor',
         post: '',
         time: '',
