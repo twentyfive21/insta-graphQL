@@ -1,75 +1,80 @@
-import {useState, useContext} from 'react'
-import './Actions.css'
-import comment from '../../assets/comment.png'
-import bookmark from '../../assets/bookmark.png'
-import smile from '../../assets/smile.png'
-import { CommentsContext } from '../../contexts/CommentData'
+import { useState, useContext } from "react";
+import "./Actions.css";
+import comment from "../../assets/comment.png";
+import bookmark from "../../assets/bookmark.png";
+import smile from "../../assets/smile.png";
+import { CommentsContext } from "../../contexts/CommentData";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { UserContext } from '../../contexts/CurrentUser'
-import { LikesContext } from '../../contexts/LikesContext'
+import { UserContext } from "../../contexts/CurrentUser";
+import { LikesContext } from "../../contexts/LikesContext";
 
-function Actions({postID, userLike, userData}) {
-  const {addCommentToDB} = useContext(CommentsContext);
-  const {addLikeToDB, removeLikeFromDB} = useContext(LikesContext);
-  const [commentValue,setCommentValue] = useState('');
-  const {currentUser} = useContext(UserContext);
+function Actions({ postID, userLike, userData }) {
+  const { addCommentToDB } = useContext(CommentsContext);
+  const { addLikeToDB, removeLikeFromDB } = useContext(LikesContext);
+  const [commentValue, setCommentValue] = useState("");
+  const { currentUser } = useContext(UserContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCommentToDB(commentValue, postID)
-    setCommentValue("")
-  }
+    addCommentToDB(commentValue, postID);
+    setCommentValue("");
+  };
 
-  const finalFilter = userLike.filter((item)=>{
-    return item.postRef === postID
-  })
+  const userLikesFilter = userLike.filter((item) => {
+    return item.postRef === postID;
+  });
 
-  const combinedFinalFilter = [].concat(...finalFilter);
+  const combinedUserLikesFilter = [].concat(...userLikesFilter);
 
-  const findFinal = combinedFinalFilter.filter((item)=>{
-    return item.userID === currentUser.id
-  })
+  const finalFilterOfUserLikes = combinedUserLikesFilter.filter((item) => {
+    return item.userID === currentUser.id;
+  });
 
   return (
-    <div className='all-actions-main'>
-    <div className='actions-container'>
-        <div className='act-spacing'>
-            {findFinal[0]?.userID === currentUser.id ? (
-              <AiFillHeart onClick={() => removeLikeFromDB(postID)}
-              className="like-filled like-btn" />
-            ) : (
-              <AiOutlineHeart onClick={() => addLikeToDB(postID)}
-              className="like-btn" />
-            )}
-        <img src={comment} alt='comment'/>
+    <div className="all-actions-main">
+      <div className="actions-container">
+        <div className="act-spacing">
+          {finalFilterOfUserLikes[0]?.userID === currentUser.id ? (
+            <AiFillHeart
+              onClick={() => removeLikeFromDB(postID)}
+              className="like-filled like-btn"
+            />
+          ) : (
+            <AiOutlineHeart
+              onClick={() => addLikeToDB(postID)}
+              className="like-btn"
+            />
+          )}
+          <img src={comment} alt="comment" />
         </div>
-        <img src={bookmark} alt='bookmark'/>
-    </div>
-    <div className='action-data'>
-      {
-      finalFilter.length === 1 ? `${finalFilter.length} like`
-      : finalFilter.length > 1 ? `${finalFilter.length} likes`
-      : `${finalFilter.length} likes`
-      }
-        <p className='lighter-info'>3 DAYS AGO</p>
+        <img src={bookmark} alt="bookmark" />
+      </div>
+      <div className="action-data">
+        {userLikesFilter.length === 1
+          ? `${userLikesFilter.length} like`
+          : userLikesFilter.length > 1
+          ? `${userLikesFilter.length} likes`
+          : `${userLikesFilter.length} likes`}
+        <p className="lighter-info">3 DAYS AGO</p>
         <p>{userData?.caption}</p>
-    </div>
-    <div className='ac-box'>
-        <div className='ac-innerbox'>
-        <img src={smile} alt='smile'/>
-        <form onSubmit={handleSubmit}>
+      </div>
+      <div className="ac-box">
+        <div className="ac-innerbox">
+          <img src={smile} alt="smile" />
+          <form onSubmit={handleSubmit}>
             <input
               name="comment"
               placeholder="Add a comment…"
               className="add-comment"
               value={commentValue}
-              onChange={(e)=>setCommentValue(e.target.value)}
+              onChange={(e) => setCommentValue(e.target.value)}
             />
           </form>
-          <button className='post'>Post</button>
+          <button className="post">Post</button>
         </div>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default Actions
+export default Actions;
