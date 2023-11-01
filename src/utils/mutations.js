@@ -48,3 +48,35 @@ mutation deletePost($id: uuid!, $userID: uuid!) {
   }
 }
 `;
+
+export const ADD_COMMENT = gql`
+mutation addComment($avatar: String!, $comment: String!, $postRef: uuid!, $userID: uuid!, $username: String!) {
+  insert_userComments(
+    objects: {avatar: $avatar, comment: $comment, postRef: $postRef, userID: $userID, username: $username}) {
+    returning {
+      comment
+    }
+  }
+}
+`;
+
+export const DELETE_COMMENT = gql`
+mutation deleteComment($postRef: uuid!, $userID: uuid! $id: uuid){
+  delete_userComments(
+    where: {postRef: {_eq: $postRef}, userID: {_eq: $userID}, id: {_eq: $id}}) {
+    returning {
+      comment
+    }
+  }
+}
+`;
+
+export const DELETE_POST_COMMENTS = gql`
+mutation deleteSelectedPostComments($postRef: uuid!) {
+  delete_userComments(where: {postRef: {_eq: $postRef}}) {
+    returning {
+      postRef
+    }
+  }
+}
+`;

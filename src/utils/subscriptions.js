@@ -26,7 +26,6 @@ subscription MySubscription {
 }
 `
 
-
 export const GET_ALL_USERS = gql`
 subscription getAllUsers($id: uuid!) {
   userData(where: {id: {_eq: $id}}) {
@@ -35,3 +34,16 @@ subscription getAllUsers($id: uuid!) {
     username
   }
 }`
+
+export const GET_COMMENTS = gql`
+subscription MySubscription {
+  userComments(order_by: {createdAt: desc}) {
+    avatar
+    comment
+    username
+    id
+    userID
+    postRef
+  }
+}
+`
