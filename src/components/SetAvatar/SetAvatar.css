@@ -1,6 +1,6 @@
 .avatar-form {
-    width: 200px;
-    height: 100px;
+    width: auto;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,4 +35,9 @@
 }
 .first-avatarModal p:hover:nth-child(1){
     color: rgb(0, 149, 246);
+}
+
+.avatar-form img{
+    width: 350px;
+    height: 300px;
 }
