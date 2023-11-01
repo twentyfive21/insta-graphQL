@@ -5,9 +5,14 @@
     justify-content: space-between;
     width: 500px;
     background-color: white;
-    position: absolute;
-    margin-top: -27px;
+    margin-top: 50px;
     z-index: 2;
+    position: absolute;
+    top: 20px;
+}
+.all-actions-main {
+    position: relative;
+    background-color: white;
 }
 .actions-container img {
     height: 24px;
@@ -16,20 +21,45 @@
     margin: 0px 8px;
 }
 .action-data {
-    position: relative;
-    padding: 20px 18px;
-    border-bottom: 1px solid #EFEFEF;
+    z-index: 2;
+    padding: 5px 18px 20px 15px;
+    position: absolute;
+    top: 110px;
     background-color: white;
-}
-.action-info {
-    display: flex;
-    padding-right: 5px;
-}
-.action-info p {
-    margin: 5px 0px 0px 5px;
+    width: 100%;
 }
 .lighter-info {
     font-size: 10px;
     color: #8E8E8E;
     margin: 7px 0px 0px 0px;
+}
+
+.ac-box {
+    border-top: 1px solid #EFEFEF;
+    background-color: pink;
+    top: 162px;
+    z-index: 2;
+    position: absolute;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 10px;
+    align-items: center;
+    background-color: white;
+    height: 20px;
+}
+.ac-innerbox {
+    display: flex;
+    align-items: center;
+    padding-top: 3px;
+}
+.ac-innerbox p {
+    padding-top: 3px;
+    color: #262626;
+}
+.ac-innerbox img {
+    padding-right: 15px;
+}
+.post {
+    color: #B3DBFF;
 }
