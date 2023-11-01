@@ -36,8 +36,8 @@
 
 /* post delete dots btn  */
 .username-insta-section img:nth-child(2) {
-    width: 22px;
-    height: 4.5px;
+    width: 18px;
+    height: 4px;
     margin-right: 10px;
     cursor: pointer;
 }

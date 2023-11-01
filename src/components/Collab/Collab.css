@@ -4,7 +4,6 @@
     align-items: center;
     width: 500px;
     height: 70px;
-    position: relative;
     border-bottom: 1px solid #EFEFEF;
     background-color: white;
     border-radius: 0px 4px 0px 0px; 
@@ -17,26 +16,15 @@
     height: 24px;
     margin-right: 10px;
 }
-.collab-users {
-    margin-left: 65px;
-}
 .p-circle {
-    top: 17px;
-    left: 15px;
-    position: absolute;
     border-radius: 13px;
-    height: 24px;
-    width: 24px;
+    height: 37px;
+    width: 37px;
     object-fit: cover;
+    margin: 0px 12px 0px 14px;
 }
 .p-height {
-    top: 25px;
-    left: 24px;
-    position: absolute;
-    height: 24px;
-    width: 24px; 
     object-fit: cover;
-    z-index: 1;
     border: 1px solid white;
     border-radius: 13px;
 }
