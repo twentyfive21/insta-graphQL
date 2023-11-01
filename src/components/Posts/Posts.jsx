@@ -11,7 +11,7 @@ import Avatar from "../../assets/login/Default.png"
 import { UserContext } from "../../contexts/CurrentUser";
 import { DELETE_POST } from "../../utils/mutations";
 import Modal from 'react-modal'
-
+import { GET_COMMENTS } from "../../utils/subscriptions";
 
 
 function Posts({ item }) {
@@ -35,9 +35,20 @@ function Posts({ item }) {
   const {currentUser, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost} = useContext(UserContext);
   const [deletePost] = useMutation(DELETE_POST);
 
-  const { data, loading, error } = useSubscription(GET_ALL_USERS, {
+  const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
+
+
+
+  //comments
+
+  const { data: commentData } = useSubscription(GET_COMMENTS);
+  console.log(commentData)
+
+
+
+
 
   const [like, setLike] = useState(false);
   const [comments, setComments] = useState([]);
@@ -131,6 +142,7 @@ function Posts({ item }) {
             />
           </form>
           <img src={smile} alt="smile" />
+   
         </div>
       </div>
     </div>

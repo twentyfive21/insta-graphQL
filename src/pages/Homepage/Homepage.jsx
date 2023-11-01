@@ -47,9 +47,9 @@ function Homepage({ userData }) {
   useEffect(() => {
     if (!loading && data && data.userPosts.length > 0) {
       setPosts(data.userPosts);
-      setTimeout(() => {
-        loadMorePosts();
-      }, 1000);
+      // setTimeout(() => {
+      //   loadMorePosts();
+      // }, 1000);
     }
   }, [loading, data]);
 
