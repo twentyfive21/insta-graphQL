@@ -12,16 +12,13 @@ import Webcam from "react-webcam";
 function AddPost({ profileFunc }) {
   const { currentUser, setIsOpen } = useContext(UserContext);
   const [userImage, setUserImage] = useState(false);
-
   const [userReady, setUserReady] = useState(false);
   const [textCount, setTextCount] = useState(0);
   const [capture, setCapture] = useState(false);
   const webcamRef = useRef(null);
   const [imagePreview, setImagePreview] = useState("");
-
   const [selectedImage, setSelectedImage] = useState("");
 
-  console.log(selectedImage, 'selected');
 
   function getUserImage(e) {
     setSelectedImage(e.target.files[0]);
@@ -71,6 +68,7 @@ function AddPost({ profileFunc }) {
 
   function restImage() {
     setSelectedImage("");
+    setImagePreview("")
     setUserImage(false);
     setUserReady(false);
   }
@@ -238,3 +236,10 @@ async function submitPost() {
 }
 
 export default AddPost;
+
+
+// <Webcam height={600} width={600} ref={webcamRef} />
+//           {capture && <button onClick={captureFunc}>Take picture</button>}
+//           <button onClick={() => setCapture(!capture)}>
+//             {capture ? "Go Back" : "Take Photo from device"}
+//           </button>
