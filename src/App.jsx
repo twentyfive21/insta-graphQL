@@ -21,7 +21,7 @@ function App() {
         <Route path='/' element={<UserLogin />} />
         <Route path='/sign-up' element={<UserSignUp />} />
         <Route path="/feed" element={<Homepage userData={userPostData} />} />
-        <Route path="/profile-page" element={<ProfilePage />} />
+        <Route path="/profile-page/:userid" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
       

@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import { CommentsContext } from "../../contexts/CommentData";
 import Post from "../Post/Post";
 import { PostContext } from "../../contexts/PostContext";
+import { useNavigate } from "react-router-dom";
 
 function Posts({ item, postID }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -33,7 +34,7 @@ function Posts({ item, postID }) {
   const {currentUser,isDeleteOpen,setIsDeleteOpen,} = useContext(UserContext);
   const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB } = useContext(PostContext);
   const { commentTable, addCommentToDB } = useContext(CommentsContext);
-
+  const navigate = useNavigate();
   const [postModalOpen, setPostModalOpen] = useState(false)
   const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
@@ -70,7 +71,7 @@ function Posts({ item, postID }) {
   return (
     <div className="single-insta-post" id={item.userID}>
       <div className="username-insta-section">
-        <div className="user-insta-left">
+        <div className="user-insta-left" onClick={()=>navigate(`/profile-page/${item.userID}`)}>
           <img
             src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar : Avatar}
             alt={data?.userData[0]?.avatar}
