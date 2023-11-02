@@ -1,12 +1,24 @@
-import React from 'react'
+import {useContext} from 'react'
 import './Post.css'
 import Comment from '../Comment/Comment'
 import Actions from '../Actions/Actions'
 import leftNav from '../../assets/leftnav.png'
 import { userData as oldData } from '../../utils/data'
 import Collab from '../Collab/Collab'
+import { CommentsContext } from '../../contexts/CommentData'
 
 function Post({userData}) {
+  console.log(userData)
+
+  const {commentTable} = useContext(CommentsContext);
+ 
+
+
+  const filteredComments = commentTable?.filter(
+    (comment) => comment?.postRef === userData.id
+  );
+  
+  console.log(filteredComments)
   return (
     <div className='main-box'>
         <section className='next-img'>
@@ -14,15 +26,13 @@ function Post({userData}) {
         {/* <img src={leftNav} className='next-btn' alt='next-btn'/> */}
         </section>
         <section>
-        <Collab userData={oldData}/>
+        <Collab userData={userData}/>
           <section className='all-comments-container'>
-            <Comment userData={oldData[0]} />
-            <Comment userData={oldData[1]} />
-            <Comment userData={oldData[2]} />
-            <Comment userData={oldData[3]} />
-            <Comment userData={oldData[3]} />
+            {filteredComments.map((item)=>{
+              return <Comment userData={item}/>
+            })}
           </section>
-        <Actions />
+        <Actions postID={userData.id}/>
         </section>
     </div>
   )

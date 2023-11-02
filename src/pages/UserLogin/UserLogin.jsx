@@ -49,7 +49,7 @@ export default function UserLogin() {
       });
       navigate("/feed/");
     } else {
-     alert("Invalid credentials!");
+     console.log("error logging in")
     }
   };
 
@@ -61,7 +61,7 @@ export default function UserLogin() {
       <div className="login-container">
         <img src={logo} alt="logo" />
 
-        <div className="login-form-container">
+        <form className="login-form-container">
           <input
             type="email"
             className="form-input"
@@ -81,7 +81,7 @@ export default function UserLogin() {
           <button className="login-btn" onClick={handleLogin}>
             Log In
           </button>
-        </div>
+        </form>
 
         <div className="login-or-option">
           <p className="line"></p>

@@ -105,15 +105,8 @@ function Homepage({ userData }) {
         </div>
            <div className='all-posts'>
           {posts.map(post => (
-            <Posts item={post} key={post.id} postId={post.id} />
+            <Posts item={post} key={post.id}/>
           ))}
-          {/* {loading && posts.length === 0 && <Spinner />} Show spinner during initial load */}
-          {/* {!loading && posts.length > 0 && (
-            <button className='load-more-button' onClick={loadMorePosts}>
-              Load More
-            </button>
-          )} */}
-          {/* {loading && <Spinner />} */}
         </div>
         <div className='follow-sidebar'></div>
       </section>
