@@ -1,10 +1,10 @@
-import {useState, useContext} from 'react';
-import './Collab.css';
-import details from '../../assets/dots.png';
+import { useState, useContext } from "react";
+import "./Collab.css";
+import details from "../../assets/dots.png";
 import Modal from "react-modal";
-import { PostContext } from '../../contexts/PostContext';
-import { useParams } from 'react-router-dom';
-import { UserContext } from '../../contexts/CurrentUser';
+import { PostContext } from "../../contexts/PostContext";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../../contexts/CurrentUser";
 
 function Collab({ userData }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -22,10 +22,17 @@ function Collab({ userData }) {
       backgroundColor: "rgba(0,0,0,0.1)",
     },
   };
-  const {currentUser} = useContext(UserContext)
-  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal, deleteAllPhotoLikes} = useContext(PostContext);
-  const [postDeleteModal, setPostDeleteModal] = useState(false)
-    const { userid } = useParams();
+
+  const { currentUser } = useContext(UserContext);
+  const {
+    deleteAllCommentsFromDB,
+    setDeletedPost,
+    deletePostFromDB,
+    setSettingsModal,
+    deleteAllPhotoLikes,
+  } = useContext(PostContext);
+  const [postDeleteModal, setPostDeleteModal] = useState(false);
+  const { userid } = useParams();
 
   const handleDeletingAllPostData = async () => {
     try {
@@ -33,40 +40,49 @@ function Collab({ userData }) {
       await deleteAllCommentsFromDB();
 
       await deleteAllPhotoLikes();
-      
+
       // Once comments are deleted, delete the post
       await deletePostFromDB();
 
       setSettingsModal(false);
-      
+
       // Optionally, you can perform additional actions after both are successful.
     } catch (error) {
       console.error("Error deleting post and comments:", error);
     }
-  }
-  
+  };
+
   const handleDelete = () => {
-    setPostDeleteModal(true)
-    setDeletedPost(userData)
-  }
+    setPostDeleteModal(true);
+    setDeletedPost(userData);
+  };
   return (
-    <div className='collab-container'>
-      <div className='collab-left'>
-        <img src={userData.avatar} className='p-circle' alt='profile pic' />
-        <p><span>{userData.username}</span></p>
+    <div className="collab-container">
+      <div className="collab-left">
+        <img src={userData?.avatar} className="p-circle" alt="profile pic" />
+        <p>
+          <span>{userData?.username}</span>
+        </p>
       </div>
-      {currentUser.id === userid && <img src={details} alt='detail dots' className='dots' onClick={handleDelete}/>}
+      {currentUser.id === userid && (
+        <img
+          src={details}
+          alt="detail dots"
+          className="dots"
+          onClick={handleDelete}
+        />
+      )}
       <Modal
-          isOpen={postDeleteModal}
-          onRequestClose={()=>setPostDeleteModal(false)}
-          style={customStyles}
-          contentLabel="pop up post modal"
-        >
-          <div className='delete-modal-options'>
+        isOpen={postDeleteModal}
+        onRequestClose={() => setPostDeleteModal(false)}
+        style={customStyles}
+        contentLabel="Pop Up Post Modal"
+      >
+        <div className="delete-modal-options">
           <p onClick={handleDeletingAllPostData}>Delete</p>
-         <p onClick={()=>setPostDeleteModal(false)}>cancel</p>
-          </div>
-        </Modal>
+          <p onClick={() => setPostDeleteModal(false)}>Cancel</p>
+        </div>
+      </Modal>
     </div>
   );
 }
