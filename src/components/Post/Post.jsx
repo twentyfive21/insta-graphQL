@@ -12,8 +12,6 @@ function Post({userData}) {
 
   const {commentTable} = useContext(CommentsContext);
  
-
-
   const filteredComments = commentTable?.filter(
     (comment) => comment?.postRef === userData.id
   );
@@ -23,7 +21,6 @@ function Post({userData}) {
     <div className='main-box'>
         <section className='next-img'>
         <img src={userData?.image} alt={userData?.userName} className='post-main-image'/>
-        {/* <img src={leftNav} className='next-btn' alt='next-btn'/> */}
         </section>
         <section>
         <Collab userData={userData}/>

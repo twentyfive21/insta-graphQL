@@ -1,10 +1,27 @@
-import React,{useContext} from 'react';
+import React,{useContext, useState} from 'react';
 import './Comment.css';
 import details from '../../assets/dots.png'
 import { UserContext } from '../../contexts/CurrentUser';
 import { CommentsContext } from '../../contexts/CommentData';
+import Modal from 'react-modal';
 
 function Comment({ userData }) {
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      borderRadius: '24px',
+    },
+    overlay: {
+      backgroundColor: 'rgba(0,0,0,0.6)',
+    },
+  };
+  const [isCommentModal, setIsCommentModal] = useState(false);
+  Modal.setAppElement(document.getElementById('root'));
   const { avatar, comment, username, userID, id, createdAt } = userData;
   const {currentUser} = useContext(UserContext);
   const { deleteCommentfromDB } = useContext(CommentsContext);
@@ -29,9 +46,9 @@ function Comment({ userData }) {
     }
   }
 
-  const handleDeletedComment = (commentID, postCommentRef) => {
-    // deleteCommentfromDB()
-    console.log(userData)
+  const handleDeletedComment = () => {
+    deleteCommentfromDB(userData)
+    setIsCommentModal(false)
   }
 
   return (
@@ -49,10 +66,19 @@ function Comment({ userData }) {
       {
         userID === currentUser.id && 
         <img src={details}
-        onClick={handleDeletedComment}
+        onClick={()=>setIsCommentModal(true)}
         className='delete-comment' alt='delete-post'/>
       }
+    <Modal isOpen={isCommentModal} 
+        onRequestClose={()=>setIsCommentModal(false)} 
+        style={customStyles} contentLabel='delete modal for comment'>
+          <div>
+            <p onClick={handleDeletedComment}>Delete</p>
+            <p onClick={()=>setIsCommentModal(false)}>Cancel</p>
+          </div>
+        </Modal>
     </div>
+    
   );
 }
 
