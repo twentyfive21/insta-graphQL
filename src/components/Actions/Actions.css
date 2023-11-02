@@ -36,7 +36,6 @@
 
 .ac-box {
     border-top: 1px solid #EFEFEF;
-    background-color: pink;
     top: 162px;
     z-index: 2;
     position: absolute;
@@ -46,7 +45,6 @@
     padding: 25px 10px;
     align-items: center;
     background-color: white;
-    height: 20px;
 }
 .ac-innerbox {
     display: flex;

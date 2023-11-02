@@ -19,11 +19,11 @@
     margin: 10px 15px;
     border-radius: 20px;
 }
-.heart-comment {
-    font-size: 13px;
+.delete-comment {
     position: absolute;
-    left: 475px;
-    top: 30px;
+    left: 440px;
+    top: 8px;
+    cursor: pointer;
 }
 .user-pr {
     margin-right: 6px;

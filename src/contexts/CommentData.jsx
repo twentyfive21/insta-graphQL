@@ -2,6 +2,7 @@ import { createContext, useState, useContext} from "react";
 import { useSubscription, useMutation } from "@apollo/client";
 import { GET_COMMENTS } from "../utils/subscriptions";
 import { ADD_COMMENT } from "../utils/mutations";
+import { DELETE_COMMENT } from "../utils/mutations";
 import { UserContext } from "./CurrentUser";
 
 export const CommentsContext = createContext();
@@ -11,6 +12,7 @@ export default function CommentsContextProvider(props) {
   const { currentUser } = useContext(UserContext);
   const { data: commentData} = useSubscription(GET_COMMENTS);
   const [addComment] = useMutation(ADD_COMMENT);
+  const [deleteComment] = useMutation(DELETE_COMMENT);
   const commentTable = commentData?.userComments; 
 
   const addCommentToDB = async (userComment, commentedPost) => {
@@ -30,9 +32,25 @@ export default function CommentsContextProvider(props) {
       console.log("Error adding comment");
     }
   };
+  const deleteCommentfromDB = async (commentID, postCommentRef) => {
+    try {
+      const { id } = currentUser;
+      //add the value of id to check the equal too
+      await deleteComment({
+        variables: {
+          id: commentID.length > 0 ? commentID : null,
+          userID: id.length > 0 ? id : null,
+          postRef: postCommentRef.length > 0? postCommentRef : null,
+        },
+      });
+    } catch (error) {
+      console.log("Error deleting comment");
+    }
+  };
 
+  // $postRef: $userID: $id: 
   return (
-    <CommentsContext.Provider value={{commentTable, addCommentToDB}}>
+    <CommentsContext.Provider value={{commentTable, addCommentToDB, deleteCommentfromDB }}>
       {props.children}
     </CommentsContext.Provider>
   );

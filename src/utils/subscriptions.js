@@ -20,6 +20,8 @@ subscription MySubscription {
     image
     timestamp
     userID
+    avatar
+    username
   }
 }
 `

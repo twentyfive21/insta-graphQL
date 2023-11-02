@@ -1,9 +1,13 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './Comment.css';
-import { AiOutlineHeart } from "react-icons/ai";
+import details from '../../assets/dots.png'
+import { UserContext } from '../../contexts/CurrentUser';
+import { CommentsContext } from '../../contexts/CommentData';
 
 function Comment({ userData }) {
   const { avatar, comment, username, userID, id, createdAt } = userData;
+  const {currentUser} = useContext(UserContext);
+  const { deleteCommentfromDB } = useContext(CommentsContext);
 
   // Convert the createdAt string to a JavaScript Date object
   const createdDate = new Date(createdAt);
@@ -25,6 +29,11 @@ function Comment({ userData }) {
     }
   }
 
+  const handleDeletedComment = (commentID, postCommentRef) => {
+    // deleteCommentfromDB()
+    console.log(userData)
+  }
+
   return (
     <div className='comment-container'>
       <section className='comment-left'>
@@ -37,7 +46,12 @@ function Comment({ userData }) {
           </div>
         </section>
       </section>
-      <AiOutlineHeart className='heart-comment' />
+      {
+        userID === currentUser.id && 
+        <img src={details}
+        onClick={handleDeletedComment}
+        className='delete-comment' alt='delete-post'/>
+      }
     </div>
   );
 }
