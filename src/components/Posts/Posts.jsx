@@ -31,9 +31,10 @@ function Posts({ item, postID }) {
   };
 
   const {currentUser,isDeleteOpen,setIsDeleteOpen,} = useContext(UserContext);
-  const { commentTable, addCommentToDB } = useContext(CommentsContext);
   const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB } = useContext(PostContext);
+  const { commentTable, addCommentToDB } = useContext(CommentsContext);
 
+  const [postModalOpen, setPostModalOpen] = useState(false)
   const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
@@ -41,7 +42,6 @@ function Posts({ item, postID }) {
   const [like, setLike] = useState(false);
   const [comments, setComments] = useState([]);
   const [commentValue, setCommentValue] = useState('')
-  const [postModalOpen, setPostModalOpen] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -149,7 +149,7 @@ function Posts({ item, postID }) {
           style={customStyles}
           contentLabel="pop up post modal"
         >
-          <Post userData={item}/>
+          <Post userData={item} />
         </Modal>
       </div>
     </div>

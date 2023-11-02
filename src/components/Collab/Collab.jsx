@@ -20,17 +20,28 @@ function Collab({ userData }) {
       backgroundColor: "rgba(0,0,0,0.1)",
     },
   };
-  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB } = useContext(PostContext);
-  const [postModalOpen, setPostModalOpen] = useState(false)
+  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal} = useContext(PostContext);
+  const [postDeleteModal, setPostDeleteModal] = useState(false)
 
-  const handleDeletingAllPostData = () => {
-    deleteAllCommentsFromDB() 
-    deletePostFromDB()
-    setPostModalOpen(false);
+  const handleDeletingAllPostData = async () => {
+    try {
+      // First, delete all comments
+      await deleteAllCommentsFromDB();
+      
+      // Once comments are deleted, delete the post
+      await deletePostFromDB();
+
+      setSettingsModal(false);
+      
+      // Optionally, you can perform additional actions after both are successful.
+    } catch (error) {
+      console.error("Error deleting post and comments:", error);
+    }
   }
+  
 
   const handleDelete = () => {
-    setPostModalOpen(true)
+    setPostDeleteModal(true)
     setDeletedPost(userData)
   }
   return (
@@ -41,13 +52,15 @@ function Collab({ userData }) {
       </div>
       <img src={details} alt='detail dots' className='dots' onClick={handleDelete}/>
       <Modal
-          isOpen={postModalOpen}
-          onRequestClose={()=>setPostModalOpen(false)}
+          isOpen={postDeleteModal}
+          onRequestClose={()=>setPostDeleteModal(false)}
           style={customStyles}
           contentLabel="pop up post modal"
         >
-         <p onClick={handleDeletingAllPostData}>Delete</p>
-         <p onClick={()=>setPostModalOpen(false)}>cancel</p>
+          <div className='delete-modal-options'>
+          <p onClick={handleDeletingAllPostData}>Delete</p>
+         <p onClick={()=>setPostDeleteModal(false)}>cancel</p>
+          </div>
         </Modal>
     </div>
   );

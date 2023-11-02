@@ -13,8 +13,9 @@ import PostContextProvider from './contexts/PostContext'
 function App() {
   return (
     <UserContextProvider>
+       <PostContextProvider>
     <CommentsContextProvider>
-    <PostContextProvider>
+   
       <BrowserRouter>
         <Routes>
         <Route path='/' element={<UserLogin />} />
@@ -23,8 +24,9 @@ function App() {
         <Route path="/profile-page" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
-      </PostContextProvider>
+      
       </CommentsContextProvider>
+      </PostContextProvider>
       </UserContextProvider>
   )
 }

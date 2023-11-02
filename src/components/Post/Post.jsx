@@ -8,7 +8,6 @@ import Collab from '../Collab/Collab'
 import { CommentsContext } from '../../contexts/CommentData'
 
 function Post({userData}) {
-  console.log(userData)
 
   const {commentTable} = useContext(CommentsContext);
  

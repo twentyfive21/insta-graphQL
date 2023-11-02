@@ -9,6 +9,7 @@ export default function PostContextProvider(props) {
 
 const [deletePost] = useMutation(DELETE_POST);
 const [deleteAllPostComments] = useMutation(DELETE_POST_COMMENTS);
+const [settingsModal, setSettingsModal] = useState(false);
 // state for post to be deleted 
 const [deletedPost, setDeletedPost] = useState({});
 
@@ -40,7 +41,7 @@ const deleteAllCommentsFromDB = async () => {
   };
 
   return (
-    <PostContext.Provider value={{ deleteAllCommentsFromDB, deletedPost, setDeletedPost, deletePostFromDB }}>
+    <PostContext.Provider value={{ deleteAllCommentsFromDB, deletedPost, setDeletedPost, deletePostFromDB, settingsModal, setSettingsModal}}>
       {props.children}
     </PostContext.Provider>
   );
