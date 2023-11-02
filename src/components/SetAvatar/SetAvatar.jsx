@@ -145,8 +145,8 @@ function SetAvatar({ userParam }) {
           userParam?.userData[0].avatar ? userParam?.userData[0].avatar : basic
         }
         alt="profile image"
-        className="profile-image"
-        onClick={() => userParam.id === currentUser.id && setIsOpen(true)}
+        className={userParam?.userData[0].id === currentUser.id? "profile-image" : "profile-image-non"}
+        onClick={() => userParam?.userData[0].id === currentUser.id && setIsOpen(true)}
       />
       <Modal
         isOpen={avatar}

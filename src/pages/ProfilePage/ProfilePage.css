@@ -12,6 +12,15 @@
     object-fit: cover;
     border-radius: 150px;
     margin: 20px 0px;
+    cursor: pointer;
+}
+
+.profile-image-non {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 150px;
+    margin: 20px 0px;
 }
 .profile-container {
    margin-top: 70px;
