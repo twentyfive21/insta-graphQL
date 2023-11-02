@@ -15,7 +15,6 @@ function Post({userData}) {
     (comment) => comment?.postRef === userData.id
   );
   
-  console.log(filteredComments)
   return (
     <div className='main-box'>
         <section className='next-img'>

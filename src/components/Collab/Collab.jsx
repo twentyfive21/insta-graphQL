@@ -3,6 +3,8 @@ import './Collab.css';
 import details from '../../assets/dots.png';
 import Modal from "react-modal";
 import { PostContext } from '../../contexts/PostContext';
+import { useParams } from 'react-router-dom';
+import { UserContext } from '../../contexts/CurrentUser';
 
 function Collab({ userData }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -20,8 +22,11 @@ function Collab({ userData }) {
       backgroundColor: "rgba(0,0,0,0.1)",
     },
   };
+  const {currentUser} = useContext(UserContext)
   const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal} = useContext(PostContext);
   const [postDeleteModal, setPostDeleteModal] = useState(false)
+    const { userid } = useParams();
+    console.log(userid, "userid")
 
   const handleDeletingAllPostData = async () => {
     try {
@@ -50,7 +55,7 @@ function Collab({ userData }) {
         <img src={userData.avatar} className='p-circle' alt='profile pic' />
         <p><span>{userData.username}</span></p>
       </div>
-      <img src={details} alt='detail dots' className='dots' onClick={handleDelete}/>
+      {currentUser.id === userid && <img src={details} alt='detail dots' className='dots' onClick={handleDelete}/>}
       <Modal
           isOpen={postDeleteModal}
           onRequestClose={()=>setPostDeleteModal(false)}
