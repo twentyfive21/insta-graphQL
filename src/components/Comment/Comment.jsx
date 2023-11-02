@@ -1,29 +1,32 @@
-import React,{useContext, useState} from 'react';
-import './Comment.css';
-import details from '../../assets/dots.png'
-import { UserContext } from '../../contexts/CurrentUser';
-import { CommentsContext } from '../../contexts/CommentData';
-import Modal from 'react-modal';
+import React, { useContext, useState } from "react";
+import "./Comment.css";
+import details from "../../assets/dots.png";
+import { UserContext } from "../../contexts/CurrentUser";
+import { CommentsContext } from "../../contexts/CommentData";
+import Modal from "react-modal";
 
 function Comment({ userData }) {
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      borderRadius: '24px',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
     },
     overlay: {
-      backgroundColor: 'rgba(0,0,0,0.6)',
+      backgroundColor: "rgba(0,0,0,0.6)",
     },
   };
+
+  Modal.setAppElement(document.getElementById("root"));
+
+
   const [isCommentModal, setIsCommentModal] = useState(false);
-  Modal.setAppElement(document.getElementById('root'));
   const { avatar, comment, username, userID, id, createdAt } = userData;
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const { deleteCommentfromDB } = useContext(CommentsContext);
 
   // Convert the createdAt string to a JavaScript Date object
@@ -38,47 +41,54 @@ function Comment({ userData }) {
   // Define a function to format the time difference
   function formatTimeAgo(days) {
     if (days === 0) {
-      return 'Today';
+      return "Today";
     } else if (days === 1) {
-      return '1 day ago';
+      return "1 day ago";
     } else {
       return `${days} days ago`;
     }
   }
 
   const handleDeletedComment = () => {
-    deleteCommentfromDB(userData)
-    setIsCommentModal(false)
-  }
+    deleteCommentfromDB(userData);
+    setIsCommentModal(false);
+  };
 
   return (
-    <div className='comment-container'>
-      <section className='comment-left'>
+    <div className="comment-container">
+      <section className="comment-left">
         <img src={avatar} alt={username} />
         <section>
-          <p><span className='user-pr'>{username}</span>{comment}</p>
-          <div className='actions'>
+          <p>
+            <span className="user-pr">{username}</span>
+            {comment}
+          </p>
+          <div className="actions">
             <p>{formatTimeAgo(daysAgo)}</p>
-            <p className='bold'>{userData.likes}</p>
+            <p className="bold">{userData?.likes}</p>
           </div>
         </section>
       </section>
-      {
-        userID === currentUser.id && 
-        <img src={details}
-        onClick={()=>setIsCommentModal(true)}
-        className='delete-comment' alt='delete-post'/>
-      }
-    <Modal isOpen={isCommentModal} 
-        onRequestClose={()=>setIsCommentModal(false)} 
-        style={customStyles} contentLabel='delete modal for comment'>
-          <div>
-            <p onClick={handleDeletedComment}>Delete</p>
-            <p onClick={()=>setIsCommentModal(false)}>Cancel</p>
-          </div>
-        </Modal>
+      {userID === currentUser?.id && (
+        <img
+          src={details}
+          onClick={() => setIsCommentModal(true)}
+          className="delete-comment"
+          alt="delete-post"
+        />
+      )}
+      <Modal
+        isOpen={isCommentModal}
+        onRequestClose={() => setIsCommentModal(false)}
+        style={customStyles}
+        contentLabel="delete modal for comment"
+      >
+        <div>
+          <p onClick={handleDeletedComment}>Delete</p>
+          <p onClick={() => setIsCommentModal(false)}>Cancel</p>
+        </div>
+      </Modal>
     </div>
-    
   );
 }
 
