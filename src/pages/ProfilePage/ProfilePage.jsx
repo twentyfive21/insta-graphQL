@@ -17,6 +17,7 @@ import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
 import Spinner from "../../components/Spinner";
 import { CommentsContext } from "../../contexts/CommentData";
+import { PostContext } from "../../contexts/PostContext";
 
 
 const customStyles = {
@@ -37,10 +38,10 @@ const customStyles = {
 Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
-  const [settingsModal, setSettingsModal] = useState(false);
+  // const [settingsModal, setSettingsModal] = useState(false);
   const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
     useContext(UserContext);
-const {commentTable} = useContext(CommentsContext);
+    const {settingsModal, setSettingsModal} = useContext(PostContext);
 
 
   const [postModal, setPostModal] = useState(false);

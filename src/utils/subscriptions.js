@@ -1,13 +1,15 @@
 import { gql } from "@apollo/client";
 
 export const GET_POSTS = gql`
-  subscription MySubscription($limit: Int!) {
-    userPosts(order_by: { timestamp: desc }, limit: $limit) {
+  subscription MySubscription {
+    userPosts(order_by: { timestamp: desc }) {
       caption
       id
       image
       timestamp
       userID
+      username
+      avatar
     }
   }
 `;

@@ -40,9 +40,7 @@ function Homepage({ userData }) {
   const [userTheme, setUserTheme] = useState(false);
   const [limit, setLimit] = useState(4);
   const [posts, setPosts] = useState([]);
-  const { data, loading } = useSubscription(GET_POSTS, {
-    variables: { limit },
-  });
+  const { data, loading } = useSubscription(GET_POSTS);
 
   useEffect(() => {
     if (!loading && data && data.userPosts.length > 0) {

@@ -8,11 +8,14 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import UserSignUp from './pages/UserSignUp/UserSignUp'
 import UserContextProvider from './contexts/CurrentUser'
 import CommentsContextProvider from './contexts/CommentData'
+import PostContextProvider from './contexts/PostContext'
 
 function App() {
   return (
     <UserContextProvider>
+       <PostContextProvider>
     <CommentsContextProvider>
+   
       <BrowserRouter>
         <Routes>
         <Route path='/' element={<UserLogin />} />
@@ -21,7 +24,9 @@ function App() {
         <Route path="/profile-page" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
+      
       </CommentsContextProvider>
+      </PostContextProvider>
       </UserContextProvider>
   )
 }

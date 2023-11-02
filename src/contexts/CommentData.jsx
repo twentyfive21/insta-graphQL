@@ -32,15 +32,15 @@ export default function CommentsContextProvider(props) {
       console.log("Error adding comment");
     }
   };
-  const deleteCommentfromDB = async (commentID, postCommentRef) => {
+  const deleteCommentfromDB = async (userData) => {
     try {
       const { id } = currentUser;
       //add the value of id to check the equal too
       await deleteComment({
         variables: {
-          id: commentID.length > 0 ? commentID : null,
+          id: userData.id.length > 0 ? userData.id: null,
           userID: id.length > 0 ? id : null,
-          postRef: postCommentRef.length > 0? postCommentRef : null,
+          postRef: userData.postRef.length > 0? userData.postRef : null,
         },
       });
     } catch (error) {
