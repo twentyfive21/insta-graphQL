@@ -8,7 +8,7 @@ import Webcam from "react-webcam";
 
 import "./SetAvatar.css";
 
-function SetAvatar() {
+function SetAvatar({ userParam }) {
   const customStyles = {
     content: {
       top: "50%",
@@ -106,7 +106,7 @@ function SetAvatar() {
         ...currentUser,
         avatar: imageUrl,
       });
-      setImageForUpload("")
+      setImageForUpload("");
       setAvatar(false);
       setIsOpen(false); // Close the modal with the file input
     } catch (error) {
@@ -141,10 +141,12 @@ function SetAvatar() {
   return (
     <div>
       <img
-        src={currentUser.avatar ? currentUser.avatar : basic}
+        src={
+          userParam?.userData[0].avatar ? userParam?.userData[0].avatar : basic
+        }
         alt="profile image"
         className="profile-image"
-        onClick={() => setIsOpen(true)}
+        onClick={() => userParam.id === currentUser.id && setIsOpen(true)}
       />
       <Modal
         isOpen={avatar}

@@ -42,6 +42,8 @@ function Homepage({ userData }) {
   const [posts, setPosts] = useState([]);
   const { data, loading } = useSubscription(GET_POSTS);
 
+  console.log(currentUser)
+
   useEffect(() => {
     if (!loading && data && data.userPosts.length > 0) {
       setPosts(data.userPosts);
@@ -56,7 +58,7 @@ function Homepage({ userData }) {
   };
 
   const viewProfile = () => {
-    navigate('/profile-page');
+    navigate(`/profile-page/${currentUser.id}`);
   };
 
   function changeThemeForUserComfort() {

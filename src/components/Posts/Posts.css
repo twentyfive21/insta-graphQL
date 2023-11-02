@@ -29,6 +29,11 @@
     top: 16px;
     left: 127px;
 }
+
+.user-insta-left{
+    cursor: pointer;
+}
+
 /* USERNAME margin  */
 .user-insta-left img:first-child {
     margin-right: 10px;

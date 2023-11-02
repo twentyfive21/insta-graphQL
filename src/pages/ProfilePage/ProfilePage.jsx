@@ -3,7 +3,7 @@ import "./ProfilePage.css";
 import Header from "../../components/Header/Header";
 import { UserContext } from "../../contexts/CurrentUser";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
-import { GET_ALL_USER_POSTS } from "../../utils/subscriptions";
+import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
 import Modal from "react-modal";
 import Post from "../../components/Post/Post";
@@ -12,12 +12,13 @@ import { LuPlusSquare } from "react-icons/lu";
 import { CiSettings } from "react-icons/ci";
 import { GoMoon } from "react-icons/go";
 import { BiSun } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
 import Spinner from "../../components/Spinner";
 import { CommentsContext } from "../../contexts/CommentData";
 import { PostContext } from "../../contexts/PostContext";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 
 const customStyles = {
@@ -43,12 +44,17 @@ function ProfilePage() {
     useContext(UserContext);
     const {settingsModal, setSettingsModal} = useContext(PostContext);
 
-
+  const { userid } = useParams();
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState([])
+ const { loading, error, data: userPostMatchData } = useSubscription(GET_ALL_USERS, {
+  variables: { id: userid },
+});
+
+console.log("Subscription Data:", userPostMatchData?.userData[0]);
 
   function closeModal() {
     setSettingsModal(false);
@@ -56,7 +62,7 @@ function ProfilePage() {
 
   function mapData() {
     for (let i = 0; i < userPostsArray.length; i++) {
-      if (userPostsArray[i].userID === currentUser.id) {
+      if (userPostsArray[i].userID === userid) {
         filteredPosts.push(userPostsArray[i]);
       }
     }
@@ -81,6 +87,10 @@ function ProfilePage() {
 
   console.log(filteredPosts);
 
+if(!userPostMatchData){
+  return <Spinner />
+}
+
 
   return (
     <>
@@ -93,8 +103,8 @@ function ProfilePage() {
           <div className="icon-divs" onClick={handlePostModalProfile}>
             <LuPlusSquare /> <h3>Create</h3>
           </div>
-          <div className="icon-divs" onClick={() => navigate("/profile-page")}>
-            <img src={currentUser.avatar ? currentUser.avatar : avatar} />{" "}
+          <div className="icon-divs" onClick={() => navigate(`/profile-page/${currentUser.id}`)}>
+            <img src={currentUser.avatar? currentUser.avatar : avatar} />{" "}
             <h3>Profile</h3>{" "}
           </div>
           <div className="icon-divs">
@@ -114,8 +124,8 @@ function ProfilePage() {
           </Modal>
         </div>
         <div className="profile-container">
-         <SetAvatar />
-          <p>{currentUser.username}</p>
+         <SetAvatar userParam={userPostMatchData}/>
+          <p>{userPostMatchData?.userData[0].username}</p>
           <p>Posts : {filteredPosts.length} </p>
         </div>
         <SettingsModal />
