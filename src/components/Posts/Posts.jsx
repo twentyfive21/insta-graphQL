@@ -2,66 +2,66 @@ import { React, useState, useContext } from "react";
 import "./Posts.css";
 import dotDark from "../../assets/posts/dotDark.png";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import comment from "../../assets/posts/comment.png";
+import commentIMG from "../../assets/posts/comment.png";
 import smile from "../../assets/posts/smile.png";
-import blueCheck from "../../assets/posts/blue.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription, useMutation } from "@apollo/client";
-import Avatar from "../../assets/login/Default.png"
+import Avatar from "../../assets/login/Default.png";
 import { UserContext } from "../../contexts/CurrentUser";
 import { DELETE_POST } from "../../utils/mutations";
-import Modal from 'react-modal'
-import { GET_COMMENTS } from "../../utils/subscriptions";
+import Modal from "react-modal";
+import { CommentsContext } from "../../contexts/CommentData";
+import Post from "../Post/Post";
 
-
-function Posts({ item }) {
-
-  Modal.setAppElement(document.getElementById('root'));
+function Posts({ item, postID }) {
+  Modal.setAppElement(document.getElementById("root"));
   const customStyles = {
-   content: {
-     top: '50%',
-     left: '50%',
-     right: 'auto',
-     bottom: 'auto',
-     marginRight: '-50%',
-     borderRadius: '15px',
-     transform: 'translate(-50%, -50%)',
-   },
-   overlay:{
-     backgroundColor:'rgba(0,0,0,0.1)'
-   }
- };
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      borderRadius: "15px",
+      transform: "translate(-50%, -50%)",
+    },
+    overlay: {
+      backgroundColor: "rgba(0,0,0,0.1)",
+    },
+  };
 
-  const {currentUser, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost} = useContext(UserContext);
+  const {
+    currentUser,
+    isDeleteOpen,
+    setIsDeleteOpen,
+    deletedPost,
+    setDeletedPost,
+  } = useContext(UserContext);
+
+  const { commentTable, addCommentToDB } = useContext(CommentsContext);
   const [deletePost] = useMutation(DELETE_POST);
+  console.log(commentTable);
 
   const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
 
-
-
-  //comments
-
-  const { data: commentData } = useSubscription(GET_COMMENTS);
-  console.log(commentData)
-
-
-
-
-
   const [like, setLike] = useState(false);
   const [comments, setComments] = useState([]);
+  const [commentValue, setCommentValue] = useState('')
+  const [postModalOpen, setPostModalOpen] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    addCommentToDB(commentValue, item.id)
+    setCommentValue("")
     const newComment = e.target.elements.comment.value;
     setComments((prev) => [...prev, newComment]);
   };
 
   const deletePostFromDB = async () => {
     try {
-      const { id, userID } = deletedPost; 
+      const { id, userID } = deletedPost;
       //add the value of id to check the equal too
       await deletePost({
         variables: {
@@ -72,37 +72,52 @@ function Posts({ item }) {
     } catch (error) {
       console.log("Error deleting post");
     }
-    setIsDeleteOpen(false)
-  }
+    setIsDeleteOpen(false);
+  };
 
   const deletePostSelected = (post) => {
-    setDeletedPost(post)
-    setIsDeleteOpen(true)
-}
+    setDeletedPost(post);
+    setIsDeleteOpen(true);
+  };
+
+  const filteredComments = commentTable?.filter(
+    (comment) => comment?.postRef === item.id
+  );
+
+
 
   return (
-    <div className="single-insta-post" id={item.userID} >
+    <div className="single-insta-post" id={item.userID}>
       <div className="username-insta-section">
         <div className="user-insta-left">
-          <img src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar :Avatar} alt={data?.userData[0]?.avatar} />
+          <img
+            src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar : Avatar}
+            alt={data?.userData[0]?.avatar}
+          />
           <p>{data?.userData[0]?.username}</p>
         </div>
-        {
-        currentUser.id === item.userID && 
-        <img src={dotDark} alt="dots" onClick={()=>deletePostSelected(item)} 
-        className="post-delete-btn"/>
-        }
-        <Modal 
+        {currentUser.id === item.userID && (
+          <img
+            src={dotDark}
+            alt="dots"
+            onClick={() => deletePostSelected(item)}
+            className="post-delete-btn"
+          />
+        )}
+        <Modal
           isOpen={isDeleteOpen}
           style={customStyles}
-          // closes the modal if you click outside the image 
-          onRequestClose={()=>setIsDeleteOpen(false)}
-          contentLabel="Delete Post Modal">
-          <div className='delete-post-modal'>
-            <p className='delete-post-btn' onClick={deletePostFromDB}>Delete</p>
-            <p onClick={()=> setIsDeleteOpen(false)}>Cancel</p>
+          // closes the modal if you click outside the image
+          onRequestClose={() => setIsDeleteOpen(false)}
+          contentLabel="Delete Post Modal"
+        >
+          <div className="delete-post-modal">
+            <p className="delete-post-btn" onClick={deletePostFromDB}>
+              Delete
+            </p>
+            <p onClick={() => setIsDeleteOpen(false)}>Cancel</p>
           </div>
-      </Modal>
+        </Modal>
       </div>
       <div className="user-insta-img">
         <img src={item.image} alt={item.caption} />
@@ -117,19 +132,21 @@ function Posts({ item }) {
             )}
           </button>
           <button>
-            <img src={comment} />
+            <img src={commentIMG} />
           </button>
         </div>
       </div>
       <div className="comment-insta-container">
-        <p className="comment-insta-likes">{item.likes} likes</p>
+        <p className="comment-insta-likes">0 likes</p>
         <p className="caption-insta">
-         {data?.userData[0]?.username} <span>{item.caption}</span>
+          {data?.userData[0]?.username} <span>{item.caption}</span>
         </p>
-        <p className="comment-count-insta">View all 13,384 comments</p>
+        <p className="comment-count-insta" onClick={()=> setPostModalOpen(true)}> 
+        {filteredComments.length > 1 && `View all ${filteredComments.length} comments`} 
+        </p>
         {comments.map((comment) => (
           <p key={comment} className="added-comment-insta">
-            <span className="comment-user">tinawinnn :</span>
+            <span className="comment-user">{currentUser.username} :</span>
             <span className="comment-text">{comment}</span>
           </p>
         ))}
@@ -139,11 +156,20 @@ function Posts({ item }) {
               name="comment"
               placeholder="Add a comment…"
               className="add-comment"
+              value={commentValue}
+              onChange={(e)=>setCommentValue(e.target.value)}
             />
           </form>
           <img src={smile} alt="smile" />
-   
         </div>
+        <Modal
+          isOpen={postModalOpen}
+          onRequestClose={()=>setPostModalOpen(false)}
+          style={customStyles}
+          contentLabel="pop up post modal"
+        >
+          <Post userData={item}/>
+        </Modal>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
 import Spinner from "../../components/Spinner";
+import { CommentsContext } from "../../contexts/CommentData";
 
 
 const customStyles = {
@@ -39,15 +40,14 @@ function ProfilePage() {
   const [settingsModal, setSettingsModal] = useState(false);
   const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
     useContext(UserContext);
-  // const { data } = useSubscription(GET_ALL_USER_POSTS);
+const {commentTable} = useContext(CommentsContext);
+
+
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState({
-    userName: currentUser.username,
-    userAvatar: currentUser.avatar,
-  });
+  const [selectedImage, setSelectedImage] = useState([])
 
   function closeModal() {
     setSettingsModal(false);
@@ -62,7 +62,7 @@ function ProfilePage() {
   }
 
   function modalWithData(post) {
-    setSelectedImage((prevState) => ({ ...prevState, ...post }));
+    setSelectedImage(post);
     setSettingsModal(true);
   }
 
@@ -78,6 +78,7 @@ function ProfilePage() {
   }
   
 
+  console.log(filteredPosts);
 
 
   return (
@@ -136,7 +137,7 @@ function ProfilePage() {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <Post userData={selectedImage} />
+          <Post userData={selectedImage}/>
         </Modal>
       </div>
     </>

@@ -102,6 +102,8 @@ function AddPost({ profileFunc }) {
           caption: caption.length > 0 ? caption : "",
           image: image.length > 0 ? image : "",
           userID: userID.length > 0 ? userID : "",
+          avatar: currentUser.avatar.length > 0 ? currentUser.avatar : null,
+          username: currentUser.username.length > 0 ? currentUser.username : null,
         },
       });
       console.log("success");

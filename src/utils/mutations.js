@@ -26,9 +26,9 @@ mutation changeAvatar($id: uuid!, $avatar: String!) {
 `;
 
 export const ADD_POST = gql`
-mutation addPost($caption: String!, $image: String!, $userID: uuid!) {
+mutation addPost($caption: String!, $image: String!, $userID: uuid!, $avatar: String!, $username: String!) {
   insert_userPosts(
-    objects: { caption: $caption, image: $image, userID: $userID}
+    objects: { caption: $caption, image: $image, userID: $userID, avatar: $avatar, username: $username}
     ) {
     returning {
       userID
@@ -36,6 +36,7 @@ mutation addPost($caption: String!, $image: String!, $userID: uuid!) {
   }
 }
 `;
+
 
 export const DELETE_POST = gql`
 mutation deletePost($id: uuid!, $userID: uuid!) {

@@ -6,7 +6,6 @@ export const GET_POSTS = gql`
       caption
       id
       image
-      likes
       timestamp
       userID
     }
@@ -19,9 +18,10 @@ subscription MySubscription {
     caption
     id
     image
-    likes
     timestamp
     userID
+    avatar
+    username
   }
 }
 `
@@ -37,13 +37,14 @@ subscription getAllUsers($id: uuid!) {
 
 export const GET_COMMENTS = gql`
 subscription MySubscription {
-  userComments(order_by: {createdAt: desc}) {
+  userComments(order_by: {createdAt: asc}) {
     avatar
     comment
     username
     id
     userID
     postRef
+    createdAt
   }
 }
 `

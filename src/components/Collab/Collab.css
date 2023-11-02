@@ -15,9 +15,10 @@
 .dots {
     height: 24px;
     margin-right: 10px;
+    cursor: pointer;
 }
 .p-circle {
-    border-radius: 13px;
+    border-radius: 20px;
     height: 37px;
     width: 37px;
     object-fit: cover;

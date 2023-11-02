@@ -124,6 +124,7 @@
     font-size: 12.61px;
     margin-bottom: 3px;
     font-weight: 100;
+    cursor: pointer;
 }
 .add-comment{
     font-size: 14px;
