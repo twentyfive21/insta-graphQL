@@ -5,13 +5,13 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import commentIMG from "../../assets/posts/comment.png";
 import smile from "../../assets/posts/smile.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
-import { useSubscription, useMutation } from "@apollo/client";
+import { useSubscription } from "@apollo/client";
 import Avatar from "../../assets/login/Default.png";
 import { UserContext } from "../../contexts/CurrentUser";
-import { DELETE_POST } from "../../utils/mutations";
 import Modal from "react-modal";
 import { CommentsContext } from "../../contexts/CommentData";
 import Post from "../Post/Post";
+import { PostContext } from "../../contexts/PostContext";
 
 function Posts({ item, postID }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -30,17 +30,9 @@ function Posts({ item, postID }) {
     },
   };
 
-  const {
-    currentUser,
-    isDeleteOpen,
-    setIsDeleteOpen,
-    deletedPost,
-    setDeletedPost,
-  } = useContext(UserContext);
-
+  const {currentUser,isDeleteOpen,setIsDeleteOpen,} = useContext(UserContext);
   const { commentTable, addCommentToDB } = useContext(CommentsContext);
-  const [deletePost] = useMutation(DELETE_POST);
-  console.log(commentTable);
+  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB } = useContext(PostContext);
 
   const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
@@ -59,21 +51,11 @@ function Posts({ item, postID }) {
     setComments((prev) => [...prev, newComment]);
   };
 
-  const deletePostFromDB = async () => {
-    try {
-      const { id, userID } = deletedPost;
-      //add the value of id to check the equal too
-      await deletePost({
-        variables: {
-          id: id,
-          userID: userID.length > 0 ? userID : null,
-        },
-      });
-    } catch (error) {
-      console.log("Error deleting post");
-    }
+  const handleDeletingAllPostData = () => {
+    deleteAllCommentsFromDB() 
+    deletePostFromDB()
     setIsDeleteOpen(false);
-  };
+  }
 
   const deletePostSelected = (post) => {
     setDeletedPost(post);
@@ -83,7 +65,6 @@ function Posts({ item, postID }) {
   const filteredComments = commentTable?.filter(
     (comment) => comment?.postRef === item.id
   );
-
 
 
   return (
@@ -112,7 +93,7 @@ function Posts({ item, postID }) {
           contentLabel="Delete Post Modal"
         >
           <div className="delete-post-modal">
-            <p className="delete-post-btn" onClick={deletePostFromDB}>
+            <p className="delete-post-btn" onClick={handleDeletingAllPostData}>
               Delete
             </p>
             <p onClick={() => setIsDeleteOpen(false)}>Cancel</p>

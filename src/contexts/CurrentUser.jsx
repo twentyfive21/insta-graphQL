@@ -5,9 +5,6 @@ import { useSubscription } from "@apollo/client";
 export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
-  
-  // state for post to be deleted 
-  const [deletedPost, setDeletedPost] = useState({});
   // state for post modal
   const [modalIsOpen, setIsOpen] = useState(false);
   // state for settings modal 
@@ -19,7 +16,6 @@ export default function UserContextProvider(props) {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : false;
   });
-
 
   const { data } = useSubscription(GET_ALL_USER_POSTS);
 
@@ -43,7 +39,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, deletedPost, setDeletedPost, data}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, data}}>
       {props.children}
     </UserContext.Provider>
   );
