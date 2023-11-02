@@ -20,21 +20,33 @@ function Actions({ postID, userLike, userData }) {
     setCommentValue("");
   };
 
-  const userLikesFilter = userLike.filter((item) => {
-    return item.postRef === postID;
+  const userLikesFilter = userLike?.filter((item) => {
+    return item?.postRef === postID;
   });
 
   const combinedUserLikesFilter = [].concat(...userLikesFilter);
 
   const finalFilterOfUserLikes = combinedUserLikesFilter.filter((item) => {
-    return item.userID === currentUser.id;
+    return item?.userID === currentUser?.id;
   });
+
+  // Parse the specific date string into a Date object
+  const specificDate = new Date(userData?.timestamp);
+
+  // Get today's date
+  const currentDate = new Date();
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = currentDate - specificDate;
+
+  // Convert milliseconds to days
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   return (
     <div className="all-actions-main">
       <div className="actions-container">
         <div className="act-spacing">
-          {finalFilterOfUserLikes[0]?.userID === currentUser.id ? (
+          {finalFilterOfUserLikes[0]?.userID === currentUser?.id ? (
             <AiFillHeart
               onClick={() => removeLikeFromDB(postID)}
               className="like-filled like-btn"
@@ -50,12 +62,18 @@ function Actions({ postID, userLike, userData }) {
         <img src={bookmark} alt="bookmark" />
       </div>
       <div className="action-data">
-        {userLikesFilter.length === 1
-          ? `${userLikesFilter.length} like`
-          : userLikesFilter.length > 1
-          ? `${userLikesFilter.length} likes`
-          : `${userLikesFilter.length} likes`}
-        <p className="lighter-info">3 DAYS AGO</p>
+        {userLikesFilter?.length === 1
+          ? `${userLikesFilter?.length} like`
+          : userLikesFilter?.length > 1
+          ? `${userLikesFilter?.length} likes`
+          : `${userLikesFilter?.length} likes`}
+        <p className="lighter-info">
+          {daysDifference === 0
+            ? "Posted Today"
+            : daysDifference > 1
+            ? `${daysDifference} Days Ago`
+            : `${daysDifference} Day Ago`}
+        </p>
         <p>{userData?.caption}</p>
       </div>
       <div className="ac-box">
