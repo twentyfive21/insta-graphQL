@@ -6,27 +6,55 @@ import send from '../../assets/send.png'
 import bookmark from '../../assets/bookmark.png'
 import smile from '../../assets/smile.png'
 import { CommentsContext } from '../../contexts/CommentData'
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { UserContext } from '../../contexts/CurrentUser'
+import { LikesContext } from '../../contexts/LikesContext'
 
-function Actions({postID}) {
+function Actions({postID, userLike}) {
   const {addCommentToDB} = useContext(CommentsContext);
+  const {addLikeToDB, removeLikeFromDB} = useContext(LikesContext);
   const [commentValue,setCommentValue] = useState('');
+  const {currentUser} = useContext(UserContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     addCommentToDB(commentValue, postID)
     setCommentValue("")
   }
+
+  console.log(postID, 'postid')
+
+  const finalFilter = userLike.filter((item)=>{
+    return item.postRef === postID
+  })
+
+  const combinedFinalFilter = [].concat(...finalFilter);
+
+
+  console.log(combinedFinalFilter)
+
+
   return (
     <div className='all-actions-main'>
     <div className='actions-container'>
         <div className='act-spacing'>
-        <img src={heart} alt='heart'/>
+            {combinedFinalFilter[0]?.userID === currentUser.id ? (
+              <AiFillHeart onClick={() => removeLikeFromDB(postID)}
+              className="like-filled like-btn" />
+            ) : (
+              <AiOutlineHeart onClick={() => addLikeToDB(postID)}
+              className="like-btn" />
+            )}
         <img src={comment} alt='comment'/>
         <img src={send} alt='send'/>
         </div>
         <img src={bookmark} alt='bookmark'/>
     </div>
     <div className='action-data'>
-        <p>0 likes</p>
+      {
+      finalFilter.length === 1 ? `${finalFilter.length} like`
+      : finalFilter.length > 1 ? `${finalFilter.length} likes`
+      : `${finalFilter.length} likes`
+      }
         <p className='lighter-info'>3 DAYS AGO</p>
     </div>
     <div className='ac-box'>

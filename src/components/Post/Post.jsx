@@ -7,7 +7,7 @@ import { userData as oldData } from '../../utils/data'
 import Collab from '../Collab/Collab'
 import { CommentsContext } from '../../contexts/CommentData'
 
-function Post({userData}) {
+function Post({userData, userLike}) {
 
   const {commentTable} = useContext(CommentsContext);
  
@@ -24,10 +24,10 @@ function Post({userData}) {
         <Collab userData={userData}/>
           <section className='all-comments-container'>
             {filteredComments.map((item)=>{
-              return <Comment userData={item}/>
+              return <Comment userData={item} key={item.id}/>
             })}
           </section>
-        <Actions postID={userData.id}/>
+        <Actions postID={userData.id} userLike={userLike}/>
         </section>
     </div>
   )

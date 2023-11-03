@@ -23,7 +23,7 @@ function Collab({ userData }) {
     },
   };
   const {currentUser} = useContext(UserContext)
-  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal} = useContext(PostContext);
+  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal, deleteAllPhotoLikes} = useContext(PostContext);
   const [postDeleteModal, setPostDeleteModal] = useState(false)
     const { userid } = useParams();
     console.log(userid, "userid")
@@ -32,6 +32,8 @@ function Collab({ userData }) {
     try {
       // First, delete all comments
       await deleteAllCommentsFromDB();
+
+      await deleteAllPhotoLikes();
       
       // Once comments are deleted, delete the post
       await deletePostFromDB();

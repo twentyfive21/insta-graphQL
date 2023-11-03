@@ -1,4 +1,4 @@
-import { createContext, useState, useContext} from "react";
+import { createContext, useContext} from "react";
 import { useSubscription, useMutation } from "@apollo/client";
 import { GET_COMMENTS } from "../utils/subscriptions";
 import { ADD_COMMENT } from "../utils/mutations";

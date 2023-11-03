@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { DELETE_POST_COMMENTS } from "../utils/mutations";
 import { DELETE_POST } from "../utils/mutations";
+import { DELETE_POST_LIKES } from "../utils/mutations";
 
 export const PostContext = createContext();
 
@@ -9,6 +10,7 @@ export default function PostContextProvider(props) {
 
 const [deletePost] = useMutation(DELETE_POST);
 const [deleteAllPostComments] = useMutation(DELETE_POST_COMMENTS);
+const [deleteAllSelectedLikes] = useMutation(DELETE_POST_LIKES);
 const [settingsModal, setSettingsModal] = useState(false);
 // state for post to be deleted 
 const [deletedPost, setDeletedPost] = useState({});
@@ -40,8 +42,21 @@ const deleteAllCommentsFromDB = async () => {
     }
   };
 
+
+  const deleteAllPhotoLikes = async (post) => {
+    try {
+      await deleteAllSelectedLikes({
+        variables: {
+          postRef: deletedPost.id.length > 0 ? deletedPost.id : null,
+        },
+      });
+    } catch (error) {
+      console.log("Error deleting all likes");
+    }
+  };
+
   return (
-    <PostContext.Provider value={{ deleteAllCommentsFromDB, deletedPost, setDeletedPost, deletePostFromDB, settingsModal, setSettingsModal}}>
+    <PostContext.Provider value={{ deleteAllCommentsFromDB, deletedPost, setDeletedPost, deletePostFromDB, settingsModal, setSettingsModal, deleteAllPhotoLikes}}>
       {props.children}
     </PostContext.Provider>
   );
