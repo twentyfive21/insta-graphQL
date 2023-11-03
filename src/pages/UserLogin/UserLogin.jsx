@@ -11,6 +11,7 @@ import { UserContext } from "../../contexts/CurrentUser";
 
 export default function UserLogin() {
   const { setUser, setCurrentUser} = useContext(UserContext);
+  const [wrongUser, setWrongUser] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,8 +48,10 @@ export default function UserLogin() {
         avatar,
         username,
       });
+        setWrongUser(false);
       navigate("/feed/");
     } else {
+      setWrongUser(true);
      console.log("error logging in")
     }
   };
@@ -78,6 +81,7 @@ export default function UserLogin() {
             onKeyPress={handleEnterKeyPress}
             required
           />
+          {wrongUser && <p>Sorry, your password was incorrect. Please double-check your password.</p>}
           <button className="login-btn" onClick={handleLogin}>
             Log In
           </button>

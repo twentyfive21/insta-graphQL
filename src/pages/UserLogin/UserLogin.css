@@ -47,6 +47,14 @@
     margin-top: 30px;
 }
 
+.login-form-container p{
+    color: tomato;
+    font-size: 14px;
+    align-items: center;
+    text-align: center;
+    margin: 2px 0;
+}
+
 .login-container .form-input{
     height: 2.5rem;
     margin: 0.3rem 0;
@@ -162,6 +170,12 @@
     margin-top: 30px;
 }
 
+.signUp-form-container .error-messages{
+    color: tomato;
+    font-size: 12px;
+    text-align: center;
+}
+
 .signUp-container .form-input{
     height: 2.5rem;
     margin: 0.3rem 0;
@@ -186,8 +200,9 @@
     text-align: center;
 }
 
-.signUp-copyright span{
+.signUp-copyright a{
     color: rgb(0,55,107);
+    text-decoration: none;
 }
 
 .signUp-btn{
@@ -199,6 +214,17 @@
     font-weight: bold;
     margin-top: 10px;
      cursor: pointer;
+}
+
+.signUp-btn:disabled {
+    background-color: rgb(123, 197, 247);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: not-allowed;
 }
 
 .signUp-or-option{

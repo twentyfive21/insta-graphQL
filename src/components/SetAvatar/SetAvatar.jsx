@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import Modal from "react-modal";
-import basic from "../../assets/nav/basic.png";
+import basic from "../../assets/login/Default.png";
 import { useMutation } from "@apollo/client";
 import { ADD_AVATAR } from "../../utils/mutations";
 import { UserContext } from "../../contexts/CurrentUser";
