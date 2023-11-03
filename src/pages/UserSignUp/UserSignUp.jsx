@@ -58,8 +58,13 @@ function UserSignUp() {
 
       navigate("/feed");
     } catch (error) {
-      console.error(error);
-      alert(error);
+      if (error.message && error.message.includes("email")) {
+        setErrorSignUp("email");
+        console.log("The error message contains email");
+      } else if (error.message && error.message.includes("username")) {
+        setErrorSignUp("username");
+        console.log("The error message contains username");
+      }
     }
   };
 
@@ -111,6 +116,10 @@ function UserSignUp() {
             </p>
           ) : (
             ""
+          )}
+
+          {errorSignUp && (
+            <p className="error-messages-login">{`${errorSignUp} already exists, try a new ${errorSignUp}`}</p>
           )}
 
           <div className="signUp-copyright">

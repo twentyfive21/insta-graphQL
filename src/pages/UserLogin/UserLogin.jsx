@@ -38,7 +38,8 @@ export default function UserLogin() {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
     if (!loading && !error && data && data.userData.length > 0) {
       const { avatar, email, id, username } = data.userData[0]; // Assuming there's only one matching user
       setUser(true);
@@ -48,13 +49,13 @@ export default function UserLogin() {
         avatar,
         username,
       });
-        setWrongUser(false);
       navigate("/feed/");
     } else {
       setWrongUser(true);
-     console.log("error logging in")
+      console.log("error logging in");
     }
   };
+  
 
   return (
     <div className="login-div-container">
