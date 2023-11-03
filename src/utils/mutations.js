@@ -37,19 +37,6 @@ mutation addPost($caption: String!, $image: String!, $userID: uuid!, $avatar: St
 }
 `;
 
-
-export const DELETE_POST = gql`
-mutation deletePost($id: uuid!, $userID: uuid!) {
-  delete_userPosts(
-    where: {id: {_eq: $id}, userID: {_eq: $userID}}
-    ) {
-    returning {
-      userID
-    }
-  }
-}
-`;
-
 export const ADD_COMMENT = gql`
 mutation addComment($avatar: String!, $comment: String!, $postRef: uuid!, $userID: uuid!, $username: String!) {
   insert_userComments(
@@ -72,11 +59,56 @@ mutation deleteComment($postRef: uuid!, $userID: uuid! $id: uuid){
 }
 `;
 
+export const SET_LIKE = gql`
+mutation setLikedPhoto($userID: uuid!, $postRef: uuid!) {
+  insert_userLikes(
+    objects: {userID: $userID, postRef: $postRef}) {
+    returning {
+      isLiked
+    }
+  }
+}
+`;
+
+export const REMOVE_LIKE = gql`
+mutation removeLike($postRef: uuid!, $userID: uuid!) {
+  delete_userLikes(
+    where: {postRef: {_eq: $postRef}, userID: {_eq: $userID}}) {
+    returning {
+      postRef
+    }
+  }
+}
+`;
+
+// THE FOLLOWING MUTATIONS ARE DELETE ALL MUTATIONS WHEN A POST IS DELETED !!
+export const DELETE_POST_LIKES = gql`
+mutation deleteAllLikesForPhoto($postRef: uuid!) {
+  delete_userLikes(where: {postRef: {_eq: $postRef }}) {
+    returning {
+      postRef
+    }
+  }
+}
+`;
+
 export const DELETE_POST_COMMENTS = gql`
 mutation deleteSelectedPostComments($postRef: uuid!) {
   delete_userComments(where: {postRef: {_eq: $postRef}}) {
     returning {
       postRef
+    }
+  }
+}
+`;
+
+export const DELETE_POST = gql`
+mutation deletePost($id: uuid!, $userID: uuid!) {
+  delete_userPosts(
+    where: {id: {_eq: $id}, userID: {_eq: $userID}}
+    ) {
+    returning {
+      userID
     }
   }
 }

@@ -26,3 +26,12 @@ export const GET_COMMENTS_QUERY = gql`
   }
 `;
 
+// export const GET_LIKES = gql`
+// query getLikes {
+//   userLikes {
+//     isLiked
+//     postRef
+//     userID
+//   }
+// }
+// `;

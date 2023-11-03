@@ -13,6 +13,7 @@ import { CommentsContext } from "../../contexts/CommentData";
 import Post from "../Post/Post";
 import { PostContext } from "../../contexts/PostContext";
 import { useNavigate } from "react-router-dom";
+import { LikesContext } from "../../contexts/LikesContext";
 
 function Posts({ item, postID }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -31,32 +32,50 @@ function Posts({ item, postID }) {
     },
   };
 
-  const {currentUser,isDeleteOpen,setIsDeleteOpen,} = useContext(UserContext);
-  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB } = useContext(PostContext);
+  const { allLikes, addLikeToDB, removeLikeFromDB} = useContext(LikesContext);
+  const { currentUser, isDeleteOpen, setIsDeleteOpen } =
+    useContext(UserContext);
+  const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, deleteAllPhotoLikes } =
+    useContext(PostContext);
   const { commentTable, addCommentToDB } = useContext(CommentsContext);
   const navigate = useNavigate();
-  const [postModalOpen, setPostModalOpen] = useState(false)
+  const [postModalOpen, setPostModalOpen] = useState(false);
   const { data } = useSubscription(GET_ALL_USERS, {
     variables: { id: item.userID },
   });
 
-  const [like, setLike] = useState(false);
+  const likedPhotos = allLikes.filter((like) => {
+    return item.id === like.postRef;
+  });
+
+  const combinedLikedPhotos = [].concat(...likedPhotos);
+
+
+ 
+  const findFinal = combinedLikedPhotos.filter((item)=>{
+    return item.userID === currentUser.id
+  })
+
+  console.log(findFinal, "helpp")
+
   const [comments, setComments] = useState([]);
-  const [commentValue, setCommentValue] = useState('')
+  const [commentValue, setCommentValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCommentToDB(commentValue, item.id)
-    setCommentValue("")
+    addCommentToDB(commentValue, item.id);
+    setCommentValue("");
     const newComment = e.target.elements.comment.value;
     setComments((prev) => [...prev, newComment]);
   };
 
   const handleDeletingAllPostData = () => {
-    deleteAllCommentsFromDB() 
-    deletePostFromDB()
+    deleteAllCommentsFromDB();
+    deletePostFromDB();
+    deleteAllPhotoLikes();
+    // !! do deletion for likes !! make sure to pass the photo.id not the whole object 
     setIsDeleteOpen(false);
-  }
+  };
 
   const deletePostSelected = (post) => {
     setDeletedPost(post);
@@ -67,11 +86,13 @@ function Posts({ item, postID }) {
     (comment) => comment?.postRef === item.id
   );
 
-
   return (
     <div className="single-insta-post" id={item.userID}>
       <div className="username-insta-section">
-        <div className="user-insta-left" onClick={()=>navigate(`/profile-page/${item.userID}`)}>
+        <div
+          className="user-insta-left"
+          onClick={() => navigate(`/profile-page/${item.userID}`)}
+        >
           <img
             src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar : Avatar}
             alt={data?.userData[0]?.avatar}
@@ -106,11 +127,12 @@ function Posts({ item, postID }) {
       </div>
       <div className="interact-insta-section">
         <div className="interact-insta-left">
-          <button onClick={() => setLike(!like)}>
-            {like ? (
-              <AiFillHeart className="like-filled like-btn" />
+          <button>
+            {findFinal[0]?.userID === currentUser.id ? (
+              <AiFillHeart onClick={() => removeLikeFromDB(item.id)}
+              className="like-filled like-btn" />
             ) : (
-              <AiOutlineHeart className="like-btn" />
+              <AiOutlineHeart onClick={() => addLikeToDB(item.id)}className="like-btn" />
             )}
           </button>
           <button>
@@ -119,12 +141,22 @@ function Posts({ item, postID }) {
         </div>
       </div>
       <div className="comment-insta-container">
-        <p className="comment-insta-likes">0 likes</p>
+        <p className="comment-insta-likes">
+          {likedPhotos.length === 1
+            ? `${likedPhotos.length} like`
+            : likedPhotos.length > 1
+            ? `${likedPhotos.length} likes`
+            : `${likedPhotos.length} likes`}
+        </p>
         <p className="caption-insta">
           {data?.userData[0]?.username} <span>{item.caption}</span>
         </p>
-        <p className="comment-count-insta" onClick={()=> setPostModalOpen(true)}> 
-        {filteredComments.length > 1 && `View all ${filteredComments.length} comments`} 
+        <p
+          className="comment-count-insta"
+          onClick={() => setPostModalOpen(true)}
+        >
+          {filteredComments.length > 1 &&
+            `View all ${filteredComments.length} comments`}
         </p>
         {comments.map((comment) => (
           <p key={comment} className="added-comment-insta">
@@ -139,18 +171,18 @@ function Posts({ item, postID }) {
               placeholder="Add a comment…"
               className="add-comment"
               value={commentValue}
-              onChange={(e)=>setCommentValue(e.target.value)}
+              onChange={(e) => setCommentValue(e.target.value)}
             />
           </form>
           <img src={smile} alt="smile" />
         </div>
         <Modal
           isOpen={postModalOpen}
-          onRequestClose={()=>setPostModalOpen(false)}
+          onRequestClose={() => setPostModalOpen(false)}
           style={customStyles}
           contentLabel="pop up post modal"
         >
-          <Post userData={item} />
+          <Post userData={item} userLike={likedPhotos} />
         </Modal>
       </div>
     </div>

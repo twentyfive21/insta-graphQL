@@ -18,6 +18,7 @@ import Spinner from "../../components/Spinner";
 import { CommentsContext } from "../../contexts/CommentData";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
+import { LikesContext } from "../../contexts/LikesContext";
 
 
 
@@ -39,11 +40,10 @@ const customStyles = {
 Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
-  // const [settingsModal, setSettingsModal] = useState(false);
   const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
     useContext(UserContext);
-    const {settingsModal, setSettingsModal} = useContext(PostContext);
-
+  const {settingsModal, setSettingsModal} = useContext(PostContext);
+  const {allLikes} = useContext(LikesContext);
   const { userid } = useParams();
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
@@ -54,7 +54,6 @@ function ProfilePage() {
   variables: { id: userid },
 });
 
-console.log("Subscription Data:", userPostMatchData?.userData[0]);
 
   function closeModal() {
     setSettingsModal(false);
@@ -84,14 +83,21 @@ console.log("Subscription Data:", userPostMatchData?.userData[0]);
       mapData();
   }
   
+  
+  console.log(filteredPosts, "filitered")
+  console.log(allLikes, "likes array")
 
-  console.log(filteredPosts);
+  const postsWithLikes = filteredPosts?.map(post =>
+  allLikes?.filter(like => like.postRef === post.id)
+);
 
 if(!userPostMatchData){
   return <Spinner />
 }
 
 
+const combinedPosts = [].concat(...postsWithLikes);
+console.log(combinedPosts)
   return (
     <>
       <Header />
@@ -148,7 +154,7 @@ if(!userPostMatchData){
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <Post userData={selectedImage}/>
+          <Post userData={selectedImage} userLike={combinedPosts}/>
         </Modal>
       </div>
     </>
@@ -156,3 +162,6 @@ if(!userPostMatchData){
 }
 
 export default ProfilePage;
+
+
+//userLike={currentUser.id === userid ? postsWithLikes[1] : postsWithLikes[0]}/>

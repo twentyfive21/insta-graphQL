@@ -18,7 +18,11 @@
     height: 24px;
 }
 .act-spacing img{
-    margin: 0px 8px;
+    margin: 0px 8px 8px 8px;
+}
+
+.act-spacing svg{
+    margin: 0px 8px 5px 8px;
 }
 .action-data {
     z-index: 2;
