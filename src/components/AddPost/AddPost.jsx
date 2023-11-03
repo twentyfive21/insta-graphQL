@@ -233,7 +233,7 @@ async function submitPost() {
             </>
           )}
           {capture && <button onClick={captureFunc}>Take picture</button>}
-          <button onClick={() => setCapture(!capture)}>
+          <button id="camera-btn" onClick={() => setCapture(!capture)}>
             {capture ? "Go Back" : "Take Photo from device"}
           </button>
         </div>
