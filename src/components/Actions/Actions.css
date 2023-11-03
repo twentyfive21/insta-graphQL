@@ -16,13 +16,15 @@
 }
 .actions-container img {
     height: 24px;
+    cursor: pointer;
 }
 .act-spacing img{
-    margin: 0px 8px 8px 8px;
+    margin: 0px 5px 9.5px 8px;
 }
 
 .act-spacing svg{
-    margin: 0px 8px 5px 8px;
+    margin: 0px 0px 5px 0px;
+    cursor: pointer;
 }
 .action-data {
     z-index: 2;
@@ -40,13 +42,13 @@
 
 .ac-box {
     border-top: 1px solid #EFEFEF;
-    top: 162px;
+    top: 210px;
     z-index: 2;
     position: absolute;
     width: 500px;
     display: flex;
     justify-content: space-between;
-    padding: 25px 10px;
+    padding: 5px 15px;
     align-items: center;
     background-color: white;
 }
@@ -55,12 +57,19 @@
     align-items: center;
     padding-top: 3px;
 }
-.ac-innerbox p {
-    padding-top: 3px;
-    color: #262626;
-}
 .ac-innerbox img {
-    padding-right: 15px;
+    padding-right: 10px;
+}
+.ac-innerbox button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+.ac-innerbox input {
+    width: 420px;
+}
+.ac-innerbox button:hover {
+    color: rgb(0, 149, 246);
 }
 .post {
     color: #B3DBFF;

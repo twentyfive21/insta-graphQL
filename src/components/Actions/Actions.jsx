@@ -1,8 +1,6 @@
 import {useState, useContext} from 'react'
 import './Actions.css'
 import comment from '../../assets/comment.png'
-import heart from '../../assets/lgheart.png'
-import send from '../../assets/send.png'
 import bookmark from '../../assets/bookmark.png'
 import smile from '../../assets/smile.png'
 import { CommentsContext } from '../../contexts/CommentData'
@@ -21,8 +19,6 @@ function Actions({postID, userLike, userData}) {
     setCommentValue("")
   }
 
-  console.log(postID, 'postid')
-
   const finalFilter = userLike.filter((item)=>{
     return item.postRef === postID
   })
@@ -32,11 +28,6 @@ function Actions({postID, userLike, userData}) {
   const findFinal = combinedFinalFilter.filter((item)=>{
     return item.userID === currentUser.id
   })
-
-
-
-  console.log(findFinal, 'check')
-
 
   return (
     <div className='all-actions-main'>
@@ -50,7 +41,6 @@ function Actions({postID, userLike, userData}) {
               className="like-btn" />
             )}
         <img src={comment} alt='comment'/>
-        <img src={send} alt='send'/>
         </div>
         <img src={bookmark} alt='bookmark'/>
     </div>
@@ -75,8 +65,8 @@ function Actions({postID, userLike, userData}) {
               onChange={(e)=>setCommentValue(e.target.value)}
             />
           </form>
+          <button className='post'>Post</button>
         </div>
-        <p className='post'>Post</p>
     </div>
     </div>
 

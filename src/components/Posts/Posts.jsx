@@ -50,13 +50,9 @@ function Posts({ item, postID }) {
 
   const combinedLikedPhotos = [].concat(...likedPhotos);
 
-
- 
   const findFinal = combinedLikedPhotos.filter((item)=>{
     return item.userID === currentUser.id
   })
-
-  console.log(findFinal, "helpp....")
 
   const [comments, setComments] = useState([]);
   const [commentValue, setCommentValue] = useState("");
@@ -73,7 +69,6 @@ function Posts({ item, postID }) {
     deleteAllCommentsFromDB();
     deletePostFromDB();
     deleteAllPhotoLikes();
-    // !! do deletion for likes !! make sure to pass the photo.id not the whole object 
     setIsDeleteOpen(false);
   };
 
