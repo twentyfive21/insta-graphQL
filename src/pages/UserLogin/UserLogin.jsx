@@ -1,8 +1,8 @@
 import "./UserLogin.css";
 import phone from "../../assets/login/instaPhone.png";
 import logo from "../../assets/login/Instagram_logo.svg.png";
-import apple from "../../assets/login/apple.PNG";
-import google from "../../assets/login/google.PNG";
+import apple from "../../assets/login/apple.png";
+import google from "../../assets/login/google.png";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { CHECK_USER } from "../../utils/queries";
