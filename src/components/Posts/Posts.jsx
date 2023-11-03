@@ -136,7 +136,7 @@ function Posts({ item, postID }) {
             )}
           </button>
           <button>
-            <img src={commentIMG} />
+            <img src={commentIMG} onClick={() => setPostModalOpen(true)}/>
           </button>
         </div>
       </div>
