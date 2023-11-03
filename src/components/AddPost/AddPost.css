@@ -130,3 +130,43 @@ textarea {
 .custom-file-upload:hover {
     background-color: rgb(0, 135, 246);
 }
+/* Style for the "Continue" button */
+.add-post-header p {
+    cursor: pointer;
+    color: rgb(0, 135, 246);
+    margin: 0;
+}
+
+/* Style for the "Share" button */
+.add-post-header button[type="button"] {
+    background-color: rgb(0, 135, 246);
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Style for the "Take picture" button */
+.post-default-container button {
+    background-color: rgb(0, 135, 246);
+    color: white;
+    cursor: pointer;
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Hover effect for buttons */
+.add-post-header button[type="button"]:hover,
+.post-default-container button:hover {
+    background-color: rgb(0, 115, 216);
+}
+
+/* Disabled state for the "Share" button */
+.add-post-header button[type="button"][disabled] {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+}

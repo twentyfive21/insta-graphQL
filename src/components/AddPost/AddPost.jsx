@@ -67,6 +67,11 @@ function AddPost({ profileFunc }) {
 };
 
   function restImage() {
+    setPostData({
+    caption: "",
+    image: "",
+    userID: currentUser.id,
+  })
     setSelectedImage("");
     setImagePreview("")
     setUserImage(false);

@@ -54,6 +54,7 @@
     width: 475px;
     height: 500px;
     object-fit: cover;
+    cursor: pointer;
 }
 .user-dot {
     top: 565px;
@@ -111,6 +112,10 @@
 .caption-insta, .comment-user {
     font-size: 13.58px;
     margin-bottom: 6px;
+}
+
+.caption-insta{
+    cursor: pointer;
 }
 .comment-text {
     font-weight: 300;

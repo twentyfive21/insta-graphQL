@@ -153,6 +153,7 @@ function SetAvatar({ userParam }) {
 
   const finalModalClose = () => {
     setImageForUpload("");
+    setSelectedImage("")
     setDisplayCapture("");
     setAvatar(false);
     setIsCapture(false);
@@ -200,10 +201,10 @@ function SetAvatar({ userParam }) {
               setDisplayCapture("");
             }}
           >
-            {isCapture ? "Use Browser" : "Take from Camera"}
+            {isCapture ? "Browse" : "Take from Camera"}
           </button>
           <button type="submit" onClick={handleAvatar}>Submit</button>
-    <p className="cancel-link" onClick={() => setAvatar(false)}>Cancel</p>
+    <p className="cancel-link" onClick={finalModalClose}>Cancel</p>
         </form>
       </Modal>
       <Modal
