@@ -40,7 +40,7 @@ subscription getAllUsers($id: uuid!) {
 
 export const GET_ALL_USERS_SIDE_BAR = gql`
   subscription {
-    userData(limit: 5, order_by: { createdAt: desc }) {
+    userData(limit: 6, order_by: { createdAt: desc }) {
       id
       avatar
       username
