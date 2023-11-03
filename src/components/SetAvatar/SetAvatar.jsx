@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useCallback } from "react";
+import React, { useContext, useState, useRef, useCallback, useEffect} from "react";
 import Modal from "react-modal";
 import basic from "../../assets/nav/basic.png";
 import { useMutation } from "@apollo/client";
@@ -35,6 +35,12 @@ function SetAvatar({ userParam }) {
     setIsOpen(false);
     setAvatar(true);
   };
+
+  useEffect(() => {
+    if (currentUser.avatar) {
+      addAvatarToDB(currentUser);
+    }
+  }, [currentUser.avatar]);
 
   const [isCapture, setIsCapture] = useState(false);
   const [displayCapture, setDisplayCapture] = useState("");
@@ -106,9 +112,11 @@ function SetAvatar({ userParam }) {
         ...currentUser,
         avatar: imageUrl,
       });
+      
       setImageForUpload("");
       setAvatar(false);
       setIsOpen(false); // Close the modal with the file input
+      addAvatarToDB(currentUser);
     } catch (error) {
       console.error("Error handling avatar:", error);
       // Handle the error, show an alert, etc.
@@ -126,17 +134,17 @@ function SetAvatar({ userParam }) {
         },
       });
     } catch (error) {
-      console.error(error);
-      alert("Error posting data");
+      console.error(error)
+      alert("error")
     }
   };
 
   const handleFormForUpdate = (e) => {
     //when submitting a form it applies the same as for an input. you need to prevent it from refreshing.
     e.preventDefault();
-    addAvatarToDB(currentUser);
     setAvatar(false);
   };
+
 
   return (
     <div>
@@ -154,7 +162,7 @@ function SetAvatar({ userParam }) {
         style={customStyles}
         contentLabel="setting avatar input"
       >
-        <form onSubmit={handleFormForUpdate} className="avatar-form">
+        <form className="avatar-form">
           {isCapture ? (
             <div className="webcam-container">
               {displayCapture ? (

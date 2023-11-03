@@ -74,8 +74,8 @@ body {
 }
 
 .follow-sidebar{
-    border: 2px solid orange;
-    width: 15%;
+    width: auto;
+    height: 100%;
 }
 
 

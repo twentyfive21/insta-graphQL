@@ -18,6 +18,8 @@ import Spinner from "../../components/Spinner";
 import { CommentsContext } from "../../contexts/CommentData";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
+import imagD from "../../assets/login/Default.png"
+
 
 
 
@@ -104,7 +106,7 @@ if(!userPostMatchData){
             <LuPlusSquare /> <h3>Create</h3>
           </div>
           <div className="icon-divs" onClick={() => navigate(`/profile-page/${currentUser.id}`)}>
-            <img src={currentUser.avatar? currentUser.avatar : avatar} />{" "}
+            <img src={currentUser?.avatar ? currentUser?.avatar : imagD} />{" "}
             <h3>Profile</h3>{" "}
           </div>
           <div className="icon-divs">

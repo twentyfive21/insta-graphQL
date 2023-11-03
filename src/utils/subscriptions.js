@@ -37,6 +37,21 @@ subscription getAllUsers($id: uuid!) {
   }
 }`
 
+
+export const GET_ALL_USERS_SIDE_BAR = gql`
+  subscription {
+    userData(limit: 5, order_by: { createdAt: desc }) {
+      id
+      avatar
+      username
+      createdAt
+    }
+  }
+`;
+
+
+
+
 export const GET_COMMENTS = gql`
 subscription MySubscription {
   userComments(order_by: {createdAt: asc}) {
