@@ -56,7 +56,7 @@ function Posts({ item, postID }) {
     return item.userID === currentUser.id
   })
 
-  console.log(findFinal, "helpp")
+  console.log(findFinal, "helpp....")
 
   const [comments, setComments] = useState([]);
   const [commentValue, setCommentValue] = useState("");

@@ -29,15 +29,20 @@ function Actions({postID, userLike}) {
 
   const combinedFinalFilter = [].concat(...finalFilter);
 
+  const findFinal = combinedFinalFilter.filter((item)=>{
+    return item.userID === currentUser.id
+  })
 
-  console.log(combinedFinalFilter)
+
+
+  console.log(findFinal, 'check')
 
 
   return (
     <div className='all-actions-main'>
     <div className='actions-container'>
         <div className='act-spacing'>
-            {combinedFinalFilter[0]?.userID === currentUser.id ? (
+            {findFinal[0]?.userID === currentUser.id ? (
               <AiFillHeart onClick={() => removeLikeFromDB(postID)}
               className="like-filled like-btn" />
             ) : (
