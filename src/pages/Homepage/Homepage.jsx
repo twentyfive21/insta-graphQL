@@ -45,7 +45,6 @@ function Homepage({ userData }) {
   const { data, loading } = useSubscription(GET_POSTS);
   const { data: allUsersData } = useSubscription(GET_ALL_USERS_SIDE_BAR);
 
-  console.log(allUsersData?.userData)
 
   useEffect(() => {
     if (!loading && data && data.userPosts.length > 0) {

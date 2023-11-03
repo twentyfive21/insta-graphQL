@@ -65,3 +65,12 @@ subscription MySubscription {
   }
 }
 `
+export const GET_LIKES = gql`
+subscription MySubscription {
+  userLikes(order_by: {}) {
+    isLiked
+    postRef
+    userID
+  }
+}
+`
