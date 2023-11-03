@@ -1,4 +1,10 @@
-import React, { useContext, useState, useRef, useCallback } from "react";
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 import Modal from "react-modal";
 import basic from "../../assets/nav/basic.png";
 import { useMutation } from "@apollo/client";
@@ -23,18 +29,29 @@ function SetAvatar({ userParam }) {
       backgroundColor: "rgba(0,0,0,0.6)",
     },
   };
-  Modal.setAppElement(document.getElementById("root"));
-  const [isOpen, setIsOpen] = useState(false);
 
+  Modal.setAppElement(document.getElementById("root"));
+
+  const [isOpen, setIsOpen] = useState(false);
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [addAvatar] = useMutation(ADD_AVATAR);
   const [selectedImage, setSelectedImage] = useState("");
   const [imageForUpload, setImageForUpload] = useState("");
   const [avatar, setAvatar] = useState(false);
+
+  const { userData } = userParam || {};
+  const { id: userId, avatar: userAvatar } = userData?.[0] || {};
+
   const handleSettingAvatar = () => {
     setIsOpen(false);
     setAvatar(true);
   };
+
+  useEffect(() => {
+    if (currentUser.avatar) {
+      addAvatarToDB(currentUser);
+    }
+  }, [currentUser.avatar]);
 
   const [isCapture, setIsCapture] = useState(false);
   const [displayCapture, setDisplayCapture] = useState("");
@@ -106,9 +123,12 @@ function SetAvatar({ userParam }) {
         ...currentUser,
         avatar: imageUrl,
       });
+
       setImageForUpload("");
+      setDisplayCapture("");
       setAvatar(false);
       setIsOpen(false); // Close the modal with the file input
+      addAvatarToDB(currentUser);
     } catch (error) {
       console.error("Error handling avatar:", error);
       // Handle the error, show an alert, etc.
@@ -127,34 +147,34 @@ function SetAvatar({ userParam }) {
       });
     } catch (error) {
       console.error(error);
-      alert("Error posting data");
+      alert("error");
     }
   };
 
-  const handleFormForUpdate = (e) => {
-    //when submitting a form it applies the same as for an input. you need to prevent it from refreshing.
-    e.preventDefault();
-    addAvatarToDB(currentUser);
+  const finalModalClose = () => {
+    setImageForUpload("");
+    setDisplayCapture("");
     setAvatar(false);
+    setIsCapture(false);
   };
 
   return (
     <div>
       <img
-        src={
-          userParam?.userData[0].avatar ? userParam?.userData[0].avatar : basic
-        }
+        src={userAvatar ? userAvatar : basic}
         alt="profile image"
-        className={userParam?.userData[0].id === currentUser.id? "profile-image" : "profile-image-non"}
-        onClick={() => userParam?.userData[0].id === currentUser.id && setIsOpen(true)}
+        className={
+          userId === currentUser.id ? "profile-image" : "profile-image-non"
+        }
+        onClick={() => userId === currentUser.id && setIsOpen(true)}
       />
       <Modal
         isOpen={avatar}
-        onRequestClose={() => setAvatar(false)}
+        onRequestClose={finalModalClose}
         style={customStyles}
         contentLabel="setting avatar input"
       >
-        <form onSubmit={handleFormForUpdate} className="avatar-form">
+        <form className="avatar-form">
           {isCapture ? (
             <div className="webcam-container">
               {displayCapture ? (
@@ -166,14 +186,13 @@ function SetAvatar({ userParam }) {
             </div>
           ) : imageForUpload ? (
             <img src={imageForUpload} alt="Selected Image" />
-          ) : null}
-          <input
+          ) :   <input
             placeholder="profile image link"
             name="avatar"
             type="file"
             accept="image/*"
             onChange={handleImage}
-          />
+          />}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -183,8 +202,8 @@ function SetAvatar({ userParam }) {
           >
             {isCapture ? "Use Browser" : "Take from Camera"}
           </button>
-          <button onClick={handleAvatar}>Submit</button>
-          <p onClick={() => setAvatar(false)}>Cancel</p>
+          <button type="submit" onClick={handleAvatar}>Submit</button>
+    <p className="cancel-link" onClick={() => setAvatar(false)}>Cancel</p>
         </form>
       </Modal>
       <Modal

@@ -1,0 +1,37 @@
+.follow-section {
+    display: flex;
+    width: 351px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+}
+.follow-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+}
+.follow-left img {
+    margin-right: 12px;
+     width: 36px;
+    height: 36px; /* Add this line to set the height */
+    object-fit: cover;
+    border-radius: 50%;
+}
+.blue-text {
+    font-size: 11px;
+    color: #0095F6;
+    cursor: pointer;
+}
+.follow-top{
+    font-size: 14px;
+    color: #262626;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.follow-bottom{
+    font-size: 11px;
+    color: #8E8E8E;
+    font-weight: 300;
+}

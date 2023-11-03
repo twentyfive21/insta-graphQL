@@ -16,6 +16,8 @@ import SettingsModal from '../../components/SettingsModal/SettingsModal';
 import { GET_POSTS } from '../../utils/subscriptions';
 import { useSubscription } from '@apollo/client';
 import Spinner from '../../components/Spinner';
+import Follow from '../../components/Follow/Follow';
+import { GET_ALL_USERS_SIDE_BAR } from '../../utils/subscriptions';
 
 const customStyles = {
   content: {
@@ -41,6 +43,8 @@ function Homepage({ userData }) {
   const [limit, setLimit] = useState(4);
   const [posts, setPosts] = useState([]);
   const { data, loading } = useSubscription(GET_POSTS);
+  const { data: allUsersData } = useSubscription(GET_ALL_USERS_SIDE_BAR);
+
 
   useEffect(() => {
     if (!loading && data && data.userPosts.length > 0) {
@@ -71,7 +75,7 @@ function Homepage({ userData }) {
     setIsOpen(false);
   }
 
-    if (loading && posts.length === 0) {
+    if (loading && posts.length === 0 && !allUsersData) {
     return <Spinner />; // Show full-page spinner during initial load
   }
 
@@ -106,7 +110,16 @@ function Homepage({ userData }) {
             <Posts item={post} key={post.id}/>
           ))}
         </div>
-        <div className='follow-sidebar'></div>
+        <div className='follow-sidebar'>
+          <Follow item={currentUser} style={{borderBottom:'0.1px solid gray'}}   />
+          <div className='right-sug'>
+          <p>Suggestions for you</p>
+          </div>
+          {allUsersData?.userData?.map((item)=>{
+            return  <Follow item={item} key={item?.id}/>
+          })}
+          
+        </div>
       </section>
     </div>
   );
