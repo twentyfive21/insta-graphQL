@@ -107,10 +107,12 @@ textarea {
      position: relative;
     }
 
-.post-default-container img{
-    width: 25%;
+.post-default-container img {
+    width: 25%; 
     height: 25vh;
+    object-fit: contain;
 }
+
 
 .custom-file-upload {
     margin-top: 1rem;
@@ -147,7 +149,7 @@ textarea {
     border-radius: 10px;
 }
 
-/* Style for the "Take picture" button */
+
 .post-default-container button {
     background-color: rgb(0, 135, 246);
     color: white;
@@ -158,11 +160,16 @@ textarea {
     margin-top: 10px;
 }
 
-/* Hover effect for buttons */
-.add-post-header button[type="button"]:hover,
-.post-default-container button:hover {
-    background-color: rgb(0, 115, 216);
+#camera-btn{
+     background-color: rgb(51, 70, 92);
+    color: white;
+    cursor: pointer;
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
 }
+
 
 /* Disabled state for the "Share" button */
 .add-post-header button[type="button"][disabled] {
@@ -170,3 +177,4 @@ textarea {
     color: white;
     cursor: not-allowed;
 }
+

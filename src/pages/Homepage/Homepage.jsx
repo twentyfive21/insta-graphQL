@@ -111,7 +111,7 @@ function Homepage({ userData }) {
           ))}
         </div>
         <div className='follow-sidebar'>
-          <Follow item={currentUser} style={{borderBottom:'0.1px solid gray'}}   />
+          <Follow item={currentUser} style={{borderBottom:' 1px solid #D0D0D0'}}   />
           <div className='right-sug'>
           <p>Suggestions for you</p>
           </div>
