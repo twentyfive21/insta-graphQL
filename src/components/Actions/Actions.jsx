@@ -10,7 +10,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { UserContext } from '../../contexts/CurrentUser'
 import { LikesContext } from '../../contexts/LikesContext'
 
-function Actions({postID, userLike}) {
+function Actions({postID, userLike, userData}) {
   const {addCommentToDB} = useContext(CommentsContext);
   const {addLikeToDB, removeLikeFromDB} = useContext(LikesContext);
   const [commentValue,setCommentValue] = useState('');
@@ -61,6 +61,7 @@ function Actions({postID, userLike}) {
       : `${finalFilter.length} likes`
       }
         <p className='lighter-info'>3 DAYS AGO</p>
+        <p>{userData?.caption}</p>
     </div>
     <div className='ac-box'>
         <div className='ac-innerbox'>

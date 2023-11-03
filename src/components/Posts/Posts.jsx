@@ -123,7 +123,7 @@ function Posts({ item, postID }) {
         </Modal>
       </div>
       <div className="user-insta-img">
-        <img src={item.image} alt={item.caption} />
+        <img src={item.image} alt={item.caption}  onClick={() => setPostModalOpen(true)}/>
       </div>
       <div className="interact-insta-section">
         <div className="interact-insta-left">
@@ -148,15 +148,15 @@ function Posts({ item, postID }) {
             ? `${likedPhotos.length} likes`
             : `${likedPhotos.length} likes`}
         </p>
-        <p className="caption-insta">
+        <p className="caption-insta" onClick={()=> navigate(`/profile-page/${data?.userData[0]?.id}`)}>
           {data?.userData[0]?.username} <span>{item.caption}</span>
         </p>
         <p
           className="comment-count-insta"
           onClick={() => setPostModalOpen(true)}
         >
-          {filteredComments.length > 1 &&
-            `View all ${filteredComments.length} comments`}
+          {filteredComments?.length > 1 &&
+            `View all ${filteredComments?.length} comments`}
         </p>
         {comments.map((comment) => (
           <p key={comment} className="added-comment-insta">

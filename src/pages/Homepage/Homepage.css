@@ -62,6 +62,10 @@ body {
      color: rgb(0, 149, 246);
 }
 
+.sidebar{
+    cursor: pointer;
+}
+
 .sidebar img{
     width: 36px;
     height: 36px; /* Add this line to set the height */

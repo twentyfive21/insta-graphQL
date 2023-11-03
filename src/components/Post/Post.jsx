@@ -8,6 +8,7 @@ import Collab from '../Collab/Collab'
 import { CommentsContext } from '../../contexts/CommentData'
 
 function Post({userData, userLike}) {
+  console.log(userData, 'data')
 
   const {commentTable} = useContext(CommentsContext);
  
@@ -27,7 +28,7 @@ function Post({userData, userLike}) {
               return <Comment userData={item} key={item.id}/>
             })}
           </section>
-        <Actions postID={userData.id} userLike={userLike}/>
+        <Actions postID={userData.id} userLike={userLike} userData={userData}/>
         </section>
     </div>
   )
