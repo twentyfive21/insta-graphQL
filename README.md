@@ -1,7 +1,7 @@
 # Instagram Clone
 ---
 ## View the site live here : https://instagram-vite.netlify.app/
---
+---
 ## Learning Outcomes
 ### Throughout this project, we acquired a diverse skill set, combining both technical and non-technical proficiencies:
 * Technical Skills: We honed our expertise in React.js, JavaScript, HTML, CSS, and GraphQL.
