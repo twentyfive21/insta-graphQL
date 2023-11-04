@@ -26,7 +26,6 @@ function Collab({ userData }) {
   const { deleteAllCommentsFromDB, setDeletedPost, deletePostFromDB, setSettingsModal, deleteAllPhotoLikes} = useContext(PostContext);
   const [postDeleteModal, setPostDeleteModal] = useState(false)
     const { userid } = useParams();
-    console.log(userid, "userid")
 
   const handleDeletingAllPostData = async () => {
     try {
@@ -46,7 +45,6 @@ function Collab({ userData }) {
     }
   }
   
-
   const handleDelete = () => {
     setPostDeleteModal(true)
     setDeletedPost(userData)

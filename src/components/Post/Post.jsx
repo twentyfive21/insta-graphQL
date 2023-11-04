@@ -3,13 +3,10 @@ import './Post.css'
 import Comment from '../Comment/Comment'
 import Actions from '../Actions/Actions'
 import leftNav from '../../assets/leftnav.png'
-import { userData as oldData } from '../../utils/data'
 import Collab from '../Collab/Collab'
 import { CommentsContext } from '../../contexts/CommentData'
 
 function Post({userData, userLike}) {
-  console.log(userData, 'data')
-
   const {commentTable} = useContext(CommentsContext);
  
   const filteredComments = commentTable?.filter(
