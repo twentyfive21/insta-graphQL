@@ -2,7 +2,6 @@ import { useState, useContext, useRef, useCallback } from "react";
 import "./AddPost.css";
 import avatar from "../../assets/login/Default.png";
 import defaultImage from "../../assets/userpostdefualt.png";
-import { v4 as uuid } from "uuid";
 import { ImArrowLeft2 } from "react-icons/im";
 import { UserContext } from "../../contexts/CurrentUser";
 import { ADD_POST } from "../../utils/mutations.js";
@@ -28,12 +27,7 @@ function AddPost({ profileFunc }) {
 
   const uploadImage = async () => {
   try {
-    if (selectedImage
-      // selectedImage &&
-      // (selectedImage.type === "image/png" ||
-      //   selectedImage.type === "image/jpg" ||
-      //   selectedImage.type === "image/jpeg")
-    ) {
+    if (selectedImage) {
       const image = new FormData();
       image.append("file", selectedImage);
       image.append("cloud_name", "dpgbxk6w7");
@@ -114,7 +108,6 @@ function AddPost({ profileFunc }) {
       console.log("success");
     } catch (error) {
       console.error(error);
-      alert("Error posting data");
     }
   };
 
@@ -137,8 +130,6 @@ async function submitPost() {
   }
 }
 
-
-
   const captureFunc = useCallback(() => {
     const image = webcamRef.current.getScreenshot();
     setSelectedImage(image);
@@ -158,7 +149,6 @@ async function submitPost() {
             type="button"
             disabled={textCount ? false : true}
             onClick={submitPost}
-            // onClick={()=>setIsOpen(true)}
           >
             Share
           </button>
@@ -215,7 +205,6 @@ async function submitPost() {
             <>
               <img src={defaultImage} alt="Default" />
               <h2>Drag photos and videos here</h2>
-              {/* <input type="text" onChange={getUserImage}/> */}
             </>
           )}
           {!capture && (
@@ -243,10 +232,3 @@ async function submitPost() {
 }
 
 export default AddPost;
-
-
-// <Webcam height={600} width={600} ref={webcamRef} />
-//           {capture && <button onClick={captureFunc}>Take picture</button>}
-//           <button onClick={() => setCapture(!capture)}>
-//             {capture ? "Go Back" : "Take Photo from device"}
-//           </button>

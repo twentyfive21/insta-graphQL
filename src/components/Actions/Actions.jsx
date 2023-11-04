@@ -69,7 +69,6 @@ function Actions({postID, userLike, userData}) {
         </div>
     </div>
     </div>
-
   )
 }
 
