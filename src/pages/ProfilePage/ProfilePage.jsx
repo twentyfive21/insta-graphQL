@@ -55,7 +55,6 @@ function ProfilePage() {
   variables: { id: userid },
 });
 
-
   function closeModal() {
     setSettingsModal(false);
   }
@@ -163,6 +162,3 @@ console.log(combinedPosts)
 }
 
 export default ProfilePage;
-
-
-//userLike={currentUser.id === userid ? postsWithLikes[1] : postsWithLikes[0]}/>
