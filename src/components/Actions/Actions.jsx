@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import "./Actions.css";
-import comment from "../../assets/comment.png";
-import bookmark from "../../assets/bookmark.png";
-import smile from "../../assets/smile.png";
+import comment from '../../assets/posts/comment.png'
+import bookmark from "../../assets/posts/bookmark.png";
+import smile from "../../assets/posts/smile.png";
 import { CommentsContext } from "../../contexts/CommentData";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { UserContext } from "../../contexts/CurrentUser";

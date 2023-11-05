@@ -17,7 +17,6 @@ import SetAvatar from "../../components/SetAvatar/SetAvatar";
 import Spinner from "../../components/Spinner";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
-import imagD from "../../assets/login/Default.png";
 import { LikesContext } from "../../contexts/LikesContext";
 
 const customStyles = {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Comment.css";
-import details from "../../assets/dots.png";
+import details from "../../assets/posts/dots.png";
 import { UserContext } from "../../contexts/CurrentUser";
 import { CommentsContext } from "../../contexts/CommentData";
 import Modal from "react-modal";

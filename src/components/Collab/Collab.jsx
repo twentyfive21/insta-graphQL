@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import "./Collab.css";
-import details from "../../assets/dots.png";
+import details from "../../assets/posts/dots.png";
 import Modal from "react-modal";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams } from "react-router-dom";
