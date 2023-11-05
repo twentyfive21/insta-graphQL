@@ -15,13 +15,10 @@ import { BiSun } from "react-icons/bi";
 import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
 import Spinner from "../../components/Spinner";
-import { CommentsContext } from "../../contexts/CommentData";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
-import imagD from "../../assets/login/Default.png"
+import imagD from "../../assets/login/Default.png";
 import { LikesContext } from "../../contexts/LikesContext";
-
-
 
 const customStyles = {
   content: {
@@ -43,26 +40,26 @@ Modal.setAppElement(document.getElementById("root"));
 function ProfilePage() {
   const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
     useContext(UserContext);
-  const {settingsModal, setSettingsModal} = useContext(PostContext);
-  const {allLikes} = useContext(LikesContext);
+  const { settingsModal, setSettingsModal } = useContext(PostContext);
+  const { allLikes } = useContext(LikesContext);
   const { userid } = useParams();
   const [postModal, setPostModal] = useState(false);
   const userPostsArray = data?.userPosts;
   let filteredPosts = [];
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState([])
- const { loading, error, data: userPostMatchData } = useSubscription(GET_ALL_USERS, {
-  variables: { id: userid },
-});
+  const [selectedImage, setSelectedImage] = useState([]);
+  const { data: userPostMatchData } = useSubscription(GET_ALL_USERS, {
+    variables: { id: userid },
+  });
 
   function closeModal() {
     setSettingsModal(false);
   }
 
   function mapData() {
-    for (let i = 0; i < userPostsArray.length; i++) {
-      if (userPostsArray[i].userID === userid) {
-        filteredPosts.push(userPostsArray[i]);
+    for (let i = 0; i < userPostsArray?.length; i++) {
+      if (userPostsArray[i]?.userID === userid) {
+        filteredPosts?.push(userPostsArray[i]);
       }
     }
   }
@@ -73,31 +70,24 @@ function ProfilePage() {
   }
 
   const handlePostModalProfile = () => {
-    // setPostModal(!postModal);
     setIsOpen(!modalIsOpen);
   };
 
   if (!userPostsArray) {
-    return <Spinner />
-  }else{
-      mapData();
+    return <Spinner />;
+  } else {
+    mapData();
   }
-  
-  
-  console.log(filteredPosts, "filitered")
-  console.log(allLikes, "likes array")
 
-  const postsWithLikes = filteredPosts?.map(post =>
-  allLikes?.filter(like => like.postRef === post.id)
-);
+  const postsWithLikes = filteredPosts?.map((post) =>
+    allLikes?.filter((like) => like?.postRef === post?.id)
+  );
 
-if(!userPostMatchData){
-  return <Spinner />
-}
+  if (!userPostMatchData) {
+    return <Spinner />;
+  }
 
-
-const combinedPosts = [].concat(...postsWithLikes);
-console.log(combinedPosts)
+  const combinedPosts = [].concat(...postsWithLikes);
   return (
     <>
       <Header />
@@ -109,7 +99,10 @@ console.log(combinedPosts)
           <div className="icon-divs" onClick={handlePostModalProfile}>
             <LuPlusSquare /> <h3>Create</h3>
           </div>
-          <div className="icon-divs" onClick={() => navigate(`/profile-page/${currentUser.id}`)}>
+          <div
+            className="icon-divs"
+            onClick={() => navigate(`/profile-page/${currentUser?.id}`)}
+          >
             <img src={currentUser?.avatar ? currentUser?.avatar : imagD} />{" "}
             <h3>Profile</h3>{" "}
           </div>
@@ -130,13 +123,13 @@ console.log(combinedPosts)
           </Modal>
         </div>
         <div className="profile-container">
-         <SetAvatar userParam={userPostMatchData}/>
-          <p>{userPostMatchData?.userData[0].username}</p>
-          <p>Posts : {filteredPosts.length} </p>
+          <SetAvatar userParam={userPostMatchData} />
+          <p>{userPostMatchData?.userData[0]?.username}</p>
+          <p>Posts : {filteredPosts?.length} </p>
         </div>
         <SettingsModal />
         <section className="grid-photo-container">
-          {filteredPosts.map((post) => (
+          {filteredPosts?.map((post) => (
             <img
               src={post?.image}
               alt={post?.caption}
@@ -152,9 +145,9 @@ console.log(combinedPosts)
           isOpen={settingsModal}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
+          contentLabel="User Post"
         >
-          <Post userData={selectedImage} userLike={combinedPosts}/>
+          <Post userData={selectedImage} userLike={combinedPosts} />
         </Modal>
       </div>
     </>
