@@ -25,7 +25,7 @@ function Comment({ userData }) {
 
 
   const [isCommentModal, setIsCommentModal] = useState(false);
-  const { avatar, comment, username, userID, id, createdAt } = userData;
+  const { avatar, comment, username, userID, createdAt } = userData;
   const { currentUser } = useContext(UserContext);
   const { deleteCommentfromDB } = useContext(CommentsContext);
 
