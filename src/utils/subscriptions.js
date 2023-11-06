@@ -15,28 +15,28 @@ export const GET_POSTS = gql`
 `;
 
 export const GET_ALL_USER_POSTS = gql`
-subscription MySubscription {
-  userPosts(order_by: {timestamp: desc}) {
-    caption
-    id
-    image
-    timestamp
-    userID
-    avatar
-    username
+  subscription MySubscription {
+    userPosts(order_by: { timestamp: desc }) {
+      caption
+      id
+      image
+      timestamp
+      userID
+      avatar
+      username
+    }
   }
-}
-`
+`;
 
 export const GET_ALL_USERS = gql`
-subscription getAllUsers($id: uuid!) {
-  userData(where: {id: {_eq: $id}}) {
-    id
-    avatar
-    username
+  subscription getAllUsers($id: uuid!) {
+    userData(where: { id: { _eq: $id } }) {
+      id
+      avatar
+      username
+    }
   }
-}`
-
+`;
 
 export const GET_ALL_USERS_SIDE_BAR = gql`
   subscription {
@@ -49,28 +49,25 @@ export const GET_ALL_USERS_SIDE_BAR = gql`
   }
 `;
 
-
-
-
 export const GET_COMMENTS = gql`
-subscription MySubscription {
-  userComments(order_by: {createdAt: asc}) {
-    avatar
-    comment
-    username
-    id
-    userID
-    postRef
-    createdAt
+  subscription MySubscription {
+    userComments(order_by: { createdAt: asc }) {
+      avatar
+      comment
+      username
+      id
+      userID
+      postRef
+      createdAt
+    }
   }
-}
-`
+`;
 export const GET_LIKES = gql`
-subscription MySubscription {
-  userLikes(order_by: {}) {
-    isLiked
-    postRef
-    userID
+  subscription MySubscription {
+    userLikes(order_by: {}) {
+      isLiked
+      postRef
+      userID
+    }
   }
-}
-`
+`;
