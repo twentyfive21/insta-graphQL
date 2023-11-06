@@ -12,7 +12,6 @@ export const CHECK_USER = gql`
   }
 `;
 
-
 export const GET_COMMENTS_QUERY = gql`
   query GetComments {
     userComments(order_by: { createdAt: desc }) {
