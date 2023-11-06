@@ -4,7 +4,6 @@ import { GET_LIKES } from "../utils/subscriptions";
 import { SET_LIKE } from "../utils/mutations";
 import { UserContext } from "./CurrentUser";
 import { REMOVE_LIKE } from "../utils/mutations";
-import { DELETE_POST_LIKES } from "../utils/mutations";
 
 export const LikesContext = createContext();
 
@@ -15,7 +14,6 @@ export default function LikesContextProvider(props) {
     const allLikes = likesData?.userLikes;
     const [removeLike] = useMutation(REMOVE_LIKE);
     const [setLike] = useMutation(SET_LIKE);
-    const [deleteAllSelectedLikes] = useMutation(DELETE_POST_LIKES);
 
 const addLikeToDB = async (post) => {
     try {
