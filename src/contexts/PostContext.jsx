@@ -7,16 +7,14 @@ import { DELETE_POST_LIKES } from "../utils/mutations";
 export const PostContext = createContext();
 
 export default function PostContextProvider(props) {
+  const [deletePost] = useMutation(DELETE_POST);
+  const [deleteAllPostComments] = useMutation(DELETE_POST_COMMENTS);
+  const [deleteAllSelectedLikes] = useMutation(DELETE_POST_LIKES);
+  const [settingsModal, setSettingsModal] = useState(false);
+  // state for post to be deleted
+  const [deletedPost, setDeletedPost] = useState({});
 
-const [deletePost] = useMutation(DELETE_POST);
-const [deleteAllPostComments] = useMutation(DELETE_POST_COMMENTS);
-const [deleteAllSelectedLikes] = useMutation(DELETE_POST_LIKES);
-const [settingsModal, setSettingsModal] = useState(false);
-// state for post to be deleted 
-const [deletedPost, setDeletedPost] = useState({});
-
-
-const deleteAllCommentsFromDB = async () => {
+  const deleteAllCommentsFromDB = async () => {
     try {
       await deleteAllPostComments({
         variables: {
@@ -42,7 +40,6 @@ const deleteAllCommentsFromDB = async () => {
     }
   };
 
-
   const deleteAllPhotoLikes = async (post) => {
     try {
       await deleteAllSelectedLikes({
@@ -56,7 +53,17 @@ const deleteAllCommentsFromDB = async () => {
   };
 
   return (
-    <PostContext.Provider value={{ deleteAllCommentsFromDB, deletedPost, setDeletedPost, deletePostFromDB, settingsModal, setSettingsModal, deleteAllPhotoLikes}}>
+    <PostContext.Provider
+      value={{
+        deleteAllCommentsFromDB,
+        deletedPost,
+        setDeletedPost,
+        deletePostFromDB,
+        settingsModal,
+        setSettingsModal,
+        deleteAllPhotoLikes,
+      }}
+    >
       {props.children}
     </PostContext.Provider>
   );
