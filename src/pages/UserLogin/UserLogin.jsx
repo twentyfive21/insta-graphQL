@@ -10,7 +10,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/CurrentUser";
 
 export default function UserLogin() {
-  const { setUser, setCurrentUser} = useContext(UserContext);
+  const { setUser, setCurrentUser } = useContext(UserContext);
   const [wrongUser, setWrongUser] = useState(false);
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function UserLogin() {
     });
   };
 
-   const handleEnterKeyPress = (e) => {
+  const handleEnterKeyPress = (e) => {
     if (e.key === "Enter") {
       handleLogin();
     }
@@ -40,8 +40,8 @@ export default function UserLogin() {
 
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    if (!loading && !error && data && data.userData.length > 0) {
-      const { avatar, email, id, username } = data.userData[0]; // Assuming there's only one matching user
+    if (!loading && !error && data && data?.userData.length > 0) {
+      const { avatar, email, id, username } = data?.userData[0]; // Assuming there's only one matching user
       setUser(true);
       setCurrentUser({
         id,
@@ -55,7 +55,6 @@ export default function UserLogin() {
       console.log("error logging in");
     }
   };
-  
 
   return (
     <div className="login-div-container">
@@ -82,7 +81,12 @@ export default function UserLogin() {
             onKeyPress={handleEnterKeyPress}
             required
           />
-          {wrongUser && <p>Sorry, your password was incorrect. Please double-check your password.</p>}
+          {wrongUser && (
+            <p>
+              Sorry, your password was incorrect. Please double-check your
+              password.
+            </p>
+          )}
           <button className="login-btn" onClick={handleLogin}>
             Log In
           </button>
