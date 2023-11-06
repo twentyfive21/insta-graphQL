@@ -60,10 +60,8 @@ function UserSignUp() {
     } catch (error) {
       if (error.message && error.message.includes("email")) {
         setErrorSignUp("email");
-        console.log("The error message contains email");
       } else if (error.message && error.message.includes("username")) {
         setErrorSignUp("username");
-        console.log("The error message contains username");
       }
     }
   };
@@ -83,7 +81,7 @@ function UserSignUp() {
             className="form-input"
             placeholder="Email"
             name="email"
-            value={signUp.email}
+            value={signUp?.email}
             onChange={handleSignUp}
           />
 
@@ -92,11 +90,11 @@ function UserSignUp() {
             className="form-input"
             placeholder="Username"
             name="username"
-            value={signUp.username}
+            value={signUp?.username}
             onChange={handleSignUp}
             maxLength="20"
           />
-          {signUp.username.length === 20 ? (
+          {signUp?.username.length === 20 ? (
             <p className="error-messages">Username Limit is 20 Characters</p>
           ) : (
             ""
@@ -107,10 +105,10 @@ function UserSignUp() {
             className="form-input"
             placeholder="Password"
             name="password"
-            value={signUp.password}
+            value={signUp?.password}
             onChange={handleSignUp}
           />
-          {signUp.password.length > 0 && signUp.password.length < 10 ? (
+          {signUp?.password.length > 0 && signUp?.password.length < 10 ? (
             <p className="error-messages">
               Password needs to be 10 Characters long
             </p>
@@ -141,9 +139,9 @@ function UserSignUp() {
             type="submit"
             className="signUp-btn"
             disabled={
-              !signUp.email.includes("@") ||
-              signUp.username.length <= 4 ||
-              (signUp.password.length !== 10 && signUp.password.length <= 10)
+              !signUp?.email?.includes("@") ||
+              signUp?.username.length <= 4 ||
+              (signUp?.password.length !== 10 && signUp?.password.length <= 10)
             }
           >
             Sign Up
