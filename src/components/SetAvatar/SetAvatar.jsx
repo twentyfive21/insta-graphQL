@@ -48,10 +48,10 @@ function SetAvatar({ userParam }) {
   };
 
   useEffect(() => {
-    if (currentUser.avatar) {
+    if (currentUser?.avatar) {
       addAvatarToDB(currentUser);
     }
-  }, [currentUser.avatar]);
+  }, [currentUser?.avatar]);
 
   const [isCapture, setIsCapture] = useState(false);
   const [displayCapture, setDisplayCapture] = useState("");
@@ -71,18 +71,11 @@ function SetAvatar({ userParam }) {
     e.preventDefault();
     setSelectedImage(e.target.files[0]);
     setImageForUpload(URL.createObjectURL(e.target.files[0]));
-    console.log(selectedImage);
   };
 
   const uploadImage = async () => {
     try {
-      if (
-        selectedImage
-        // selectedImage &&
-        // (selectedImage.type === "image/png" ||
-        //   selectedImage.type === "image/jpg" ||
-        //   selectedImage.type === "image/jpeg")
-      ) {
+      if (selectedImage) {
         const image = new FormData();
         image.append("file", selectedImage);
         image.append("cloud_name", "dpgbxk6w7");
@@ -99,7 +92,6 @@ function SetAvatar({ userParam }) {
         const imgData = await response.json();
         if (imgData && imgData.secure_url) {
           const imageUrl = imgData.secure_url;
-          console.log(imageUrl, "img urlll");
           // setImageForUpload(imageUrl);
           setIsOpen(false);
           return imageUrl; // Return the image URL
@@ -142,7 +134,7 @@ function SetAvatar({ userParam }) {
       await addAvatar({
         variables: {
           id: id,
-          avatar: avatar.length > 0 ? avatar : "",
+          avatar: avatar?.length > 0 ? avatar : "",
         },
       });
     } catch (error) {
@@ -153,7 +145,7 @@ function SetAvatar({ userParam }) {
 
   const finalModalClose = () => {
     setImageForUpload("");
-    setSelectedImage("")
+    setSelectedImage("");
     setDisplayCapture("");
     setAvatar(false);
     setIsCapture(false);
@@ -165,9 +157,9 @@ function SetAvatar({ userParam }) {
         src={userAvatar ? userAvatar : basic}
         alt="profile image"
         className={
-          userId === currentUser.id ? "profile-image" : "profile-image-non"
+          userId === currentUser?.id ? "profile-image" : "profile-image-non"
         }
-        onClick={() => userId === currentUser.id && setIsOpen(true)}
+        onClick={() => userId === currentUser?.id && setIsOpen(true)}
       />
       <Modal
         isOpen={avatar}
@@ -187,13 +179,15 @@ function SetAvatar({ userParam }) {
             </div>
           ) : imageForUpload ? (
             <img src={imageForUpload} alt="Selected Image" />
-          ) :   <input
-            placeholder="profile image link"
-            name="avatar"
-            type="file"
-            accept="image/*"
-            onChange={handleImage}
-          />}
+          ) : (
+            <input
+              placeholder="profile image link"
+              name="avatar"
+              type="file"
+              accept="image/*"
+              onChange={handleImage}
+            />
+          )}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -203,15 +197,19 @@ function SetAvatar({ userParam }) {
           >
             {isCapture ? "Browse" : "Take from Camera"}
           </button>
-          <button type="submit" onClick={handleAvatar}>Submit</button>
-    <p className="cancel-link" onClick={finalModalClose}>Cancel</p>
+          <button type="submit" onClick={handleAvatar}>
+            Submit
+          </button>
+          <p className="cancel-link" onClick={finalModalClose}>
+            Cancel
+          </p>
         </form>
       </Modal>
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Profile Picture"
       >
         <section className="first-avatarModal">
           <p onClick={handleSettingAvatar}>Change Profile Picture</p>
