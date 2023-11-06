@@ -38,14 +38,10 @@ function Collab({ userData }) {
     try {
       // First, delete all comments
       await deleteAllCommentsFromDB();
-
       await deleteAllPhotoLikes();
-
       // Once comments are deleted, delete the post
       await deletePostFromDB();
-
       setSettingsModal(false);
-
       // Optionally, you can perform additional actions after both are successful.
     } catch (error) {
       console.error("Error deleting post and comments:", error);

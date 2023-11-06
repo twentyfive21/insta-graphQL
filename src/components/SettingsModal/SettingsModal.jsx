@@ -1,10 +1,10 @@
+import "./SettingsModal.css";
 import React, { useState, useContext } from "react";
 import { GoMoon } from "react-icons/go";
 import { BiSun } from "react-icons/bi";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
-import "./SettingsModal.css";
 
 function SettingsModal() {
   const { setUser, setCurrentUser, isOpen, setSettings } =

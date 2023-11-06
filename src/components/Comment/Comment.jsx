@@ -23,7 +23,6 @@ function Comment({ userData }) {
 
   Modal.setAppElement(document.getElementById("root"));
 
-
   const [isCommentModal, setIsCommentModal] = useState(false);
   const { avatar, comment, username, userID, createdAt } = userData;
   const { currentUser } = useContext(UserContext);

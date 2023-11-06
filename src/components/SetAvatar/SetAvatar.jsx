@@ -1,3 +1,4 @@
+import "./SetAvatar.css";
 import React, {
   useContext,
   useState,
@@ -11,8 +12,6 @@ import { useMutation } from "@apollo/client";
 import { ADD_AVATAR } from "../../utils/mutations";
 import { UserContext } from "../../contexts/CurrentUser";
 import Webcam from "react-webcam";
-
-import "./SetAvatar.css";
 
 function SetAvatar({ userParam }) {
   const customStyles = {
@@ -123,7 +122,6 @@ function SetAvatar({ userParam }) {
       addAvatarToDB(currentUser);
     } catch (error) {
       console.error("Error handling avatar:", error);
-      // Handle the error, show an alert, etc.
     }
   };
 
@@ -139,7 +137,6 @@ function SetAvatar({ userParam }) {
       });
     } catch (error) {
       console.error(error);
-      alert("error");
     }
   };
 

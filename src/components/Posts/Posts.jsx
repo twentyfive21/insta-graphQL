@@ -15,8 +15,6 @@ import { PostContext } from "../../contexts/PostContext";
 import { useNavigate } from "react-router-dom";
 import { LikesContext } from "../../contexts/LikesContext";
 
-
-
 function Posts({ item }) {
   Modal.setAppElement(document.getElementById("root"));
   const customStyles = {
