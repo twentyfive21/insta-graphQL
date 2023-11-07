@@ -1,7 +1,7 @@
 import React from "react";
 import "./Follow.css";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../assets/login/Default.png";
+import Avatar from "../../assets/login/default.jpg";
 
 function Follow({ item, style }) {
   const navigate = useNavigate();
