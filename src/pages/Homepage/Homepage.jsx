@@ -9,7 +9,7 @@ import { GoMoon } from "react-icons/go";
 import { BiSun } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
-import avatar from "../../assets/login/Default.png";
+import avatar from "../../assets/login/default.jpg";
 import Modal from "react-modal";
 import AddPost from "../../components/AddPost/AddPost";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
@@ -78,11 +78,15 @@ function Homepage() {
   if (loading && posts?.length === 0 && !allUsersData) {
     return <Spinner />; // Show full-page spinner during initial load
   }
+  
 
   return (
     <div>
       <Header />
       <section className="main-container">
+        <div className="double-container">
+
+        
         <div className="sidebar">
           <div className="icon-divs" onClick={() => navigate("/feed")}>
             <PiHouseFill /> <h3>Home</h3>
@@ -113,7 +117,22 @@ function Homepage() {
             <AddPost />
           </Modal>
           <SettingsModal />
+          
         </div>
+        <div className="follow-sidebar-2">
+          <Follow
+            item={currentUser}
+            style={{ borderBottom: " 1px solid #D0D0D0" }}
+          />
+          <div className="right-sug">
+            <p>Suggestions for you</p>
+          </div>
+          {allUsersData?.userData?.map((item) => {
+            return <Follow item={item} key={item?.id} />;
+          })}
+        </div>
+</div>
+
         <div className="all-posts">
           {posts?.map((post) => (
             <Posts item={post} key={post?.id} />
