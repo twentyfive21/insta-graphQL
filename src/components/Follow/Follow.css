@@ -35,3 +35,9 @@
     color: #8E8E8E;
     font-weight: 300;
 }
+
+@media screen and (max-width: 1160px){
+    .follow-section{
+        width: 265px;
+    }
+}
