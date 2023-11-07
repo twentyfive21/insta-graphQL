@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
+import defaultIMG from "../../assets/login/default.jpg"
 
 function Collab({ userData }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -55,7 +56,7 @@ function Collab({ userData }) {
   return (
     <div className="collab-container">
       <div className="collab-left">
-        <img src={userData?.avatar} className="p-circle" alt="profile pic" />
+        <img src={userData?.avatar ? userData?.avatar : defaultIMG } className="p-circle" alt="profile" />
         <p>
           <span>{userData?.username}</span>
         </p>
