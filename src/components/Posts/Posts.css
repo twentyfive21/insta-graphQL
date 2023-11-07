@@ -162,3 +162,44 @@
 .delete-post-modal p:nth-child(1) {
     color: tomato;
 }
+
+@media screen and (max-width: 830px) {
+.single-insta-post{
+    width: 477.4px;
+    margin: 10px -7%;
+}
+}
+
+
+@media screen and (max-width: 509px) {
+  .single-insta-post{
+    width: 410.4px;
+}
+
+
+.user-insta-img img{
+    width: 405px;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.add-comment{
+     width: 380px;
+}
+
+.comment-section-insta{
+    width: 380px;
+}
+
+.caption-insta, .comment-user {
+    font-size: 13.58px;
+    width: 90%;
+}
+
+.caption-insta span {
+    font-weight: 300;
+    font-size: 13px;
+}
+
+}
