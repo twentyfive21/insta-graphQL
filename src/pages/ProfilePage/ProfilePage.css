@@ -97,6 +97,17 @@
 
 
  @media screen and (max-width: 930px){
+.main-profile-container{
+     margin-left: 200px;
+     width: auto;
+}
+
+  .profile-sidebar{
+    padding-left: 0;
+   left: -185px;
+   width: 30%;
+  }
+
 .grid-photo-container {
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
@@ -105,12 +116,24 @@
 
 }
 
+
+ @media screen and (max-width: 831px){
+  .profile-sidebar{
+    display: none;
+  }
+  .main-profile-container{
+     margin-left: 0px;
+     width: auto;
+}
+ }
+
+
 /* Mobile Css */
-@media screen and (max-width: 600px){
+@media screen and (max-width: 624px){
 .grid-photo-container {
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 30px;
+  grid-gap: 1px;
 }
 
 }
