@@ -6,7 +6,7 @@ import commentIMG from "../../assets/posts/comment.png";
 import smile from "../../assets/posts/smile.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
-import Avatar from "../../assets/login/Default.png";
+import Avatar from "../../assets/login/default.jpg";
 import { UserContext } from "../../contexts/CurrentUser";
 import Modal from "react-modal";
 import { CommentsContext } from "../../contexts/CommentData";
@@ -186,7 +186,7 @@ function Posts({ item }) {
               onChange={(e) => setCommentValue(e.target.value)}
             />
           </form>
-          <img src={smile} alt="smile" />
+          {/* <img src={smile} alt="smile" /> */}
         </div>
         <Modal
           isOpen={postModalOpen}
