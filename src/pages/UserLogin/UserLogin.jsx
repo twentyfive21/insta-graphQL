@@ -106,10 +106,10 @@ export default function UserLogin() {
         <p className="app-header">Get the app.</p>
         <div className="app">
           <a href="https://apps.apple.com/us/app/instagram/id389801252?vt=lo">
-            <img src={apple} />
+            <img src={apple} alt="Apple Store" />
           </a>
           <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D170675B1-378F-4EBE-BEFB-602B3D432842%26utm_campaign%3DloginPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge%26original_referrer%3Dhttps%3A%2F%2Fwww.instagram.com%2Fluckideveloper%2F">
-            <img src={google} />
+            <img src={google} alt="Google Play Store" />
           </a>
         </div>
       </div>
