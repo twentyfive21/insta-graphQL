@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import phone2 from "../../assets/login/instaSignUp.png";
 import logo from "../../assets/login/Instagram_logo.svg.png";
 import { UserContext } from "../../contexts/CurrentUser";
-import defaultAvatar from "../../assets/login/Default.png";
+import defaultAvatar from "../../assets/login/default.jpg";
 
 function UserSignUp() {
   const { setCurrentUser, setUser } = useContext(UserContext);
