@@ -61,4 +61,10 @@ border-bottom: 1px solid #D0D0D0;
 }
 
 
+@media screen and (max-width: 509px) {
+.header-main{
+width: 116%;
+}
+}
+
 
