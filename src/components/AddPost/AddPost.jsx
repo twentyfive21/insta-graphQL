@@ -1,7 +1,6 @@
 import { useState, useContext, useRef, useCallback } from "react";
 import "./AddPost.css";
-import avatar from "../../assets/login/Default.png";
-import defaultImage from "../../assets/posts/userpostdefualt.png";
+import defaultImage from "../../assets/login/default.jpg";
 import { ImArrowLeft2 } from "react-icons/im";
 import { UserContext } from "../../contexts/CurrentUser";
 import { ADD_POST } from "../../utils/mutations.js";
