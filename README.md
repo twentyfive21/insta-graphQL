@@ -28,3 +28,4 @@
 ---
 ## Credits
 * Insta logo https://icon-icons.com/ for web broswer icon
+* Link to apollo setup : https://www.apollographql.com/docs/react/get-started/
