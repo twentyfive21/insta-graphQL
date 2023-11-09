@@ -75,7 +75,7 @@ function Collab({ userData }) {
         style={customStyles}
         contentLabel="Pop Up Post Modal"
       >
-        <div className="delete-modal-options">
+        <div className="delete-post-modal">
           <p onClick={handleDeletingAllPostData}>Delete</p>
           <p onClick={() => setPostDeleteModal(false)}>Cancel</p>
         </div>
