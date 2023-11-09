@@ -96,9 +96,9 @@
 }
 
 
- @media screen and (max-width: 930px){
+ @media screen and (max-width: 1180px){
 .main-profile-container{
-     margin-left: 200px;
+     margin-left: 220px;
      width: auto;
 }
 

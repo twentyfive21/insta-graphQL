@@ -28,7 +28,7 @@ function Posts({ item }) {
       transform: "translate(-50%, -50%)",
     },
     overlay: {
-      backgroundColor: "rgba(0,0,0,0.1)",
+      backgroundColor: "rgba(0, 0, 0, 0.01)",
     },
   };
 
