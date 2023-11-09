@@ -2,23 +2,26 @@
     display: flex;
     justify-content: center;
 }
-/* .next-btn {
-    position: absolute;
-    top: 270px;
-    left: 375px;
-} */
 .next-img {
-    position: relative;
-    /* border: 2px solid red; */
-    width: 40vw;
+    width: 45vw;
 }
-
 .post-main-image{
     object-fit: cover;
     width: 100%;
     object-position: center;
     height: 80vh;
 }
+/* Post.css */
+.main-box {
+    display: flex;
+  }
 .all-comments-container {
-    height: 48vh;
+    margin-top: 10px; /* Adjust the margin as needed */
 }
+/* !! height of scroll container !!  */
+.scrollable-comments {
+    max-height: 55vh;
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
+}
+
+  

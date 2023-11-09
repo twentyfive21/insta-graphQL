@@ -35,16 +35,3 @@
     padding-top: 4px;
 }
 
-.delete-modal-options{
-    width: 100px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    cursor: pointer;
-}
-
-.delete-modal-options p{
-    padding: 10px;
-}
