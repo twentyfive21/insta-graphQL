@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import "./Post.css";
 import Comment from "../Comment/Comment";
 import Actions from "../Actions/Actions";
@@ -23,7 +23,7 @@ function Post({ userData, userLike }) {
       </section>
       <section>
         <Collab userData={userData} />
-        <section className="all-comments-container">
+        <section className="all-comments-container scrollable-comments">
           {filteredComments?.map((item) => {
             return <Comment userData={item} key={item?.id} />;
           })}
@@ -39,3 +39,4 @@ function Post({ userData, userLike }) {
 }
 
 export default Post;
+
