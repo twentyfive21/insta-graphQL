@@ -49,7 +49,7 @@ export default function UserLogin() {
         avatar,
         username,
       });
-      navigate("/feed/");
+      navigate("/feed");
     } else {
       setWrongUser(true);
       console.log("error logging in");

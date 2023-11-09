@@ -1,0 +1,68 @@
+.hero {
+  background-color: #f0f0f0;
+  padding: 100px 0;
+  height: 100vh;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.max-w-lg {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-8xl {
+  font-size: 6rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0056b3;
+  border-color: #004275;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+}
+
+.home-icon {
+  width: 1em;
+  height: 1em;
+  margin-top: -0.1em;
+  vertical-align: middle;
+}

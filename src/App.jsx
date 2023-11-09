@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import UserLogin from "./pages/UserLogin/UserLogin";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UserSignUp from "./pages/UserSignUp/UserSignUp";
+import NotFound from "./pages/NotFound";
 import UserContextProvider from "./contexts/CurrentUser";
 import CommentsContextProvider from "./contexts/CommentData";
 import PostContextProvider from "./contexts/PostContext";
@@ -24,6 +25,7 @@ function App() {
                   element={<Homepage />}
                 />
                 <Route path="/profile-page/:userid" element={<ProfilePage />} />
+                <Route path="/*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
           </LikesContextProvider>

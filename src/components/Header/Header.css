@@ -8,6 +8,10 @@ border-bottom: 1px solid #D0D0D0;
 position: relative;
 }
 
+.hamburger-icon{
+    display: none;
+}
+
 .header-right {
     display: flex;
     align-items: center;
@@ -59,6 +63,23 @@ position: relative;
 }
 .avatar {
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 830px) {
+
+.hamburger-icon {
+    display: block;
+    
+}
+
+.hamburger-icon img{
+     width: 36px;
+    height: 36px; /* Add this line to set the height */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 }
 
 
