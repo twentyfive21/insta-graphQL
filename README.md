@@ -18,13 +18,13 @@
 * In our Instagram clone project, we successfully implemented features that closely replicate the functionalities of the original Instagram platform. Users can register, log in, create posts, and interact with posts by liking and commenting.
 * Notably, our project leveraged GraphQL as the database technology, coupled with Apollo Client for efficient data retrieval and management.
 ---
-## Mentorship
-* Our mentor served as the project manager, providing crucial oversight, guidance, and project milestone sign-offs.
 ### Pair Programming
 * Pair programming was an integral aspect of our project development process. Both team members alternated as the driver and navigator, ensuring equal participation and promoting knowledge sharing. This approach allowed for leadership in areas of expertise and a collective decision-making process.
 ### Project Management
 * We effectively implemented Agile methodology, incorporating planning, design, development, testing, deployment, and reviews into a structured three-week sprint cycle. 
 * Weekly sprint planning meetings allowed for real-time adjustments if any project components were lagging behind schedule.
+### Mentorship
+* Our mentor served as the project manager, providing crucial oversight, guidance, and project milestone sign-offs.
 ---
 ## Credits
 * Insta logo https://icon-icons.com/ for web broswer icon
