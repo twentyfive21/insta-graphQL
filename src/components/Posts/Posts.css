@@ -174,12 +174,13 @@
 @media screen and (max-width: 509px) {
   .single-insta-post{
     width: 410.4px;
+   margin-right: 10px;
 }
 
 
 .user-insta-img img{
     width: 405px;
-    height: auto;
+    /* height: auto; */
     object-fit: cover;
     cursor: pointer;
 }
@@ -202,4 +203,30 @@
     font-size: 13px;
 }
 
+}
+
+@media screen and (max-width: 430px){
+      .single-insta-post{
+    width: 380px;
+   margin-right: 10px;
+}
+
+.user-insta-img img{
+    width: 380px;
+    /* height: auto; */
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.add-comment{
+     width: 360px;
+}
+
+.comment-section-insta{
+    width: 360px;
+}
+
+.caption-insta, .comment-user {
+    width: 80%;
+}
 }

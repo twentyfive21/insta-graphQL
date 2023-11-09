@@ -5,6 +5,7 @@ align-items: center;
 padding: 15px 50px;
 background-color: #FFFFFF;
 border-bottom: 1px solid #D0D0D0;
+position: relative;
 }
 
 .header-right {
@@ -63,8 +64,9 @@ border-bottom: 1px solid #D0D0D0;
 
 @media screen and (max-width: 509px) {
 .header-main{
-width: 116%;
+width: 100%;
 }
+
 }
 
 

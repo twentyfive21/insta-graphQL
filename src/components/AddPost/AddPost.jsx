@@ -1,6 +1,6 @@
 import { useState, useContext, useRef, useCallback } from "react";
 import "./AddPost.css";
-import defaultImage from "../../assets/login/default.jpg";
+import defaultImage from "../../assets/posts/userpostdefualt.png";
 import { ImArrowLeft2 } from "react-icons/im";
 import { UserContext } from "../../contexts/CurrentUser";
 import { ADD_POST } from "../../utils/mutations.js";
@@ -201,7 +201,7 @@ function AddPost() {
           ) : (
             <>
               <img src={defaultImage} alt="Default" />
-              <h2>Drag photos and videos here</h2>
+              <h2>Select Photo Here</h2>
             </>
           )}
           {!capture && (

@@ -18,6 +18,7 @@ import { useSubscription } from "@apollo/client";
 import Spinner from "../../components/Spinner";
 import Follow from "../../components/Follow/Follow";
 import { GET_ALL_USERS_SIDE_BAR } from "../../utils/subscriptions";
+import imageDefault from "../../assets/posts/userpostdefualt.png"
 
 const customStyles = {
   content: {

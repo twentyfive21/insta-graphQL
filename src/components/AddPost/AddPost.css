@@ -93,7 +93,7 @@ textarea {
     margin: 5px;
     resize: none;
     width: 97%;
-    height: 30vh;
+     height: 65vh;
     border: none;
 }
 
@@ -178,3 +178,39 @@ textarea {
     cursor: not-allowed;
 }
 
+
+@media screen and (max-width: 780px) {
+.post-default-container img{
+      width: 45%; 
+    height: 25vh;
+}
+
+}
+
+
+
+
+
+@media screen and (max-width: 430px) {
+.post-default-container img{
+      width: 60%; 
+    height: 25vh;
+}
+
+.user-final-stage-container{
+    border: 2px solid red;
+}
+
+textarea{
+    width: 50%;
+}
+.user-final-stage-image{
+    border-top: 1px solid rgb(129, 129, 129);
+    width: 90%;
+}
+
+.user-final-stage-container{
+    border: 2px solid green;
+}
+
+}
