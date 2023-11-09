@@ -1,18 +1,11 @@
 .actions-container {
     border-top: 1px solid #EFEFEF;
-    padding: 10px 10px;
+    padding: 10px 15px 0px 8px;
     display: flex;
     justify-content: space-between;
-    width: 500px;
-    background-color: white;
-    margin-top: 50px;
-    z-index: 2;
-    position: absolute;
-    top: 20px;
 }
 .all-actions-main {
-    position: relative;
-    background-color: white;
+    width: 500px;
 }
 .actions-container img {
     height: 24px;
@@ -27,11 +20,7 @@
     cursor: pointer;
 }
 .action-data {
-    z-index: 2;
-    padding: 5px 18px 20px 15px;
-    position: absolute;
-    top: 110px;
-    background-color: white;
+    padding: 0px 5px 15px 15px;
     width: 100%;
 }
 .lighter-info {
@@ -39,37 +28,25 @@
     color: #8E8E8E;
     margin: 7px 0px 0px 0px;
 }
-
 .ac-box {
     border-top: 1px solid #EFEFEF;
-    top: 210px;
-    z-index: 2;
-    position: absolute;
-    width: 500px;
     display: flex;
     justify-content: space-between;
     padding: 5px 15px;
     align-items: center;
-    background-color: white;
-}
-.ac-innerbox {
-    display: flex;
-    align-items: center;
     padding-top: 3px;
 }
-.ac-innerbox img {
+.ac-box img {
     padding-right: 10px;
 }
-.ac-innerbox button {
+.ac-box button {
     cursor: pointer;
     border: none;
     background-color: transparent;
 }
-.ac-innerbox input {
-    width: 420px;
-}
-.ac-innerbox button:hover {
+.ac-box button:hover {
     color: rgb(0, 149, 246);
+    cursor: pointer;
 }
 .post {
     color: #B3DBFF;

@@ -77,7 +77,6 @@ function Actions({ postID, userLike, userData }) {
         <p>{userData?.caption}</p>
       </div>
       <div className="ac-box">
-        <div className="ac-innerbox">
           <img src={smile} alt="smile" />
           <form onSubmit={handleSubmit}>
             <input
@@ -89,7 +88,6 @@ function Actions({ postID, userLike, userData }) {
             />
           </form>
           <button className="post">Post</button>
-        </div>
       </div>
     </div>
   );
