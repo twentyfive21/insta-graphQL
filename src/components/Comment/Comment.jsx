@@ -82,7 +82,7 @@ function Comment({ userData }) {
         style={customStyles}
         contentLabel="delete modal for comment"
       >
-        <div>
+        <div className="delete-post-modal">
           <p onClick={handleDeletedComment}>Delete</p>
           <p onClick={() => setIsCommentModal(false)}>Cancel</p>
         </div>
