@@ -8,6 +8,8 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html, body {width: auto!important; overflow-x: hidden!important} 
+
 
 span {
     font-weight: 400;
@@ -29,3 +31,8 @@ img {
   margin: 20%;
 }
 
+@media screen and (max-width: 830px) {
+spinner{
+  margin-top: 100%;
+}
+}

@@ -66,11 +66,107 @@ position: relative;
 }
 
 
+/* Add this to your existing CSS or create a new CSS file */
+.modal-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.modal-content p {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Add this to your existing CSS or create a new CSS file */
+.images-for-store {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center items vertically within the container */
+  justify-content: space-evenly; /* Center items horizontally within the container */
+  width: auto;
+}
+
+.images-for-store img {
+  width: 140px; 
+  height: auto;
+  margin: 0 10px 20px 10px;
+}
+
+
+/* Add this to your existing CSS or create a new CSS file */
+
+.logout-modal-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logout-modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.logout-modal-content .buttons-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.logout-modal-content .cancel-button,
+.logout-modal-content .logout-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-modal-content .cancel-button:hover,
+.logout-modal-content .logout-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
 @media screen and (max-width: 830px) {
+.header-main {
+padding: 15px 10px;
+}
 
 .hamburger-icon {
-    display: block;
-    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 40%;
 }
 
 .hamburger-icon img{
@@ -78,8 +174,24 @@ position: relative;
     height: 36px; /* Add this line to set the height */
     object-fit: cover;
     border-radius: 50%;
+     cursor: pointer;
 }
 
+.hamburger-icon svg{
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+}
+
+
+@media screen and (max-width: 620px) {
+.hamburger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+}
 }
 
 
@@ -88,6 +200,16 @@ position: relative;
 width: 100%;
 }
 
+}
+
+
+@media screen and (max-width: 375px) {
+.hamburger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 55%;
+}
 }
 
 

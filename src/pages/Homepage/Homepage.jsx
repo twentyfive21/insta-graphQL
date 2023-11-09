@@ -21,19 +21,24 @@ import { GET_ALL_USERS_SIDE_BAR } from "../../utils/subscriptions";
 import imageDefault from "../../assets/posts/userpostdefualt.png"
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "24px",
-  },
-  overlay: {
-    backgroundColor: "rgba(0,0,0,0.6)",
-  },
-};
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      padding: "40px",
+      textAlign: "center",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  };
 
 Modal.setAppElement(document.getElementById("root"));
 
