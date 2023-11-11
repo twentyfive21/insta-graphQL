@@ -1,7 +1,5 @@
 import { useState, useContext } from "react";
 import "./Actions.css";
-import comment from '../../assets/posts/comment.png'
-import bookmark from "../../assets/posts/bookmark.png";
 import smile from "../../assets/posts/smile.png";
 import { CommentsContext } from "../../contexts/CommentData";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -12,7 +10,7 @@ function Actions({ postID, userLike, userData }) {
   const { addCommentToDB } = useContext(CommentsContext);
   const { addLikeToDB, removeLikeFromDB } = useContext(LikesContext);
   const [commentValue, setCommentValue] = useState("");
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, darkMode } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,8 +41,8 @@ function Actions({ postID, userLike, userData }) {
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="all-actions-main">
-      <div className="actions-container">
+    <div>
+      <div className={darkMode? "actions-container darkUI" : "actions-container"}>
         <div className="act-spacing">
           {finalFilterOfUserLikes[0]?.userID === currentUser?.id ? (
             <AiFillHeart
@@ -57,9 +55,9 @@ function Actions({ postID, userLike, userData }) {
               className="like-btn"
             />
           )}
-          <img src={comment} alt="comment" />
-        </div>
-        <img src={bookmark} alt="bookmark" />
+        <svg aria-label="Comment" height="24" role="img" width="24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor"  stroke-width="2"></path>
+        </svg>
+      </div>
       </div>
       <div className="action-data">
         {userLikesFilter?.length === 1

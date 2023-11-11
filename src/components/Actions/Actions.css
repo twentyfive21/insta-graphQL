@@ -3,25 +3,31 @@
     padding: 10px 15px 0px 8px;
     display: flex;
     justify-content: space-between;
-}
-.all-actions-main {
+    background-color: white;
+    color: black;
     width: 500px;
+}
+.darkUI{
+    background-color: #121212;
+    color: #eee;
 }
 .actions-container img {
     height: 24px;
     cursor: pointer;
 }
-.act-spacing img{
-    margin: 0px 5px 9.5px 8px;
+.act-spacing {
+    display: flex;
+    align-items: center;
 }
-
 .act-spacing svg{
-    margin: 0px 0px 5px 0px;
     cursor: pointer;
 }
 .action-data {
-    padding: 0px 5px 15px 15px;
-    width: 100%;
+    padding: 2px 5px 15px 15px;
+    width: 500px;
+}
+.action-data p:nth-child(2) {
+    padding-top: 5px;
 }
 .lighter-info {
     font-size: 10px;
