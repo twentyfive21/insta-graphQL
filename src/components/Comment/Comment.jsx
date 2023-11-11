@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./Comment.css";
-import details from "../../assets/posts/dots.png";
 import { UserContext } from "../../contexts/CurrentUser";
 import { CommentsContext } from "../../contexts/CommentData";
 import Modal from "react-modal";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 function Comment({ userData }) {
   const customStyles = {
@@ -25,7 +25,7 @@ function Comment({ userData }) {
 
   const [isCommentModal, setIsCommentModal] = useState(false);
   const { avatar, comment, username, userID, createdAt } = userData;
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, darkMode} = useContext(UserContext);
   const { deleteCommentfromDB } = useContext(CommentsContext);
 
   // Convert the createdAt string to a JavaScript Date object
@@ -54,7 +54,7 @@ function Comment({ userData }) {
   };
 
   return (
-    <div className="comment-container">
+    <div className={darkMode? "comment-container darkcommentUI" : "comment-container"}>
       <section className="comment-left">
         <img src={avatar} alt={username} />
         <section>
@@ -69,12 +69,7 @@ function Comment({ userData }) {
         </section>
       </section>
       {userID === currentUser?.id && (
-        <img
-          src={details}
-          onClick={() => setIsCommentModal(true)}
-          className="delete-comment"
-          alt="delete-post"
-        />
+        <BiDotsHorizontalRounded  onClick={() => setIsCommentModal(true)} className="delete-comment"/>
       )}
       <Modal
         isOpen={isCommentModal}

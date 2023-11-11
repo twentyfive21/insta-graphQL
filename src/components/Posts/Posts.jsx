@@ -14,23 +14,13 @@ import Post from "../Post/Post";
 import { PostContext } from "../../contexts/PostContext";
 import { useNavigate } from "react-router-dom";
 import { LikesContext } from "../../contexts/LikesContext";
+import { FaRegCommentDots } from "react-icons/fa";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+
 
 function Posts({ item }) {
   Modal.setAppElement(document.getElementById("root"));
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      borderRadius: "15px",
-      transform: "translate(-50%, -50%)",
-    },
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.01)",
-    },
-  };
+ 
 
   const { allLikes, addLikeToDB, removeLikeFromDB } = useContext(LikesContext);
   const { currentUser, isDeleteOpen, setIsDeleteOpen, darkMode } =
@@ -86,8 +76,25 @@ function Posts({ item }) {
     (comment) => comment?.postRef === item?.id
   );
 
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      backgroundColor: darkMode ? "black" : "white",
+      color: darkMode ? "white" : "black"
+    },
+    overlay: {
+      backgroundColor: "rgba(0,0,0,0.6)",
+    },
+  };
+
   return (
-    <div className={darkMode? "single-insta-post darkUI" : "single-insta-post"} id={item?.userID}>
+    <div className={darkMode? "single-insta-post darkpostUI" : "single-insta-post"} id={item?.userID}>
       <div className="username-insta-section">
         <div
           className="user-insta-left"
@@ -100,12 +107,14 @@ function Posts({ item }) {
           <p>{data?.userData[0]?.username}</p>
         </div>
         {currentUser?.id === item?.userID && (
-          <img
-            src={dotDark}
-            alt="dots"
-            onClick={() => deletePostSelected(item)}
-            className="post-delete-btn"
-          />
+          // <img
+          //   src={dotDark}
+          //   alt="dots"
+          //   onClick={() => deletePostSelected(item)}
+          //   className="post-delete-btn"
+          // />
+          <BiDotsHorizontalRounded onClick={() => deletePostSelected(item)}
+            className="post-delete-btn"/>
         )}
         <Modal
           isOpen={isDeleteOpen}
@@ -135,17 +144,18 @@ function Posts({ item }) {
             {findFinal[0]?.userID === currentUser?.id ? (
               <AiFillHeart
                 onClick={() => removeLikeFromDB(item?.id)}
-                className="like-filled like-btn"
+                className={darkMode? "like-filled like-btn darkUI" : "like-filled like-btn"}
               />
             ) : (
               <AiOutlineHeart
                 onClick={() => addLikeToDB(item?.id)}
-                className="like-btn"
+                className={darkMode? "like-dark-btn" : "like-btn"}
               />
             )}
           </button>
           <button>
-            <img src={commentIMG} onClick={() => setPostModalOpen(true)} />
+            <FaRegCommentDots onClick={() => setPostModalOpen(true)} style={{fontSize: "1.6rem"}} className={darkMode? "like-dark-btn" : "like-btn"}/>
+            {/* <img src={commentIMG} } /> */}
           </button>
         </div>
       </div>
@@ -184,6 +194,7 @@ function Posts({ item }) {
               className="add-comment"
               value={commentValue}
               onChange={(e) => setCommentValue(e.target.value)}
+              style={{ backgroundColor: darkMode ? "black" : "white", color: darkMode ? "white" : "black",}}
             />
           </form>
           {/* <img src={smile} alt="smile" /> */}

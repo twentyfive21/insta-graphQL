@@ -83,6 +83,7 @@ function Actions({ postID, userLike, userData }) {
               className="add-comment"
               value={commentValue}
               onChange={(e) => setCommentValue(e.target.value)}
+               style={{ backgroundColor: darkMode ? "black" : "white", color: darkMode ? "white" : "black",}}
             />
           </form>
           <button className="post">Post</button>

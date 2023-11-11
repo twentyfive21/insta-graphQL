@@ -4,16 +4,18 @@ import Comment from "../Comment/Comment";
 import Actions from "../Actions/Actions";
 import Collab from "../Collab/Collab";
 import { CommentsContext } from "../../contexts/CommentData";
+import { UserContext } from "../../contexts/CurrentUser";
 
 function Post({ userData, userLike }) {
   const { commentTable } = useContext(CommentsContext);
+  const {darkMode} = useContext(UserContext);
 
   const filteredComments = commentTable?.filter(
     (comment) => comment?.postRef === userData?.id
   );
 
   return (
-    <div className="main-box">
+    <div className={darkMode? "main-box darkpostUI": "main-box "} >
       <section className="next-img">
         <img
           src={userData?.image}

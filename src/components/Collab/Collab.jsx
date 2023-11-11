@@ -6,6 +6,8 @@ import { PostContext } from "../../contexts/PostContext";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
 import defaultIMG from "../../assets/login/default.jpg"
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+
 
 function Collab({ userData }) {
   Modal.setAppElement(document.getElementById("root"));
@@ -24,7 +26,7 @@ function Collab({ userData }) {
     },
   };
 
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, darkMode} = useContext(UserContext);
   const {
     deleteAllCommentsFromDB,
     setDeletedPost,
@@ -54,7 +56,7 @@ function Collab({ userData }) {
     setDeletedPost(userData);
   };
   return (
-    <div className="collab-container">
+    <div className={darkMode? "collab-container darkpostUI" : "collab-container"}>
       <div className="collab-left">
         <img src={userData?.avatar ? userData?.avatar : defaultIMG } className="p-circle" alt="profile" />
         <p>
@@ -62,12 +64,13 @@ function Collab({ userData }) {
         </p>
       </div>
       {currentUser?.id === userData.userID && (
-        <img
-          src={details}
-          alt="detail dots"
-          className="dots"
-          onClick={handleDelete}
-        />
+        // <img
+        //   src={details}
+        //   alt="detail dots"
+        //   className="dots"
+        //   onClick={handleDelete}
+        // />
+        <BiDotsHorizontalRounded  className="dots" onClick={handleDelete}/>
       )}
       <Modal
         isOpen={postDeleteModal}

@@ -24,4 +24,11 @@
 }
 
 
+.darkpostUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+}
+
+
   

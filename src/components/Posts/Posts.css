@@ -79,6 +79,13 @@
     margin-right: 7px;
     margin-top: 2px;
 }
+
+.like-dark-btn{
+       font-size: 30px;
+    margin-right: 7px;
+    margin-top: 2px;
+    color: #eee;
+}
 .like-filled {
     color: pink;
 }
@@ -162,6 +169,17 @@
 
 .delete-post-modal p:nth-child(1) {
     color: tomato;
+}
+
+.darkpostUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+  border: 1px solid #eee;
+}
+
+.darkIcons{
+    color: #eee;
 }
 
 @media screen and (max-width: 830px) {

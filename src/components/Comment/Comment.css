@@ -45,3 +45,9 @@
 .bold {
     font-weight: 400;
 }
+
+.darkcommentUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+}

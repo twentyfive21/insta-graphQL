@@ -35,3 +35,10 @@
     padding-top: 4px;
 }
 
+.darkpostUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+   /* border: 0.1px solid #606060;; */
+   border: none;
+}
