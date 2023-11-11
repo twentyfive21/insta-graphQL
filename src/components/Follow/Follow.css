@@ -6,6 +6,12 @@
     padding: 10px 15px;
     background-color: #FFFFFF;
 }
+
+.darkUI-sidebar{
+  background-color: black;
+  color: #eee;
+    transition: background-color 1s ease; 
+}
 .follow-left {
     display: flex;
     align-items: center;
@@ -27,6 +33,15 @@
 .follow-top{
     font-size: 14px;
     color: #262626;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+
+.follow-top-dark{
+    font-size: 14px;
+      background-color: black;
+  color: #eee;
     font-weight: 600;
     margin-bottom: 3px;
 }

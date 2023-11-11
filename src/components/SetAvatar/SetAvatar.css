@@ -74,7 +74,10 @@
     cursor: pointer;
 }
 
-.first-avatarModal p:nth-child(1):hover,
+.first-avatarModal p:nth-child(1):hover{
+       color: rgb(0, 149, 246);
+}
+
 .first-avatarModal p:nth-child(2):hover {
     color: tomato;
 }
@@ -111,3 +114,8 @@
 
 
 
+@media screen and (max-width: 680px){
+    .avatar-form{
+        flex-direction: column;
+    }
+}

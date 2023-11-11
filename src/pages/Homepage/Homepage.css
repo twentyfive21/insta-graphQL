@@ -1,11 +1,13 @@
 body {
     background-color: #F5F5F5;
     width: 100%;
+    transition: background-color 1s ease-out;
 }
 
-.darkUI{
-  background-color: #121212;
+.darkUI {
+  background-color: black;
   color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
 }
 .follow-right {
     display: flex;

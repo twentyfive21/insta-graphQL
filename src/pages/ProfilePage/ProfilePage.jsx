@@ -28,6 +28,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     borderRadius: "24px",
+     backgroundColor: darkMode ? "black" : "white",
   },
   overlay: {
     backgroundColor: "rgba(0,0,0,0.6)",
@@ -37,7 +38,7 @@ const customStyles = {
 Modal.setAppElement(document.getElementById("root"));
 
 function ProfilePage() {
-  const { currentUser, setSettings, setIsOpen, data, modalIsOpen } =
+  const { currentUser, setSettings, setIsOpen, data, modalIsOpen, darkMode, setDarkMode } =
     useContext(UserContext);
   const { settingsModal, setSettingsModal } = useContext(PostContext);
   const { allLikes } = useContext(LikesContext);
@@ -88,10 +89,12 @@ function ProfilePage() {
 
   const combinedPosts = [].concat(...postsWithLikes);
   return (
-    <>
+    <div style={{
+  background: darkMode ? "black" : "white"
+}}>
       <Header />
-      <div className="main-profile-container">
-        <div className="profile-sidebar">
+      <div className={darkMode? "main-profile-container darkUI": "main-profile-container"}>
+        <div className={darkMode? "profile-sidebar darkUI" : "profile-sidebar"}>
           <div className="icon-divs" onClick={() => navigate("/feed")}>
             <PiHouseFill /> <h3>Home</h3>
           </div>
@@ -105,8 +108,8 @@ function ProfilePage() {
             <img src={currentUser?.avatar ? currentUser?.avatar : imagD} />{" "}
             <h3>Profile</h3>{" "}
           </div>
-          <div className="icon-divs">
-            <BiSun /> <h3>Dark mode</h3>
+          <div className="icon-divs" onClick={()=>setDarkMode(!darkMode)}>
+           {darkMode? <BiSun/> : <GoMoon/>}<h3>Dark Mode</h3>
           </div>
           <div className="icon-divs" onClick={() => setSettings(true)}>
             {" "}
@@ -149,7 +152,7 @@ function ProfilePage() {
           <Post userData={selectedImage} userLike={combinedPosts} />
         </Modal>
       </div>
-    </>
+    </div>
   );
 }
 
