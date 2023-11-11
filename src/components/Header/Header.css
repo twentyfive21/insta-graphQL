@@ -9,10 +9,9 @@ position: relative;
 }
 
 
-.darkUI{
-  background-color: red;
-  color: #eee;
-  border-bottom: 0.1px solid #606060;
+
+.darkline{
+   border-bottom: 0.1px solid #606060;
 }
 
 .hamburger-icon{
@@ -187,6 +186,16 @@ padding: 15px 10px;
     cursor: pointer;
 }
 
+}
+
+.darkUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease;
+}
+
+.darktext h2, .darktext p{
+  color: #fff;
 }
 
 

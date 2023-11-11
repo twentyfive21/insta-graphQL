@@ -162,6 +162,12 @@ textarea {
     margin-top: 10px;
 }
 
+.darkUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+}
+
 /* Disabled state for the "Share" button */
 .add-post-header button[type="button"][disabled] {
     background-color: gray;

@@ -6,6 +6,13 @@
     margin-left: 170px;
 }
 
+.darkUI {
+  background-color: black;
+  color: #eee;
+  transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+}
+
+
 .profile-image {
     width: 230px;
     height: 230px;

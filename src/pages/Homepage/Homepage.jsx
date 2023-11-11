@@ -20,25 +20,6 @@ import Follow from "../../components/Follow/Follow";
 import { GET_ALL_USERS_SIDE_BAR } from "../../utils/subscriptions";
 import imageDefault from "../../assets/posts/userpostdefualt.png"
 
-const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      borderRadius: "24px",
-      padding: "40px",
-      textAlign: "center",
-    },
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.6)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-  };
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -46,7 +27,6 @@ function Homepage() {
   const navigate = useNavigate();
   const { currentUser, setSettings, modalIsOpen, setIsOpen, darkMode, setDarkMode } =
     useContext(UserContext);
-  const [userTheme, setUserTheme] = useState(false);
   // const [limit, setLimit] = useState(4);
   const [posts, setPosts] = useState([]);
   const { data, loading } = useSubscription(GET_POSTS);
@@ -63,7 +43,7 @@ function Homepage() {
   };
 
   function changeThemeForUserComfort() {
-    setUserTheme(!userTheme);
+  setDarkMode(!darkMode)
   }
 
   function openModal() {
@@ -79,12 +59,33 @@ function Homepage() {
   }
   
 
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      padding: "40px",
+      textAlign: "center",
+      backgroundColor: darkMode ? "black" : "white",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  };
+
   return (
-   <div style={darkMode ? { background: "#121212" } : null}>
+   <div style={darkMode ? { background: "black" } : null}>
       <Header />
       <section className={darkMode? "main-container darkUI" : "main-container"}>
         <div className="double-container">
-        <div className="sidebar">
+        <div className={darkMode? "sidebar darkUI" : "sidebar"}>
           <div className="icon-divs" onClick={() => navigate("/feed")}>
             <PiHouseFill /> <h3>Home</h3>
           </div>
@@ -99,7 +100,7 @@ function Homepage() {
             <h3>Profile</h3>{" "}
           </div>
           <div className="icon-divs" onClick={changeThemeForUserComfort}>
-            {userTheme ? <BiSun /> : <GoMoon />} <h3>Dark mode</h3>
+            {darkMode? <BiSun/> : <GoMoon/>}<h3>Dark Mode</h3>
           </div>
           <div className="icon-divs" onClick={() => setSettings(true)}>
             {" "}
@@ -119,9 +120,9 @@ function Homepage() {
         <div className="follow-sidebar-2">
           <Follow
             item={currentUser}
-            style={{ borderBottom: " 1px solid #D0D0D0" }}
+            style={darkMode ? { borderBottom: "0.1px solid #606060" } : { borderBottom: "1px solid #D0D0D0" }}
           />
-          <div className="right-sug">
+          <div className={darkMode? "right-sug darkUI" : "right-sug"}>
             <p>Suggestions for you</p>
           </div>
           {allUsersData?.userData?.map((item) => {
@@ -138,9 +139,9 @@ function Homepage() {
         <div className="follow-sidebar">
           <Follow
             item={currentUser}
-            style={{ borderBottom: " 1px solid #D0D0D0" }}
+            style={darkMode ? { borderBottom: "0.1px solid #606060" } : { borderBottom: "1px solid #D0D0D0" }}
           />
-          <div className="right-sug">
+          <div className={darkMode? "right-sug darkUI" : "right-sug"}>
             <p>Suggestions for you</p>
           </div>
           {allUsersData?.userData?.map((item) => {

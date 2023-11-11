@@ -14,25 +14,12 @@ import { UserContext } from "../../contexts/CurrentUser";
 import Webcam from "react-webcam";
 
 function SetAvatar({ userParam }) {
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      borderRadius: "24px",
-    },
-    overlay: {
-      backgroundColor: "rgba(0,0,0,0.6)",
-    },
-  };
+
 
   Modal.setAppElement(document.getElementById("root"));
 
   const [isOpen, setIsOpen] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser, darkMode } = useContext(UserContext);
   const [addAvatar] = useMutation(ADD_AVATAR);
   const [selectedImage, setSelectedImage] = useState("");
   const [imageForUpload, setImageForUpload] = useState("");
@@ -146,6 +133,24 @@ function SetAvatar({ userParam }) {
     setDisplayCapture("");
     setAvatar(false);
     setIsCapture(false);
+  };
+
+
+    const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      backgroundColor: darkMode ? "black" : "white",
+      color: darkMode ? "white" : "black"
+    },
+    overlay: {
+      backgroundColor: "rgba(0,0,0,0.6)",
+    },
   };
 
   return (
