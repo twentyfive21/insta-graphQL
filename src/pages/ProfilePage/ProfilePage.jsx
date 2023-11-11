@@ -19,21 +19,6 @@ import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { LikesContext } from "../../contexts/LikesContext";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "24px",
-     backgroundColor: darkMode ? "black" : "white",
-  },
-  overlay: {
-    backgroundColor: "rgba(0,0,0,0.6)",
-  },
-};
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -82,6 +67,23 @@ function ProfilePage() {
   const postsWithLikes = filteredPosts?.map((post) =>
     allLikes?.filter((like) => like?.postRef === post?.id)
   );
+
+
+  const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: "24px",
+     backgroundColor: darkMode ? "black" : "white",
+  },
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.6)",
+  },
+};
 
   if (!userPostMatchData) {
     return <Spinner />;

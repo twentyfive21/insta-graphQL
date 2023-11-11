@@ -18,7 +18,7 @@ export default function UserContextProvider(props) {
   });
 
   // dark mode 
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const { data } = useSubscription(GET_ALL_USER_POSTS);
 
