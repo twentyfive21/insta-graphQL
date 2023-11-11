@@ -38,12 +38,10 @@ body {
     justify-content: space-between;
     margin: 10px 40px;
     width: auto;
-    /* border: 2px solid red; */
 }
 
-
 .sidebar{
-      width: auto;
+    width: auto;
     display: flex;
     flex-direction: column;
     height: 48vh;
@@ -88,8 +86,6 @@ body {
     margin-top: 1rem;
 }
 
-
-
 .stories-container {
     background-color: #FFFFFF;
     border-radius: 8px;
@@ -108,10 +104,8 @@ body {
     top: 38px;
 }
 .all-posts {
-    /* background-color: #FFFFFF; */
     padding-bottom: 10px;
     border-radius: 8px 8px 0 0;
-     /* margin: 0 45%; */
      margin-left: 70px;
      margin-top: 0.8rem;
 }
