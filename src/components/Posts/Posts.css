@@ -4,6 +4,10 @@
     border: 1px solid #D0D0D0;
     margin-bottom: 20px;
 }
+.darkUI{
+  background-color: #121212;
+  color: #eee;
+}
 .username-insta-section{
     display: flex;
     justify-content: space-between;

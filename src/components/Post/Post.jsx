@@ -13,7 +13,7 @@ function Post({ userData, userLike }) {
   );
 
   return (
-    <div className="main-box">
+    <div className="main-box darkUI">
       <section className="next-img">
         <img
           src={userData?.image}

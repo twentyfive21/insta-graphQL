@@ -2,6 +2,11 @@ body {
     background-color: #F5F5F5;
     width: 100%;
 }
+
+.darkUI{
+  background-color: #121212;
+  color: #eee;
+}
 .follow-right {
     display: flex;
     flex-direction: column;

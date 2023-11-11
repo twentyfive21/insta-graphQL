@@ -17,6 +17,9 @@ export default function UserContextProvider(props) {
     return storedUser ? JSON.parse(storedUser) : false;
   });
 
+  // dark mode 
+  const [darkMode, setDarkMode] = useState(true);
+
   const { data } = useSubscription(GET_ALL_USER_POSTS);
 
   const [currentUser, setCurrentUser] = useState(() => {
@@ -39,7 +42,7 @@ export default function UserContextProvider(props) {
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, data}}>
+    <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, data, darkMode, setDarkMode}}>
       {props.children}
     </UserContext.Provider>
   );

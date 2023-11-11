@@ -44,7 +44,7 @@ Modal.setAppElement(document.getElementById("root"));
 
 function Homepage() {
   const navigate = useNavigate();
-  const { currentUser, setSettings, modalIsOpen, setIsOpen } =
+  const { currentUser, setSettings, modalIsOpen, setIsOpen, darkMode, setDarkMode } =
     useContext(UserContext);
   const [userTheme, setUserTheme] = useState(false);
   // const [limit, setLimit] = useState(4);
@@ -87,12 +87,10 @@ function Homepage() {
   
 
   return (
-    <div>
+   <div style={darkMode ? { background: "#121212" } : null}>
       <Header />
-      <section className="main-container">
+      <section className={darkMode? "main-container darkUI" : "main-container"}>
         <div className="double-container">
-
-        
         <div className="sidebar">
           <div className="icon-divs" onClick={() => navigate("/feed")}>
             <PiHouseFill /> <h3>Home</h3>

@@ -8,6 +8,13 @@ border-bottom: 1px solid #D0D0D0;
 position: relative;
 }
 
+
+.darkUI{
+  background-color: red;
+  color: #eee;
+  border-bottom: 0.1px solid #606060;
+}
+
 .hamburger-icon{
     display: none;
 }
@@ -155,8 +162,6 @@ position: relative;
 }
 
 
-
-
 @media screen and (max-width: 830px) {
 .header-main {
 padding: 15px 10px;
@@ -183,6 +188,8 @@ padding: 15px 10px;
 }
 
 }
+
+
 
 
 @media screen and (max-width: 620px) {

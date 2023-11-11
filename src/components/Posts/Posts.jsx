@@ -33,7 +33,7 @@ function Posts({ item }) {
   };
 
   const { allLikes, addLikeToDB, removeLikeFromDB } = useContext(LikesContext);
-  const { currentUser, isDeleteOpen, setIsDeleteOpen } =
+  const { currentUser, isDeleteOpen, setIsDeleteOpen, darkMode } =
     useContext(UserContext);
   const {
     deleteAllCommentsFromDB,
@@ -87,7 +87,7 @@ function Posts({ item }) {
   );
 
   return (
-    <div className="single-insta-post" id={item?.userID}>
+    <div className={darkMode? "single-insta-post darkUI" : "single-insta-post"} id={item?.userID}>
       <div className="username-insta-section">
         <div
           className="user-insta-left"

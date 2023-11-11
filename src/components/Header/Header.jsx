@@ -16,7 +16,7 @@ function Header() {
   const navigate = useNavigate();
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const [logout, setLogout] = useState(false);
-  const {currentUser} = useContext(UserContext)
+  const {currentUser, darkMode, setDarkMode} = useContext(UserContext)
 
 const customStyles = {
     content: {
@@ -53,7 +53,7 @@ const customStyles = {
   };
 
   return (
-    <div className="header-main">
+    <div className={darkMode? "header-main darkUI" : "header-main"}>
       <img
         src={logo}
         alt="instagram logo"
