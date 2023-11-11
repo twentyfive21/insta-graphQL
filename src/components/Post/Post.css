@@ -18,16 +18,15 @@
     height: 80vh;
 }
 /* Post.css */
-.main-box {
-    display: flex;
-  }
 .all-comments-container {
     margin-top: 10px; /* Adjust the margin as needed */
 }
 /* !! height of scroll container !!  */
 .scrollable-comments {
-    max-height: 55vh;
+    min-height: 45vh;
+    max-height: 500px;
     overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
 }
+
 
   

@@ -55,15 +55,8 @@ function Homepage() {
   useEffect(() => {
     if (!loading && data && data?.userPosts.length > 0) {
       setPosts(data?.userPosts);
-      // setTimeout(() => {
-      //   loadMorePosts();
-      // }, 1000);
     }
   }, [loading, data]);
-
-  // const loadMorePosts = () => {
-  //   setLimit((prevLimit) => prevLimit + 4);
-  // };
 
   const viewProfile = () => {
     navigate(`/profile-page/${currentUser?.id}`);
@@ -135,7 +128,7 @@ function Homepage() {
             return <Follow item={item} key={item?.id} />;
           })}
         </div>
-</div>
+      </div>
 
         <div className="all-posts">
           {posts?.map((post) => (
