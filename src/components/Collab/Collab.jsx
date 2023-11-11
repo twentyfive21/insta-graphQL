@@ -61,7 +61,7 @@ function Collab({ userData }) {
           <span>{userData?.username}</span>
         </p>
       </div>
-      {currentUser.id === userid && (
+      {currentUser?.id === userData.userID && (
         <img
           src={details}
           alt="detail dots"
