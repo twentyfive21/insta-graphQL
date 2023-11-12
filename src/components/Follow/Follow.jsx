@@ -9,7 +9,7 @@ function Follow({ item, style }) {
   const {darkMode} = useContext(UserContext)
   return (
     <div className={darkMode ? "follow-section darkUI-sidebar" : "follow-section"} style={style}>
-      <div className="follow-left">
+      <div className="follow-left" onClick={() => navigate(`/profile-page/${item.id}`)}>
         <img src={item.avatar ? item.avatar : Avatar} alt={item.username} />
         <div>
           <p className={darkMode ? "follow-top-dark" : "follow-top"}>{item.username}</p>

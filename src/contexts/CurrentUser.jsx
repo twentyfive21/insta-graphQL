@@ -18,8 +18,10 @@ export default function UserContextProvider(props) {
   });
 
   // dark mode 
-  const [darkMode, setDarkMode] = useState(false);
-
+  const [darkMode, setDarkMode] = useState(() => {
+    const darkOption = localStorage.getItem('darkMode');
+    return darkOption ? JSON.parse(darkOption) : false;
+  });
   const { data } = useSubscription(GET_ALL_USER_POSTS);
 
   const [currentUser, setCurrentUser] = useState(() => {
@@ -40,6 +42,10 @@ export default function UserContextProvider(props) {
   useEffect(() => {
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }, [currentUser]);
+
+ useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
     <UserContext.Provider value={{ user, setUser, currentUser, setCurrentUser, isOpen, setSettings, modalIsOpen, setIsOpen, isDeleteOpen, setIsDeleteOpen, data, darkMode, setDarkMode}}>

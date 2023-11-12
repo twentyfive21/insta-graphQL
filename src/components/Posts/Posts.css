@@ -171,11 +171,11 @@
     color: tomato;
 }
 
-.darkpostUI {
+.darkpostUIBorder {
   background-color: black;
   color: #eee;
   transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
-  border: 1px solid #eee;
+ border: 1px solid #606060;
 }
 
 .darkIcons{

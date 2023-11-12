@@ -92,12 +92,13 @@ function ProfilePage() {
   const combinedPosts = [].concat(...postsWithLikes);
   return (
     <div style={{
-  background: darkMode ? "black" : "white"
+  background: darkMode ? "black" : "white",
+  height: filteredPosts?.length === 0 ? "100vh" : "auto"
 }}>
       <Header />
       <div className={darkMode? "main-profile-container darkUI": "main-profile-container"}>
         <div className={darkMode? "profile-sidebar darkUI" : "profile-sidebar"}>
-          <div className="icon-divs" onClick={() => navigate("/feed")}>
+          <div className="icon-divs" onClick={() => navigate(`/feed`)}>
             <PiHouseFill /> <h3>Home</h3>
           </div>
           <div className="icon-divs" onClick={handlePostModalProfile}>
