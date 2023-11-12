@@ -5,8 +5,10 @@ import Modal from "react-modal";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
-import defaultIMG from "../../assets/login/default.jpg"
+import loader from "../../assets/loader.gif"
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { useSubscription } from "@apollo/client";
+import { GET_ALL_USERS } from "../../utils/subscriptions";
 
 
 function Collab({ userData }) {
@@ -63,10 +65,14 @@ function Collab({ userData }) {
       justifyContent: "center",
     },
   };
+
+    const { data: userPostInfo } = useSubscription(GET_ALL_USERS, {
+    variables: { id: userData?.userID },
+  });
   return (
     <div className={darkMode? "collab-container darkpostUI" : "collab-container"}>
       <div className="collab-left">
-        <img src={userData?.avatar ? userData?.avatar : defaultIMG } className="p-circle" alt="profile" />
+        <img src={userPostInfo?.userData[0]?.avatar? userPostInfo?.userData[0]?.avatar : loader} className="p-circle" alt="profile" />
         <p>
           <span>{userData?.username}</span>
         </p>

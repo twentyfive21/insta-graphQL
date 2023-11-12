@@ -84,10 +84,10 @@ function Actions({ postID, userLike, userData }) {
               value={commentValue}
               onChange={(e) => setCommentValue(e.target.value)}
                style={{ backgroundColor: darkMode ? "black" : "white", color: darkMode ? "white" : "black",}}
+               required
             />
+                  <button className="post" onClick={handleSubmit}>Post</button>
           </form>
-
-          <button className="post">Post</button>
       </div>
     </div>
   );

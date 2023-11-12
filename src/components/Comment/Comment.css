@@ -26,6 +26,7 @@
 }
 .user-pr {
     margin-right: 7px;
+    cursor: pointer;
 }
 .hashtag {
     font-weight: 300;
