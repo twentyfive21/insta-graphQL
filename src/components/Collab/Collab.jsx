@@ -72,12 +72,6 @@ function Collab({ userData }) {
         </p>
       </div>
       {currentUser?.id === userData.userID && (
-        // <img
-        //   src={details}
-        //   alt="detail dots"
-        //   className="dots"
-        //   onClick={handleDelete}
-        // />
         <BiDotsHorizontalRounded  className="dots" onClick={handleDelete}/>
       )}
       <Modal

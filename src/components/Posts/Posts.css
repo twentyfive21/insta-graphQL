@@ -41,6 +41,9 @@
 }
 
 /* post delete dots btn  */
+.post-delete-btn{
+    cursor: pointer;
+}
 .username-insta-section img:nth-child(2) {
     width: 18px;
     height: 4px;
@@ -81,7 +84,7 @@
 }
 
 .like-dark-btn{
-       font-size: 30px;
+    font-size: 30px;
     margin-right: 7px;
     margin-top: 2px;
     color: #eee;
@@ -149,7 +152,6 @@
     font-weight: 300;
     padding-bottom: 20px;
     border: none;
-    width: 430px;
 }
 .comment-section-insta::placeholder {
     color: #262626;

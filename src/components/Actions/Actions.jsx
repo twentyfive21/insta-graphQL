@@ -75,8 +75,8 @@ function Actions({ postID, userLike, userData }) {
         <p>{userData?.caption}</p>
       </div>
       <div className="ac-box">
-          <img src={smile} alt="smile" />
           <form onSubmit={handleSubmit}>
+          <img src={smile} alt="smile" />
             <input
               name="comment"
               placeholder="Add a comment…"
@@ -86,6 +86,7 @@ function Actions({ postID, userLike, userData }) {
                style={{ backgroundColor: darkMode ? "black" : "white", color: darkMode ? "white" : "black",}}
             />
           </form>
+
           <button className="post">Post</button>
       </div>
     </div>

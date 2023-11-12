@@ -1,11 +1,9 @@
 .actions-container {
-    /* border-top: 1px solid #EFEFEF; */
     padding: 10px 15px 0px 8px;
     display: flex;
     justify-content: space-between;
     background-color: white;
     color: black;
-    width: 500px;
 }
 .darkUI{
     background-color: #121212;
@@ -24,7 +22,6 @@
 }
 .action-data {
     padding: 2px 5px 15px 15px;
-    width: 500px;
 }
 .action-data p:nth-child(2) {
     padding-top: 5px;
@@ -35,12 +32,14 @@
     margin: 7px 0px 0px 0px;
 }
 .ac-box {
-    border-top: 1px solid #EFEFEF;
     display: flex;
     justify-content: space-between;
     padding: 5px 15px;
-    align-items: center;
+    align-items: baseline;
     padding-top: 3px;
+}
+.ac-box input {
+    width: 300px;
 }
 .ac-box img {
     padding-right: 10px;
@@ -57,3 +56,13 @@
 .post {
     color: #B3DBFF;
 }
+@media screen and (max-width: 888px) {
+ .ac-box input {
+    width: 200px;
+}
+}
+@media screen and (max-width: 735px) {
+    .ac-box input {
+       width: 320px;
+   }
+   }

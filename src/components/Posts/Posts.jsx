@@ -1,9 +1,6 @@
 import { React, useState, useContext } from "react";
 import "./Posts.css";
-import dotDark from "../../assets/posts/dotDark.png";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import commentIMG from "../../assets/posts/comment.png";
-import smile from "../../assets/posts/smile.png";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
 import Avatar from "../../assets/login/default.jpg";
@@ -89,7 +86,7 @@ function Posts({ item }) {
       color: darkMode ? "white" : "black"
     },
     overlay: {
-      backgroundColor: "rgba(0,0,0,0.6)",
+      backgroundColor: "rgba(0, 0, 0, 0.01)",
     },
   };
 
@@ -107,12 +104,6 @@ function Posts({ item }) {
           <p>{data?.userData[0]?.username}</p>
         </div>
         {currentUser?.id === item?.userID && (
-          // <img
-          //   src={dotDark}
-          //   alt="dots"
-          //   onClick={() => deletePostSelected(item)}
-          //   className="post-delete-btn"
-          // />
           <BiDotsHorizontalRounded onClick={() => deletePostSelected(item)}
             className="post-delete-btn"/>
         )}

@@ -1,7 +1,6 @@
 .comment-container {
     display: flex;
     justify-content: space-between;
-    width: 500px;
     padding: 5px 0px;
     position: relative;
     background-color: white;
@@ -22,11 +21,11 @@
 .delete-comment {
     position: absolute;
     left: 440px;
-    top: 8px;
+    top: 15px;
     cursor: pointer;
 }
 .user-pr {
-    margin-right: 6px;
+    margin-right: 7px;
 }
 .hashtag {
     font-weight: 300;
@@ -50,4 +49,130 @@
   background-color: black;
   color: #eee;
   transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
+}
+
+@media screen and (max-width: 1000px) {
+    .delete-comment {
+        left: 410px;
+    }
+}
+@media screen and (max-width: 888px) {
+    .delete-comment {
+        left: 320px;
+    }
+}
+@media screen and (max-width: 735px) {
+    .delete-comment {
+        left: 430px;
+    }
+}
+@media screen and (max-width: 684px) {
+    .delete-comment {
+        left: 420px;
+    }
+}
+@media screen and (max-width: 670px) {
+    .delete-comment {
+        left: 400px;
+    }
+}
+@media screen and (max-width: 645px) {
+    .delete-comment {
+        left: 380px;
+    }
+}
+@media screen and (max-width: 610px) {
+    .delete-comment {
+        left: 360px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .delete-comment {
+        left: 340px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .delete-comment {
+        left: 320px;
+    }
+}
+@media screen and (max-width: 520px) {
+    .delete-comment {
+        left: 300px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .delete-comment {
+        left: 330px;
+    }
+}
+@media screen and (max-width: 470px) {
+    .delete-comment {
+        left: 320px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .delete-comment {
+        left: 310px;
+    }
+}
+@media screen and (max-width: 435px) {
+    .delete-comment {
+        left: 300px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .delete-comment {
+        left: 290px;
+    }
+}
+@media screen and (max-width: 405px) {
+    .delete-comment {
+        left: 280px;
+    }
+}
+@media screen and (max-width: 395px) {
+    .delete-comment {
+        left: 270px;
+    }
+}
+@media screen and (max-width: 378px) {
+    .delete-comment {
+        left: 265px;
+    }
+}
+@media screen and (max-width: 370px) {
+    .delete-comment {
+        left: 250px;
+    }
+}
+@media screen and (max-width: 355px) {
+    .delete-comment {
+        left: 237px;
+    }
+}
+@media screen and (max-width: 338px) {
+    .delete-comment {
+        left: 230px;
+    }
+}
+@media screen and (max-width: 325px) {
+    .delete-comment {
+        left: 220px;
+    }
+}
+@media screen and (max-width: 315px) {
+    .delete-comment {
+        left: 210px;
+    }
+}
+@media screen and (max-width: 300px) {
+    .delete-comment {
+        left: 200px;
+    }
+}
+@media screen and (max-width: 285px) {
+    .delete-comment {
+        left: 190px;
+    }
 }

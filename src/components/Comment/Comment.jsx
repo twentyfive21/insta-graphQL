@@ -67,10 +67,10 @@ function Comment({ userData }) {
             <p className="bold">{userData?.likes}</p>
           </div>
         </section>
-      </section>
-      {userID === currentUser?.id && (
+        {userID === currentUser?.id && (
         <BiDotsHorizontalRounded  onClick={() => setIsCommentModal(true)} className="delete-comment"/>
       )}
+      </section>
       <Modal
         isOpen={isCommentModal}
         onRequestClose={() => setIsCommentModal(false)}

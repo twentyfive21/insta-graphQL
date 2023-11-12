@@ -2,14 +2,15 @@
     display: flex;
     justify-content: center;
 }
-
-.next-img {
-    width: 45vw;
-}
 .post-main-image{
     object-fit: cover;
     width: 100%;
     object-position: center;
+    height: 80vh;
+    width: 45vw;
+}
+.right-side-post-modal {
+    width: 500px;
     height: 80vh;
 }
 /* Post.css */
@@ -21,14 +22,51 @@
     min-height: 45vh;
     max-height: 500px;
     overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
+    overflow-x: hidden;
 }
-
-
 .darkpostUI {
   background-color: black;
   color: #eee;
   transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
 }
 
-
+@media screen and (max-width: 1000px) {
+    .post-main-image{
+        width: 40vw;
+    }
+    .right-side-post-modal {
+        width: 450px;
+    }
+}
+@media screen and (max-width: 888px) {
+    .right-side-post-modal {
+        width: 350px;
+    }
+}
+@media screen and (max-width: 735px) {
+    .main-box {
+        flex-direction: column;
+    }
+    .post-main-image{
+        width: 65vw;
+        height: 55vh;
+    }
+    .right-side-post-modal {
+        height: 200px;
+        width: 65vw;
+    }
+}
+@media screen and (max-width: 490px) {
+    .post-main-image{
+        width: 80vw;
+    }
+    .right-side-post-modal {
+        width: 75vw;
+    }
+}
+@media screen and (max-width: 325px) {
+    .right-side-post-modal {
+        display: none;
+    }
+}
   

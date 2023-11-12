@@ -23,7 +23,7 @@ function Post({ userData, userLike }) {
           className="post-main-image"
         />
       </section>
-      <section>
+      <section className="right-side-post-modal">
         <Collab userData={userData} />
         <section className="all-comments-container scrollable-comments">
           {filteredComments?.map((item) => {
