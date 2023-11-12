@@ -184,12 +184,21 @@
     color: #eee;
 }
 
+.comment-section-insta .add-comment{
+ width: 450px;
+}
+
 @media screen and (max-width: 830px) {
 .single-insta-post{
     width: 477.4px;
     margin: 10px -7%;
 }
+
+.comment-section-insta .add-comment{
+        width: 450px;
 }
+}
+
 
 
 @media screen and (max-width: 509px) {
@@ -210,8 +219,8 @@
      width: 380px;
 }
 
-.add-comment{
-    width: 380px;
+.comment-section-insta .add-comment{
+             width: 380px;
 }
 
 
@@ -251,5 +260,9 @@
 
 .caption-insta, .comment-user {
     width: 75%;
+}
+
+.comment-section-insta .add-comment{
+ width: 320px;
 }
 }
