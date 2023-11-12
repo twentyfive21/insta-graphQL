@@ -3,7 +3,7 @@ import "./Posts.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
-import Avatar from "../../assets/login/default.jpg";
+import loader from "../../assets/loader.gif";
 import { UserContext } from "../../contexts/CurrentUser";
 import Modal from "react-modal";
 import { CommentsContext } from "../../contexts/CommentData";
@@ -13,8 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { LikesContext } from "../../contexts/LikesContext";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-
-
 function Posts({ item }) {
   Modal.setAppElement(document.getElementById("root"));
  
@@ -99,7 +97,7 @@ const findFinal = combinedLikedPhotos?.filter((item) => {
           onClick={() => navigate(`/profile-page/${item?.userID}`)}
         >
           <img
-            src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar : Avatar}
+            src={data?.userData[0]?.avatar ? data?.userData[0]?.avatar : loader}
             alt={data?.userData[0]?.avatar}
           />
           <p>{data?.userData[0]?.username}</p>
