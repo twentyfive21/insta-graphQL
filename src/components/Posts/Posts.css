@@ -228,23 +228,23 @@
 
 @media screen and (max-width: 430px){
       .single-insta-post{
-    width: 380px;
+    width: 350px;
    margin-right: 10px;
 }
 
 .user-insta-img img{
-    width: 380px;
+    width: 347px;
     /* height: auto; */
     object-fit: cover;
     cursor: pointer;
 }
 
 .add-comment{
-     width: 360px;
+     width: 350px;
 }
 
 .comment-section-insta{
-    width: 360px;
+    width: 350px;
 }
 
 .caption-insta, .comment-user {
