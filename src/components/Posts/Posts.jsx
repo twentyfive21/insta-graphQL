@@ -37,14 +37,15 @@ function Posts({ item }) {
   });
 
   const likedPhotos = allLikes?.filter((like) => {
-    return item?.id === like?.postRef;
-  });
+  return item?.id === like?.postRef;
+}) || [];
 
-  const combinedLikedPhotos = [].concat(...likedPhotos);
+const combinedLikedPhotos = [].concat(...likedPhotos);
 
-  const findFinal = combinedLikedPhotos?.filter((item) => {
-    return item?.userID === currentUser?.id;
-  });
+const findFinal = combinedLikedPhotos?.filter((item) => {
+  return item?.userID === currentUser?.id;
+}) || [];
+
 
   const [comments, setComments] = useState([]);
   const [commentValue, setCommentValue] = useState("");
@@ -91,7 +92,7 @@ function Posts({ item }) {
   };
 
   return (
-    <div className={darkMode? "single-insta-post darkpostUI" : "single-insta-post"} id={item?.userID}>
+    <div className={darkMode? "single-insta-post darkpostUIBorder" : "single-insta-post"} id={item?.userID}>
       <div className="username-insta-section">
         <div
           className="user-insta-left"
@@ -135,7 +136,7 @@ function Posts({ item }) {
             {findFinal[0]?.userID === currentUser?.id ? (
               <AiFillHeart
                 onClick={() => removeLikeFromDB(item?.id)}
-                className={darkMode? "like-filled like-btn darkUI" : "like-filled like-btn"}
+                className={darkMode? "like-filled like-btn likeDark" : "like-filled like-btn"}
               />
             ) : (
               <AiOutlineHeart

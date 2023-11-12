@@ -28,11 +28,14 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20%;
+  /* margin: 20%; */
+padding: 20%;
+}
+
+.spinner-height{
+  height: 100vh;
 }
 
 @media screen and (max-width: 830px) {
-spinner{
-  margin-top: 100%;
-}
+
 }

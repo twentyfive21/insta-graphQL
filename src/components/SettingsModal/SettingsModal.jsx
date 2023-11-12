@@ -13,6 +13,7 @@ function SettingsModal() {
 
   const logoutCurrentUser = () => {
     navigate("/");
+    localStorage.removeItem("user");
     setUser(false);
     setCurrentUser({
       id: "",

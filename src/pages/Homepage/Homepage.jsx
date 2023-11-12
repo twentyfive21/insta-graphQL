@@ -86,7 +86,7 @@ function Homepage() {
       <section className={darkMode? "main-container darkUI" : "main-container"}>
         <div className="double-container">
         <div className={darkMode? "sidebar darkUI" : "sidebar"}>
-          <div className="icon-divs" onClick={() => navigate("/feed")}>
+          <div className="icon-divs" onClick={() => navigate(`/feed`)}>
             <PiHouseFill /> <h3>Home</h3>
           </div>
           <div className="icon-divs" onClick={openModal}>
