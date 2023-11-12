@@ -11,20 +11,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 function Collab({ userData }) {
   Modal.setAppElement(document.getElementById("root"));
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      borderRadius: "15px",
-      transform: "translate(-50%, -50%)",
-    },
-    overlay: {
-      backgroundColor: "rgba(0,0,0,0.1)",
-    },
-  };
+
 
   const { currentUser, darkMode} = useContext(UserContext);
   const {
@@ -55,6 +42,27 @@ function Collab({ userData }) {
     setPostDeleteModal(true);
     setDeletedPost(userData);
   };
+
+     const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      padding: "40px",
+      textAlign: "center",
+      backgroundColor: darkMode ? "black" : "white",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  };
   return (
     <div className={darkMode? "collab-container darkpostUI" : "collab-container"}>
       <div className="collab-left">
@@ -78,7 +86,7 @@ function Collab({ userData }) {
         style={customStyles}
         contentLabel="Pop Up Post Modal"
       >
-        <div className="delete-post-modal">
+        <div className={darkMode? "delete-post-modal darkpostUI" : "delete-post-modal"}>
           <p onClick={handleDeletingAllPostData}>Delete</p>
           <p onClick={() => setPostDeleteModal(false)}>Cancel</p>
         </div>

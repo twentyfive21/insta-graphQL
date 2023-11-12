@@ -1,5 +1,5 @@
 import "./SettingsModal.css";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { GoMoon } from "react-icons/go";
 import { BiSun } from "react-icons/bi";
 import Modal from "react-modal";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
 
 function SettingsModal() {
-  const { setUser, setCurrentUser, isOpen, setSettings } =
+  const { setUser, setCurrentUser, isOpen, setSettings, darkMode, setDarkMode } =
     useContext(UserContext);
   const navigate = useNavigate();
 
@@ -22,21 +22,27 @@ function SettingsModal() {
     });
     setSettings(false);
   };
-  const [darkMode, setDarkMode] = useState(false);
+
 
   Modal.setAppElement(document.getElementById("root"));
-  const customStyles = {
+   const customStyles = {
     content: {
       top: "50%",
       left: "50%",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
-      borderRadius: "15px",
       transform: "translate(-50%, -50%)",
+      borderRadius: "24px",
+      padding: "40px",
+      textAlign: "center",
+      backgroundColor: darkMode ? "black" : "white",
     },
     overlay: {
-      backgroundColor: "rgba(0,0,0,0.6)",
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   };
   return (
@@ -47,7 +53,7 @@ function SettingsModal() {
       onRequestClose={() => setSettings(false)}
       contentLabel="Settings Modal"
     >
-      <div className="settings-container">
+      <div className={darkMode? "settings-container darkText" : "settings-container"}>
         <p onClick={() => setDarkMode(!darkMode)}>
           Dark mode {darkMode ? <GoMoon /> : <BiSun />}
         </p>
