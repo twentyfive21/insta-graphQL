@@ -99,7 +99,7 @@
 .interact-insta-left img {
     margin: 0px 7px;
 }
-.interact-insta-left button {
+.interact-insta-left p {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -210,13 +210,15 @@
      width: 380px;
 }
 
-.comment-section-insta{
+.add-comment{
     width: 380px;
 }
 
+
+
 .caption-insta, .comment-user {
     font-size: 13.58px;
-    width: 90%;
+    width: 85%;
 }
 
 .caption-insta span {
@@ -244,10 +246,10 @@
 }
 
 .comment-section-insta{
-    width: 350px;
+    width: 72%;
 }
 
 .caption-insta, .comment-user {
-    width: 80%;
+    width: 75%;
 }
 }

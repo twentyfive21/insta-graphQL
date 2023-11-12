@@ -132,7 +132,7 @@ const findFinal = combinedLikedPhotos?.filter((item) => {
       </div>
       <div className="interact-insta-section">
         <div className="interact-insta-left">
-          <button>
+          <p>
             {findFinal[0]?.userID === currentUser?.id ? (
               <AiFillHeart
                 onClick={() => removeLikeFromDB(item?.id)}
@@ -144,11 +144,11 @@ const findFinal = combinedLikedPhotos?.filter((item) => {
                 className={darkMode? "like-dark-btn" : "like-btn"}
               />
             )}
-          </button>
-          <button>
+          </p>
+          <p>
             <FaRegCommentDots onClick={() => setPostModalOpen(true)} style={{fontSize: "1.6rem"}} className={darkMode? "like-dark-btn" : "like-btn"}/>
             {/* <img src={commentIMG} } /> */}
-          </button>
+          </p>
         </div>
       </div>
       <div className="comment-insta-container">
