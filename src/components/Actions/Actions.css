@@ -81,18 +81,28 @@
        width: 230px;
    }
    }
-   @media screen and (max-width: 430px) {
+   @media screen and (max-width: 495px) {
     .ac-box input {
        width: 200px;
    }
    }
-   @media screen and (max-width: 380px) {
+   @media screen and (max-width: 468px) {
     .ac-box input {
-       width: 180px;
+       width: 170px;
    }
    }
-   @media screen and (max-width: 355px) {
+   @media screen and (max-width: 420px) {
     .ac-box input {
        width: 150px;
+   }
+   }
+   @media screen and (max-width: 385px) {
+    .ac-box input {
+       width: 120px;
+   }
+   }
+   @media screen and (max-width: 335px) {
+    .ac-box input {
+       width: 110px;
    }
    }

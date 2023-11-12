@@ -19,8 +19,8 @@
 }
 /* !! height of scroll container !!  */
 .scrollable-comments {
-    min-height: 45vh;
-    max-height: 500px;
+    min-height: 36vh;
+    max-height: 36vh;
     overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
     overflow-x: hidden;
 }
@@ -29,21 +29,32 @@
   color: #eee;
   transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
 }
-
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     .post-main-image{
-        width: 40vw;
+        width: 37vw;
     }
     .right-side-post-modal {
-        width: 450px;
+        width: 425px;
+    }
+    .scrollable-comments {
+        min-height: 25vh;
+        max-height: 26vh;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .post-main-image{
+        width: 35vw;
+    }
+    .right-side-post-modal {
+        width: 400px;
     }
 }
 @media screen and (max-width: 888px) {
     .right-side-post-modal {
-        width: 350px;
+        width: 320px;
     }
 }
-@media screen and (max-width: 735px) {
+@media screen and (max-width: 815px) {
     .main-box {
         flex-direction: column;
     }
@@ -58,13 +69,23 @@
 }
 @media screen and (max-width: 490px) {
     .post-main-image{
-        width: 80vw;
+        width: 60vw;
     }
     .right-side-post-modal {
-        width: 75vw;
+        width: 60vw;
+        height: 100px;
     }
 }
-@media screen and (max-width: 325px) {
+@media screen and (max-width: 385px) {
+    .all-comments-container {
+        margin-top: 10px; /* Adjust the margin as needed */
+    }
+    /* !! height of scroll container !!  */
+    .scrollable-comments {
+       display: none;
+    }
+}
+@media screen and (max-width: 330px) {
     .right-side-post-modal {
         display: none;
     }

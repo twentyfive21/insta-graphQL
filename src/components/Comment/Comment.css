@@ -50,35 +50,79 @@
   color: #eee;
   transition: background-color 1s ease; /* Adjust the duration and timing function as needed */
 }
-
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     .delete-comment {
         left: 410px;
     }
 }
+@media screen and (max-width: 1000px) {
+    .delete-comment {
+        left: 378px;
+    }
+}
 @media screen and (max-width: 888px) {
     .delete-comment {
-        left: 320px;
+        left: 290px;
+    }
+}
+@media screen and (max-width: 815px) {
+    .delete-comment {
+        left: 490px;
+    }
+}
+@media screen and (max-width: 791px) {
+    .delete-comment {
+        left: 477px;
+    }
+}
+@media screen and (max-width: 760px) {
+    .delete-comment {
+        left: 460px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .delete-comment {
+        left: 450px;
     }
 }
 @media screen and (max-width: 735px) {
     .delete-comment {
+        left: 440px;
+    }
+}
+@media screen and (max-width: 715px) {
+    .delete-comment {
         left: 430px;
     }
 }
-@media screen and (max-width: 684px) {
+@media screen and (max-width: 710px) {
     .delete-comment {
         left: 420px;
     }
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 690px) {
+    .delete-comment {
+        left: 410px;
+    }
+}
+@media screen and (max-width: 675px) {
     .delete-comment {
         left: 400px;
     }
 }
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 660px) {
+    .delete-comment {
+        left: 390px;
+    }
+}
+@media screen and (max-width: 650px) {
     .delete-comment {
         left: 380px;
+    }
+}
+@media screen and (max-width: 630px) {
+    .delete-comment {
+        left: 370px;
     }
 }
 @media screen and (max-width: 610px) {
@@ -86,14 +130,29 @@
         left: 360px;
     }
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 600px) {
+    .delete-comment {
+        left: 350px;
+    }
+}
+@media screen and (max-width: 585px) {
     .delete-comment {
         left: 340px;
     }
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 565px) {
+    .delete-comment {
+        left: 330px;
+    }
+}
+@media screen and (max-width: 555px) {
     .delete-comment {
         left: 320px;
+    }
+}
+@media screen and (max-width: 535px) {
+    .delete-comment {
+        left: 310px;
     }
 }
 @media screen and (max-width: 520px) {
@@ -101,78 +160,54 @@
         left: 300px;
     }
 }
-@media screen and (max-width: 490px) {
-    .delete-comment {
-        left: 330px;
-    }
-}
-@media screen and (max-width: 470px) {
-    .delete-comment {
-        left: 320px;
-    }
-}
-@media screen and (max-width: 450px) {
-    .delete-comment {
-        left: 310px;
-    }
-}
-@media screen and (max-width: 435px) {
-    .delete-comment {
-        left: 300px;
-    }
-}
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 505px) {
     .delete-comment {
         left: 290px;
     }
 }
-@media screen and (max-width: 405px) {
+
+@media screen and (max-width: 495px) {
     .delete-comment {
-        left: 280px;
+        left: 292px;
     }
 }
-@media screen and (max-width: 395px) {
+@media screen and (max-width: 492px) {
     .delete-comment {
-        left: 270px;
+        left: 290px;
     }
 }
-@media screen and (max-width: 378px) {
+@media screen and (max-width: 490px) {
     .delete-comment {
         left: 265px;
     }
 }
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 475px) {
     .delete-comment {
         left: 250px;
     }
 }
-@media screen and (max-width: 355px) {
+@media screen and (max-width: 455px) {
     .delete-comment {
-        left: 237px;
+        left: 240px;
     }
 }
-@media screen and (max-width: 338px) {
+@media screen and (max-width: 445px) {
+    .delete-comment {
+        left: 235px;
+    }
+}
+@media screen and (max-width: 430px) {
     .delete-comment {
         left: 230px;
     }
 }
-@media screen and (max-width: 325px) {
+@media screen and (max-width: 420px) {
     .delete-comment {
         left: 220px;
     }
 }
-@media screen and (max-width: 315px) {
+@media screen and (max-width: 395px) {
     .delete-comment {
         left: 210px;
-    }
-}
-@media screen and (max-width: 300px) {
-    .delete-comment {
-        left: 200px;
-    }
-}
-@media screen and (max-width: 285px) {
-    .delete-comment {
-        left: 190px;
     }
 }
