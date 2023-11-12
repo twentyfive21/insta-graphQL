@@ -66,3 +66,33 @@
        width: 320px;
    }
    }
+   @media screen and (max-width: 735px) {
+    .ac-box input {
+       width: 320px;
+   }
+   }
+   @media screen and (max-width: 630px) {
+    .ac-box input {
+       width: 280px;
+   }
+   }
+   @media screen and (max-width: 560px) {
+    .ac-box input {
+       width: 230px;
+   }
+   }
+   @media screen and (max-width: 430px) {
+    .ac-box input {
+       width: 200px;
+   }
+   }
+   @media screen and (max-width: 380px) {
+    .ac-box input {
+       width: 180px;
+   }
+   }
+   @media screen and (max-width: 355px) {
+    .ac-box input {
+       width: 150px;
+   }
+   }
