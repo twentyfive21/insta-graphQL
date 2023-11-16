@@ -1,6 +1,6 @@
 import { RotatingLines } from  'react-loader-spinner'
 import { useContext } from 'react';
-import { UserContext } from '../contexts/CurrentUser';
+import { UserContext } from '../../contexts/CurrentUser';
 
 function Spinner() {
   const {darkMode} = useContext(UserContext)

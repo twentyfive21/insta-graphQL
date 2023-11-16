@@ -15,7 +15,7 @@ import AddPost from "../../components/AddPost/AddPost";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
 import { GET_POSTS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import Follow from "../../components/Follow/Follow";
 import { GET_ALL_USERS_SIDE_BAR } from "../../utils/subscriptions";
 import imageDefault from "../../assets/posts/userpostdefualt.png"

@@ -14,7 +14,7 @@ import { GoMoon } from "react-icons/go";
 import { BiSun } from "react-icons/bi";
 import AddPost from "../../components/AddPost/AddPost";
 import SetAvatar from "../../components/SetAvatar/SetAvatar";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { LikesContext } from "../../contexts/LikesContext";
