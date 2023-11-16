@@ -3,7 +3,7 @@ import "./Posts.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
 import { useSubscription } from "@apollo/client";
-import loader from "../../assets/loader.gif";
+import loader from "../../assets/posts/loader.gif";
 import { UserContext } from "../../contexts/CurrentUser";
 import Modal from "react-modal";
 import { CommentsContext } from "../../contexts/CommentData";

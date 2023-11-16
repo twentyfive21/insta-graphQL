@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { PostContext } from "../../contexts/PostContext";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/CurrentUser";
-import loader from "../../assets/loader.gif"
+import loader from "../../assets/posts/loader.gif"
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { useSubscription } from "@apollo/client";
 import { GET_ALL_USERS } from "../../utils/subscriptions";

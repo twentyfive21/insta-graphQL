@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { useSubscription } from "@apollo/client";
 import { GET_ALL_USERS } from "../../utils/subscriptions";
-import loader from "../../assets/loader.gif"
+import loader from '../../assets/posts/loader.gif'
 import { useNavigate } from "react-router-dom";
 
 function Comment({ userData }) {
