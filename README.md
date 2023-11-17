@@ -17,6 +17,7 @@
 ## Implemented Features
 * In our Instagram clone project, we successfully implemented features that closely replicate the functionalities of the original Instagram platform. Users can register, log in, create posts, and interact with posts by liking and commenting.
 * Notably, our project leveraged GraphQL as the database technology, coupled with Apollo Client for efficient data retrieval and management.
+* Dark mode was added to enhance users overall experience. 
 ---
 ### Pair Programming
 * Pair programming was an integral aspect of our project development process. Both team members alternated as the driver and navigator, ensuring equal participation and promoting knowledge sharing. This approach allowed for leadership in areas of expertise and a collective decision-making process.
@@ -29,3 +30,4 @@
 ## Credits
 * Insta logo https://icon-icons.com/ for web broswer icon
 * Link to apollo setup : https://www.apollographql.com/docs/react/get-started/
+
