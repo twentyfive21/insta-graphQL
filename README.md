@@ -1,11 +1,11 @@
 # Instagram Clone
 ---
-## View the site live here : https://instagram-vite.netlify.app/
+## View the site live here: https://instagram-vite.netlify.app/
 ---
 ## Learning Outcomes
 ### Throughout this project, we acquired a diverse skill set, combining both technical and non-technical proficiencies:
 * Technical Skills: We honed our expertise in React.js, JavaScript, HTML, CSS, and GraphQL.
-* Non-Technical Skills: Teamwork, Git, GitHub, Agile Methodology, and Pair Programming capabilities.
+* Non-technical skills: Teamwork, Git, GitHub, Agile Methodology, and Pair Programming capabilities.
 ---
 ## Project Overview
 #### The primary objective of this project was to develop an Instagram clone, adhering to an organized development framework comprising 3-week sprints.
@@ -17,7 +17,7 @@
 ## Implemented Features
 * In our Instagram clone project, we successfully implemented features that closely replicate the functionalities of the original Instagram platform. Users can register, log in, create posts, and interact with posts by liking and commenting.
 * Notably, our project leveraged GraphQL as the database technology, coupled with Apollo Client for efficient data retrieval and management.
-* Dark mode was added to enhance users overall experience. 
+* Dark mode was added to enhance the user's overall experience. 
 ---
 ### Pair Programming
 * Pair programming was an integral aspect of our project development process. Both team members alternated as the driver and navigator, ensuring equal participation and promoting knowledge sharing. This approach allowed for leadership in areas of expertise and a collective decision-making process.
@@ -28,6 +28,6 @@
 * Our mentor served as the project manager, providing crucial oversight, guidance, and project milestone sign-offs.
 ---
 ## Credits
-* Insta logo https://icon-icons.com/ for web broswer icon
-* Link to apollo setup : https://www.apollographql.com/docs/react/get-started/
+* Insta logo https://icon-icons.com/ for web browser icon
+* Link to apollo setup: https://www.apollographql.com/docs/react/get-started/
 
